@@ -1,0 +1,12 @@
+form {text-align: center; font-family: fantasy; font-size: 35px}
+body {background-color: coral; font-family: fantasy}
+input[type="text"]
+{
+    font-family: fantasy;
+    font-size: 25px
+}
+input[type="number"]
+{
+    font-family: fantasy;
+    font-size: 25px
+}
