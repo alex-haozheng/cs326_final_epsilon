@@ -1,10 +1,18 @@
 Data Interactions:
-- user inputs text data for search
-- user inputs filtration data
-- user inputs timeframe data
-- user inputs password data
-- site returns menu data
-- site returns ingredient data
+- search function
+  - user inputs text data for search
+  - user inputs filtration data
+  - user inputs timeframe data
+
+- display
+  - site returns menu data
+  - site returns ingredient data
+
+- personalization
+  - user inputs password data
+  - account profiles
+  - favorites
+
 
 Division of Labor:
 
