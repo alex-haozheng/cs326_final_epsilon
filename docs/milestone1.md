@@ -9,14 +9,12 @@ Data Interactions:
 Division of Labor:
 
 
-=======
 Ben
 
 Alan
 
-Alex started the grid and user profile card as well as the title of the webpage
+Alex: started the grid and user profile card as well as the title of the webpage
 
-=======
 Team Name: Team Epsilon
 
 Application Name: UMass Dining+
