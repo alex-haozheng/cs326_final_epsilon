@@ -2,6 +2,7 @@ form {text-align: center; font-family: fantasy; font-size: 35px}
 body {background-color: coral; font-family: fantasy}
 input[type="text"]
 {
+    text-align: center;
     font-family: fantasy;
     font-size: 25px
 }
@@ -10,3 +11,9 @@ input[type="number"]
     font-family: fantasy;
     font-size: 25px
 }
+h1 {text-align: center;}
+h2 {text-align: center;}
+h3 {text-align: center;}
+h4 {text-align: center;}
+a {text-align: center;}
+col {border: 6px solid maroon;}
