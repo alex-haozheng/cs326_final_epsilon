@@ -8,6 +8,12 @@ Data Interactions:
 
 Division of Labor:
 
+Alex: started the grid and user profile card as well as the title of the webpage
+
+Alan:
+
+Benjamin:
+
 =======
 Team Name: Team Epsilon
 
