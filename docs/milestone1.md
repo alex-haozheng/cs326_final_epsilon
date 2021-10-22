@@ -7,6 +7,11 @@ Data Interactions:
 - site returns ingredient data
 
 Division of Labor:
+Ben
+
+Alan
+
+Alex
 
 =======
 Team Name: Team Epsilon
