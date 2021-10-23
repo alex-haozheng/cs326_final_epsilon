@@ -19,7 +19,7 @@
 
 Ben
 
-Alan
+Alan: Added milestone 0 to milestone1.md, project.html title, search bar and search button, changed background color, moved profile to float right, added filtering box with checkboxes to float left, added color scheme of black text. Fixed most center tags and some style sheets, added dynamic number changing for the slider. created unique.html and unique.css files, made search and profile buttons with custom css extra large button class, added date dropdown menu that relies on popper and is not currently working, added the 4 dining halls and space for their unique menus, added titling, then changed some css in unique.css for formatting, font size, spacing.
 
 Alex: started the grid and user profile card as well as the title of the webpage
 
