@@ -11,15 +11,19 @@ div {text-align: center; justify-content: center;}
     margin-left:auto;
     width:100px; 
 }
-#center{
-    justify-content: center;
-}
 input[type="text"]
 {
     text-align: center;
     font-family: fantasy;
     font-size: 25px
 }
+input[type="search"]
+{
+    text-align: center;
+    font-family: fantasy;
+    font-size: 30px
+}
+
 input[type="number"]
 {
     font-family: fantasy;
