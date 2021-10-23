@@ -1,6 +1,6 @@
 form {text-align: center;}
 body {text-align: center;}
-div {text-align: center;}
+div {text-align: center; justify-content: center;}
 #search{
     margin-right:auto;
     margin-left:auto;
@@ -10,6 +10,9 @@ div {text-align: center;}
     margin-right:auto;
     margin-left:auto;
     width:100px; 
+}
+#center{
+    justify-content: center;
 }
 input[type="text"]
 {
@@ -21,6 +24,10 @@ input[type="number"]
 {
     font-family: fantasy;
     font-size: 25px
+}
+input[type="range"] {
+    justify-content: center;
+    width:300px;
 }
 h1 {text-align: center;}
 h2 {text-align: center;}
