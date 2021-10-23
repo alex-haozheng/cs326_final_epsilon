@@ -36,5 +36,5 @@ Important Components: The major functions of our website distinguishing it from 
 ![example image](/img/uniquePage.png)
 
 Below contains the wireframe of the profile.html page
-![example image](https://wireframe.cc/i76x7l)
+![example image](/img/profileWF.png)
 
