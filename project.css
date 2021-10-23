@@ -39,3 +39,18 @@ h2 {text-align: center;}
 h3 {text-align: center; color: white;}
 h4 {text-align: center;}
 a {text-align: center;}
+
+.star {
+    visibility:hidden;
+    font-size:30px;
+    cursor:pointer;
+    line-height: 0.5em;
+    float: right;
+}
+.star:before {  
+   content: "\2605";
+   visibility:visible;
+}
+.star:checked:before {
+   content: "\2606";
+}
