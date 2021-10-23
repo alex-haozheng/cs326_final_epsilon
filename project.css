@@ -1,5 +1,16 @@
-form {text-align: center; font-family: fantasy; font-size: 35px}
-body {background-color: coral; font-family: fantasy}
+form {text-align: center;}
+body {text-align: center;}
+div {text-align: center;}
+#search{
+    margin-right:auto;
+    margin-left:auto;
+    width:100px; 
+}
+#button{
+    margin-right:auto;
+    margin-left:auto;
+    width:100px; 
+}
 input[type="text"]
 {
     text-align: center;
@@ -16,4 +27,3 @@ h2 {text-align: center;}
 h3 {text-align: center;}
 h4 {text-align: center;}
 a {text-align: center;}
-col {border: 6px solid maroon;}
