@@ -1,0 +1,67 @@
+form {text-align: center;}
+body {text-align: center; background-color: rgb(136,28,28);}
+div {text-align: center; justify-content: center;}
+* {
+  box-sizing: border-box;
+}
+
+/* Create two equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 50%;
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
+}
+
+#search{
+    margin-right:auto;
+    margin-left:auto;
+    width:100px; 
+}
+#button{
+    margin-right:auto;
+    margin-left:auto;
+    width:100px; 
+}
+input[type="text"]
+{
+    text-align: center;
+    font-family: fantasy;
+    font-size: 25px
+}
+input[type="search"]
+{
+    text-align: center;
+    font-family: fantasy;
+    font-size: 30px
+}
+
+input[type="number"]
+{
+    font-family: fantasy;
+    font-size: 25px
+}
+input[type="range"] {
+    color: black;
+    justify-content: center;
+    width:300px;
+}
+h1 {text-align: center; color: white;}
+h2 {text-align: center; color: white;}
+h3 {text-align: center; color: white;}
+h4 {text-align: center;}
+a {text-align: center;}
