@@ -30,6 +30,7 @@ input[type="number"]
     font-size: 25px
 }
 input[type="range"] {
+    color: black;
     justify-content: center;
     width:300px;
 }

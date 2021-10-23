@@ -62,8 +62,11 @@
           </button>
           </div>
         <div class='input-group center'>
-          <label for="days" class="form-label" text-align='center'>Days</label>
-          <input type="range" class="form-range" min="0" max="30" id="numOfDays">
+          
+          
+          <input type="range" value="25" min="1" max="30" oninput="this.nextElementSibling.value = this.value">
+          <output> &nbsp; 25</output>
+          <label for="days" class="form-label" text-align='center'> &nbsp; Days</label>
         </div>
 
         <br><br>
