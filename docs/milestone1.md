@@ -33,8 +33,12 @@ Innovative Idea: Creating a more user friendly and modernized version of the UMa
 
 Important Components: The major functions of our website distinguishing it from the current dining site would be: unique item lists, search functionality, and tag-based filtration. Based on our function’s criteria which would be centered around comparing previous and future day menus, the unique menus would only contain items that are more “unique” compared to recurring items that continuously are available. This would allow individuals to quickly have a summarized version of the menu with essentially the “changes” to the daily menu without having to look through the entire one. The search function would allow users to input text as keywords to iterate through every meal of every menu of every dining hall in a chosen amount of upcoming days to return the information of exactly when and where such items will be available in the chosen timeframe. Finally, the tag-based filtration would use the ingredients information of each menu item to “tag” items that meet certain criteria of the tags, allowing students to look at the menu discluding these items or only looking at such ones. We will use the following data types: menu items, textual tags, ingredient items, image tags as well as possibly images, videos and user comments.
 
+Below contains the wireframe of the unique.html page
 ![example image](/img/uniquePage.png)
 
 Below contains the wireframe of the profile.html page
 ![example image](/img/profileWF.png)
+
+Below contains the wireframe of the project.html page
+![example image](/img/projecthtml.png)
 
