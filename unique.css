@@ -13,6 +13,26 @@ h5 {color:black; font-size: 45px;}
             border-radius: 8px;
     }
 
+    .btn-xlarge-left {
+        float: left;
+        padding: 18px 28px;
+        font-size: 22px;
+        line-height: normal;
+        -webkit-border-radius: 8px;
+           -moz-border-radius: 8px;
+                border-radius: 8px;
+        }
+      
+        .btn-xlarge-right {
+          float: right;
+          padding: 18px 28px;
+          font-size: 22px;
+          line-height: normal;
+          -webkit-border-radius: 8px;
+             -moz-border-radius: 8px;
+                  border-radius: 8px;
+          }
+
 .list-group-item{
     color: black;
 }
