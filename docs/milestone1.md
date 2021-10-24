@@ -40,7 +40,7 @@ Contributed to the data interactions section of milestone1 document.  Made the w
 # Wireframes
 
 Below contains the wireframe of the unique.html page
-![example image](/img/uniquePage.png)
+![example image](/img/uniqueWF.png)
 
 Below contains the wireframe of the login.html page
 ![example image](/img/loginWF.png)
@@ -49,5 +49,5 @@ Below contains the wireframe of the profile.html page
 ![example image](/img/profileWF.png)
 
 Below contains the wireframe of the project.html page
-![example image](/img/projecthtml.png)
+![example image](/img/projectWF.png)
 
