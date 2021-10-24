@@ -40,23 +40,37 @@ Contributed to the data interactions section of milestone1 document.  Made the w
 # User Interface
 
 Below contains the wireframe of the unique.html page
+
 ![example image](/img/uniqueWF.png)
+
 Below contains the unique.html page
+
 ![example image](/img/uniqueWP.png)
 
 
 Below contains the wireframe of the login.html page
+
 ![example image](/img/loginWF.png)
+
 Below contains the login.html page
+
 ![example image](/img/loginWP.png)
 
+
 Below contains the wireframe of the profile.html page
+
 ![example image](/img/profileWF.png)
+
 Below contains the profile.html page
+
 ![example image](/img/profileWP.png)
 
+
 Below contains the wireframe of the project.html page
+
 ![example image](/img/projectWF.png)
+
 Below contains the wireframe of the project.html page
+
 ![example image](/img/projectWP.png)
 
