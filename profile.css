@@ -4,6 +4,25 @@ div {text-align: center; justify-content: center;}
 * {
   box-sizing: border-box;
 }
+.btn-xlarge-left {
+  float: left;
+  padding: 18px 28px;
+  font-size: 22px;
+  line-height: normal;
+  -webkit-border-radius: 8px;
+     -moz-border-radius: 8px;
+          border-radius: 8px;
+  }
+
+  .btn-xlarge-right {
+    float: right;
+    padding: 18px 28px;
+    font-size: 22px;
+    line-height: normal;
+    -webkit-border-radius: 8px;
+       -moz-border-radius: 8px;
+            border-radius: 8px;
+    }
 
 /* Create two equal columns that floats next to each other */
 .column {
