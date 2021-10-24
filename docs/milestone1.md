@@ -36,6 +36,9 @@ Important Components: The major functions of our website distinguishing it from 
 Below contains the wireframe of the unique.html page
 ![example image](/img/uniquePage.png)
 
+Below contains the wireframe of the login.html page
+![example image](/img/loginWF.png)
+
 Below contains the wireframe of the profile.html page
 ![example image](/img/profileWF.png)
 
