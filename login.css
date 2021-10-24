@@ -1,0 +1,9 @@
+form {text-align: center;}
+body {text-align: center; background-color: rgb(136,28,28);}
+div {text-align: center; justify-content: center;}
+
+.login {
+    width: 18rem;
+    text-align: center;
+    border-color: black;
+}
