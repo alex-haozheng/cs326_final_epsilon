@@ -49,20 +49,31 @@ function profile(req, res){
   
 }
 
-
+//example request: {"username": "user1", "password": "pass1"}
 function getFav(req, res){
+  let body = '';
+    req.on('data', data => body += data);
+    req.on('end', () => {
+        let item = JSON.parse(body);
+        if(datastore["logins"][item["username"]] && JSON.stringify(datastore["logins"][item["username"]]) === JSON.stringify(item["password"])){
+          response.end(JSON.stringify(datastore["profiles"][item["username"]]));
+        }
+        else {
 
-}
+        }
+        
+    });
+  }
 
-//example request: "Chicken Souklavia Bowl"
+//example request: {"username": "user1", "password": "pass1", "item": "Chicken Souklavia Bowl"}
 function addFav(req, res){
   //need code to verify user is user first
   //need something to load in username as a variable after verifying identity
   let body = '';
     req.on('data', data => body += data);
     req.on('end', () => {
-        let item = body;
-        datastore["profiles"][username].push(body);
+        let item = JSON.parse(body);
+        datastore["profiles"][item["username"]].push(item["item"]);
         fs.writeFileSync(filename, JSON.stringify(datastore));
         response.end(JSON.stringify(response.statusCode));
     });
