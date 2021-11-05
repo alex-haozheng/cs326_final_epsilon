@@ -48,11 +48,24 @@ function login(req, res){
 function profile(req, res){
   
 }
+
+
 function getFav(req, res){
 
 }
-function addFav(req, res){
 
+//example request: "Chicken Souklavia Bowl"
+function addFav(req, res){
+  //need code to verify user is user first
+  //need something to load in username as a variable after verifying identity
+  let body = '';
+    req.on('data', data => body += data);
+    req.on('end', () => {
+        let item = body;
+        datastore["profiles"][username].push(body);
+        fs.writeFileSync(filename, JSON.stringify(datastore));
+        response.end(JSON.stringify(response.statusCode));
+    });
 }
 
 function getUnique(req, res){
