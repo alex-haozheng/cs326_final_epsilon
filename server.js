@@ -22,54 +22,42 @@ function reload(filename) {
   }
 }
 
-// Using POST can be tricky with vanilla Node.js, so here is a snippet to get you started.
-function wordScore(req, res) {
-    let body = '';
-    req.on('data', data => body += data);
-    req.on('end', () => {
-      box.wordScore.push(JSON.parse(body));
-      // The request has been fully processed, and you can use / parse the body variable.
-      fs.writeFileSync(JSONfile, JSON.stringify(box)); // dont need to parse/ stringify ?
-    });
-    res.end(JSON.stringify(res.statusCode));
+function register(req, res){
+
+}
+function login(req, res){
+
+}
+function profile(req, res){
+  
+}
+function getFav(req, res){
+
+}
+function addFav(req, res){
+
 }
 
-// GET function
-function highestWordScores(req, res) {
-  // box = reload(JSONfile);
-  if(box.wordScore.length > 10) {
-    box.wordScore.sort((a, b) => (a.score > b.score) ? 1 : -1);
-    let arr = JSON.parse(JSON.stringify(box.wordScore));
-    res.end(JSON.stringify(arr.splice(0, 10)));
-  } else {
-    res.end(JSON.stringify(box.wordScore));
-  }
+function getUnique(req, res){
+
 }
 
-// POST
-function gameScore(req, res) {
-  let body = '';
-  req.on('data', data => body += data);
-  req.on('end', () => {
-    box.gameScore.push(JSON.parse(body));
-    // The request has been fully processed, and you can use / parse the body variable.
-    fs.writeFileSync(JSONfile, JSON.stringify(box)); // dont need to parse/ stringify ?
-  });
-  res.end(JSON.stringify(res.statusCode));
+function getBerk(req, res){
+
+}
+function getFrank(req, res){
+
+}
+function getHamp(req, res){
+  
+}
+function getWoo(req, res){
+
 }
 
-// GET function (req is never referenced / used)
-function highestGameScores(req, res) {
-  // box = reload(JSONfile);
-  if(box.gameScore.length > 10) { // wait is this box.wordScore??
-    box.gameScore.sort((a, b) => (a.score > b.score) ? 1 : -1);
-    let arr = JSON.parse(JSON.stringify(box.gameScore));
-    res.end(JSON.stringify(arr.splice(0, 10))); 
-  } else {
-    res.end(JSON.stringify(box.gameScore));
-  }
-}
+function search(req, res){
 
+}
 let server = http.createServer();
 server.on('request', async (request, response) => {
   box = reload(JSONfile);
@@ -83,28 +71,28 @@ server.on('request', async (request, response) => {
     profile(request, response);
   }
   else if (request.url.startsWith("/user/favorites/view")) {
-    highestGameScores(request, response);
+    getFav(request, response);
   }
   else if (request.url.startsWith("/user/favorites/add")) {
-    highestGameScores(request, response);
+    addFav(request, response);
   }
   else if (request.url.startsWith("/unique/view")) {
-    highestGameScores(request, response);
+    getUnique(request, response);
   }
   else if (request.url.startsWith("/berkshire/view")) {
-    highestGameScores(request, response);
+    getBerk(request, response);
   }
   else if (request.url.startsWith("/hampshire/view")) {
-    highestGameScores(request, response);
+    getHamp(request, response);
   }
   else if (request.url.startsWith("/worcester/view")) {
-    highestGameScores(request, response);
+    getWoo(request, response);
   }
   else if (request.url.startsWith("/franklin/view")) {
-    highestGameScores(request, response);
+    getFrank(request, response);
   }
   else if (request.url.startsWith("/search")) {
-    highestGameScores(request, response);
+    search(request, response);
   }
   else {
     response.write("no command found.");
