@@ -87,6 +87,23 @@ server.listen(8080);
 //         "user2": ["fav3", "fav4"],
 //         "user3": ["fav5", "fav6"] 
 //     }
+
+//       "searchResults": {
+//          {name: 'example',
+//           date: [],
+//           tag1: 'example',
+//           tag2: 'example' },
+//          {name: 'example',
+//           tag1: 'example',
+//           tag2: 'example' },
+//          {name: 'example',
+//           tag1: 'example',
+//           tag2: 'example' },
+//          };
+
+
+
+
 // }
     
 
