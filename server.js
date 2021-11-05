@@ -80,10 +80,26 @@ function addFav(req, res){
     });
 }
 
+//get unique items
 function getUnique(req, res){
+  const data = datastore["uniques"];
+  for(let i = 0; i < data["berkshire"]["breakfast"].length; ++i){
+    let newDiv = document.createElement('div');
+    newDiv.innerHTML = JSON.stringify(data["berkshire"]["breakfast"][i]);
+    uniquePage.document.getElementById("bbreakfast").appendChild(newDiv);
+  }
+  for(let i = 0; i < data["berkshire"]["lunch"].length; ++i){
+    let newDiv = document.createElement('div');
+    newDiv.innerHTML = JSON.stringify(data["berkshire"]["lunch"][i]);
+    uniquePage.document.getElementById("blunch").appendChild(newDiv);
+  }
+  for(let i = 0; i < data["berkshire"]["dinner"].length; ++i){
+    let newDiv = document.createElement('div');
+    newDiv.innerHTML = JSON.stringify(data["berkshire"]["dinner"][i]);
+    uniquePage.document.getElementById("bdinner").appendChild(newDiv);
+  }
 
 }
-
 function getBerk(req, res){
 
 }
