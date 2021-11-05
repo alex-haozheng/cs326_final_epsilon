@@ -30,15 +30,22 @@ function reload(filename) {
 function register(req, res){
     req.on('end', () => {
         loginPage.document.getElementById("signup").addEventListener("click", () => {
-        datastore["logins"][loginPage.document.getElementByID("username").value] = loginPage.document.getElementByID("password").value;
-        fs.writeFileSync(filename, JSON.stringify(datastore));
-        res.end(JSON.stringify(response.statusCode));
+            if(!datastore["logins"][loginPage.document.getElementByID("username").value]){
+                datastore["logins"][loginPage.document.getElementByID("username").value] = loginPage.document.getElementByID("password").value;
+                fs.writeFileSync(filename, JSON.stringify(datastore));
+                res.end(JSON.stringify(response.statusCode));
+            }
+            else {
+                alert("This username is already taken!");
+                res.end("This username is already taken!");
+            }
+            
         })
     }); 
 }
 
 function login(req, res){
-    
+
 }
 function profile(req, res){
   
