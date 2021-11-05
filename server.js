@@ -7,7 +7,12 @@ import * as fs from 'fs';
 // let url = require('url');
 // let fs = require('fs');
 
-let box = {};
+const projectPage = window.open('project.html');
+const uniquePage = window.open('unique.html');
+const profilePage = window.open('profile.html');
+const loginPage = window.open('login.html');
+
+let datastore = {};
 const JSONfile = './storage.json';
 
 function reload(filename) {
@@ -23,10 +28,17 @@ function reload(filename) {
 }
 
 function register(req, res){
-
+    req.on('end', () => {
+        loginPage.document.getElementById("signup").addEventListener("click", () => {
+        datastore["logins"][loginPage.document.getElementByID("username").value] = loginPage.document.getElementByID("password").value;
+        fs.writeFileSync(filename, JSON.stringify(datastore));
+        res.end(JSON.stringify(response.statusCode));
+        })
+    }); 
 }
-function login(req, res){
 
+function login(req, res){
+    
 }
 function profile(req, res){
   
@@ -60,7 +72,7 @@ function search(req, res){
 }
 let server = http.createServer();
 server.on('request', async (request, response) => {
-  box = reload(JSONfile);
+  datastore = reload(JSONfile);
   if (request.url.startsWith("/register")) {
     register(request, response);
   }
