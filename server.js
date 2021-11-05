@@ -83,20 +83,39 @@ function addFav(req, res){
 //TODO: add the rest of the dining halls, make it clear any divs before updating
 function getUnique(req, res){
   const data = datastore["uniques"];
-  for(let i = 0; i < data["berkshire"]["breakfast"].length; ++i){
+  const data = datastore["uniques"];
+  let hall = "berkshire";
+  for(let i = 0; i < data[hall]["breakfast"].length; ++i){
     let newDiv = document.createElement('div');
-    newDiv.innerHTML = JSON.stringify(data["berkshire"]["breakfast"][i]);
+    newDiv.innerHTML = JSON.stringify(data[hall]["breakfast"][i]);
     uniquePage.document.getElementById("bbreakfast").appendChild(newDiv);
   }
-  for(let i = 0; i < data["berkshire"]["lunch"].length; ++i){
+  for(let i = 0; i < data[hall]["lunch"].length; ++i){
     let newDiv = document.createElement('div');
-    newDiv.innerHTML = JSON.stringify(data["berkshire"]["lunch"][i]);
+    newDiv.innerHTML = JSON.stringify(data[hall]["lunch"][i]);
     uniquePage.document.getElementById("blunch").appendChild(newDiv);
   }
-  for(let i = 0; i < data["berkshire"]["dinner"].length; ++i){
+  for(let i = 0; i < data[hall]["dinner"].length; ++i){
     let newDiv = document.createElement('div');
-    newDiv.innerHTML = JSON.stringify(data["berkshire"]["dinner"][i]);
+    newDiv.innerHTML = JSON.stringify(data[hall]["dinner"][i]);
     uniquePage.document.getElementById("bdinner").appendChild(newDiv);
+  }
+
+  let hall = "hampshire";
+  for(let i = 0; i < data[hall]["breakfast"].length; ++i){
+    let newDiv = document.createElement('div');
+    newDiv.innerHTML = JSON.stringify(data[hall]["breakfast"][i]);
+    uniquePage.document.getElementById("hbreakfast").appendChild(newDiv);
+  }
+  for(let i = 0; i < data[hall]["lunch"].length; ++i){
+    let newDiv = document.createElement('div');
+    newDiv.innerHTML = JSON.stringify(data[hall]["lunch"][i]);
+    uniquePage.document.getElementById("hlunch").appendChild(newDiv);
+  }
+  for(let i = 0; i < data[hall]["dinner"].length; ++i){
+    let newDiv = document.createElement('div');
+    newDiv.innerHTML = JSON.stringify(data[hall]["dinner"][i]);
+    uniquePage.document.getElementById("hdinner").appendChild(newDiv);
   }
 
 }
