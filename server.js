@@ -22,8 +22,42 @@ function reload(filename) {
   }
 }
 
+function register(req, res){
 
+}
+function login(req, res){
 
+}
+function profile(req, res){
+  
+}
+function getFav(req, res){
+
+}
+function addFav(req, res){
+
+}
+
+function getUnique(req, res){
+
+}
+
+function getBerk(req, res){
+
+}
+function getFrank(req, res){
+
+}
+function getHamp(req, res){
+  
+}
+function getWoo(req, res){
+
+}
+
+function search(req, res){
+
+}
 let server = http.createServer();
 server.on('request', async (request, response) => {
   box = reload(JSONfile);
