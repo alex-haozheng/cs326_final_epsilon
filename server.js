@@ -80,7 +80,7 @@ function addFav(req, res){
     });
 }
 
-//get unique items
+//TODO: add the rest of the dining halls, make it clear any divs before updating
 function getUnique(req, res){
   const data = datastore["uniques"];
   for(let i = 0; i < data["berkshire"]["breakfast"].length; ++i){
@@ -98,18 +98,6 @@ function getUnique(req, res){
     newDiv.innerHTML = JSON.stringify(data["berkshire"]["dinner"][i]);
     uniquePage.document.getElementById("bdinner").appendChild(newDiv);
   }
-
-}
-function getBerk(req, res){
-
-}
-function getFrank(req, res){
-
-}
-function getHamp(req, res){
-  return 10;
-}
-function getWoo(req, res){
 
 }
 
