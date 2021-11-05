@@ -45,6 +45,7 @@ function register(req, res){
 function login(req, res){
 
 }
+
 function profile(req, res){
   
 }
