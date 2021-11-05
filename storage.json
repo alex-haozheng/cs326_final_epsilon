@@ -34,4 +34,103 @@
         "user2": ["fav3", "fav4"],
         "user3": ["fav5", "fav6"] 
     }
+    
+    "searchResults":{
+        "date1": {
+            "berkshire": {
+                "breakfast": {
+                    "name1": {
+                        "tag1": "example",
+                        "tag2": "example",
+                        "tag3": "example"    
+                    }
+                },
+                "lunch": {
+                    "name2": {
+                        "tag1": "example",
+                        "tag2": "example",
+                        "tag3": "example"    
+                    }
+                },
+                "dinner": {
+                    "name3": {
+                        "tag1": "example",
+                        "tag2": "example",
+                        "tag3": "example"    
+                    }
+                }
+            },
+            "franklin": {
+                "breakfast": {
+                    "name1": {
+                        "tag1": "example",
+                        "tag2": "example",
+                        "tag3": "example"    
+                    }
+                },
+                "lunch": {
+                    "name2": {
+                        "tag1": "example",
+                        "tag2": "example",
+                        "tag3": "example"    
+                    }
+                },
+                "dinner": {
+                    "name3": {
+                        "tag1": "example",
+                        "tag2": "example",
+                        "tag3": "example"    
+                    }
+                }
+            },
+            "hampshire": {
+                "breakfast": {
+                    "name1": {
+                        "tag1": "example",
+                        "tag2": "example",
+                        "tag3": "example"    
+                    }
+                },
+                "lunch": {
+                    "name2": {
+                        "tag1": "example",
+                        "tag2": "example",
+                        "tag3": "example"    
+                    }
+                },
+                "dinner": {
+                    "name3": {
+                        "tag1": "example",
+                        "tag2": "example",
+                        "tag3": "example"    
+                    }
+                }
+            },
+            "worcester": {
+                "breakfast": {
+                    "name1": {
+                        "tag1": "example",
+                        "tag2": "example",
+                        "tag3": "example"    
+                    }
+                },
+                "lunch": {
+                    "name2": {
+                        "tag1": "example",
+                        "tag2": "example",
+                        "tag3": "example"    
+                    }
+                },
+                "dinner": {
+                    "name3": {
+                        "tag1": "example",
+                        "tag2": "example",
+                        "tag3": "example"    
+                    }
+                }
+            }
+    
+        }
+    }
+    
 }
