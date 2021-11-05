@@ -91,7 +91,7 @@ function getFrank(req, res){
 
 }
 function getHamp(req, res){
-  
+  return 10;
 }
 function getWoo(req, res){
 
