@@ -39,9 +39,9 @@
             "berkshire": {
                 "breakfast": {
                     "name1": {
-                        "Halal": true,
-                        "Vegetarian": true,
-                        "Gluten Free": false    
+                        "halal": true,
+                        "vegetarian": true,
+                        "glutenFree": false    
                     }
                 },
                 "lunch": {
