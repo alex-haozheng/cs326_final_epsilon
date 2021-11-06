@@ -59,8 +59,9 @@ app.post('/register', (req, res) => {
 });
 
 // req 'user1'
-app.get('/user/favorites/view', (req, res) => {
-  res.send(datastore.profiles[req]);
+app.get('/user/favorites/view/:key', (req, res) => {
+  let name = req.params.key;
+  res.send(datastore.profiles[name]);
 });
 
 // ['user', 'fav1']
