@@ -2,9 +2,8 @@
 
 async function getFavorites() {
     let u = document.getElementById("username").value;
-    let response = await fetch('//user/favorites/view',{
-        method: 'POST',
-        body: u
+    let response = await fetch('//user/favorites/view/' + u,{
+        method: 'GET'
     })
 
     if (response.ok) {
@@ -22,7 +21,7 @@ async function addFavorite() {
     let a = document.getElementById("adding").value;
     let response = await fetch('//user/favorites/add',{
         method: 'POST',
-        body: JSON.stringify([u,a])
+        body: JSON.stringify({"username": u, "item": a})
     })
 
     if (response.ok) {
@@ -36,9 +35,8 @@ async function addFavorite() {
 
 async function deleteAccount() {
     let u = document.getElementById("username").value;
-    let response = await fetch('/user/delete',{
-        method: 'DELETE',
-        body: u
+    let response = await fetch('/user/delete/' + u,{
+        method: 'DELETE'
     })
 
     if (response.ok) {
