@@ -5,7 +5,7 @@ async function register() {
     let p = document.getElementById("password").value;
     let response = await fetch('/register',{
         method: 'POST',
-        body: JSON.stringify([u,p])
+        body: JSON.stringify({"username": u, "password": p})
     })
 
     if (response.ok) {
