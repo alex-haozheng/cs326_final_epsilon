@@ -43,6 +43,10 @@ app.get('/search', async (req, res) => {
   
 });
 
+app.get('/unique/view', (req, res) => {
+  res.send(datastore["uniques"]);
+});
+
 // req: {"username": "user1", "password": "pass1"}
 app.post('/register', (req, res) => {
   let username = req.body.username;
