@@ -42,23 +42,22 @@ app.get('/search', async (req, res) => {
   
 });
 
+<<<<<<< HEAD
 app.get('/uniques', async (req, res) => {
 
 });
 
 // req: ['user', 'pass']
+=======
+// req: {"username": "user1", "password": "pass1"}
+>>>>>>> 51bf6000da7cfd692691585bd9cf6cab33f30249
 app.post('/register', (req, res) => {
-  let body = '';
-  req.on('data', data => body += data);
-  req.on('end', async () => {
-    const arr = JSON.parse(body);
-    let acct = datastore.logins;
-    if(!acct.includes(arr[0]))
-      acct[arr[0]] = arr[1];
-    else
-      alert('account already exists');
-  });
-  res.end();
+  let username = req.body.username;
+  let password = req.body.password;
+  if(!datastore["logins"][username]){
+    datastore["logins"][username] = password;
+  }
+  res.send(res.statusCode);
 });
 
 // req 'user1'
@@ -67,17 +66,12 @@ app.get('/user/favorites/view/:key', (req, res) => {
   res.send(datastore.profiles[name]);
 });
 
-// ['user', 'fav1']
+// req: {"username": "user1", "item": "chicken"}
 app.post('/user/favorites/add', (req, res) => {
-  let body = '';
-  req.on('data', data => body += data);
-  req.on('end', async () => {
-    const o = JSON.parse(body);
-    let fav = datastore.profiles[o[0]];
-    if(!fav.includes(o[1]))
-      fav.push(o[1]);
-  });
-  res.end();
+  let username = req.body.username;
+  let item = req.body.item;
+  datastore["profiles"][username] = item;
+  res.send(res.statusCode);
 });
 
 app.delete('/user/delete', (req, res) => {
