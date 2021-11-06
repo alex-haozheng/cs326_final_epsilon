@@ -175,9 +175,13 @@ async function search(obj, arr) {
   return o;
 }
 
-// ['search', int, true, false, true]
+// req: {"keyword": "name1", "days": 1, "halal": true, "vegetarian": true, "glutenFree": false}
 app.get('/search', async (req, res) => {
-  const arr = JSON.parse(req);
+  let keyword = req.body.keyword;
+  let days = req.body.keyword;
+  let halal = req.body.halal;
+  let vegetarian = req.body.vegetarian;
+  let glutenFree = req.body.glutenFree;
   const o = await search(datastore, arr);
   res.end(o);
 });
