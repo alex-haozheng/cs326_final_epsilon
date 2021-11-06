@@ -188,7 +188,7 @@ app.get('/user/favorites/view/:key', (req, res) => {
 app.post('/user/favorites/add', (req, res) => {
   let username = req.body.username;
   let item = req.body.item;
-  datastore["profiles"][username] = item;
+  datastore["profiles"][username].push(item);
   res.send(res.statusCode);
 });
 
