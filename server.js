@@ -24,7 +24,7 @@ function reload(filename) {
 
 
 async function search(obj, arr) {
-  let ret = JSON.parse(JSON.stringify(obj));
+  let o = JSON.parse(JSON.stringify(obj));
 
   for(let i = 0; i <= arr[1]; ++i) {
     for (let hall in obj.food[i]) {
@@ -38,7 +38,7 @@ async function search(obj, arr) {
 
 // ['search', int, true, false, true]
 app.get('/search', async (req, res) => {
-  const o = datastore.food
+  const o = JSON.parse(JSON.stringify())
   
 });
 
@@ -77,6 +77,7 @@ app.delete('/user/delete', (req, res) => {
   req.on('data', data => body += data);
   req.on('end', async () => {
     delete datastore.logins[body];
+    delete datastore.profiles[body];
   });
   res.end();
 });
