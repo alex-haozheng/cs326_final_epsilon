@@ -1,167 +1,49 @@
 'use strict';
+const express = require('express');
+// import express from 'express';
+const app = express();
 
-import * as http from 'http';
-import * as url from 'url';
-import * as fs from 'fs';
-// let http = require('http');
-// let url = require('url');
-// let fs = require('fs');
+app.use(express.json()); // lets you handle JSON input
 
-const projectPage = window.open('project.html');
-const uniquePage = window.open('unique.html');
-const profilePage = window.open('profile.html');
-const loginPage = window.open('login.html');
+const port = 3000;
 
-let datastore = {};
-const JSONfile = './storage.json';
+const datastore = {};
 
-function reload(filename) {
-  if (fs.existsSync(filename)) {
-    return JSON.parse(fs.readFileSync(filename));
-  } else {
-    return {
-      'uniques': {},
-      'logins': {},
-      'profiles': {}
-    };
-  }
-}
-
-function register(req, res){
-      loginPage.document.getElementById("signup").addEventListener("click", () => {
-          if(!datastore["logins"][loginPage.document.getElementByID("username").value]){
-              datastore["logins"][loginPage.document.getElementByID("username").value] = loginPage.document.getElementByID("password").value;
-              fs.writeFileSync(filename, JSON.stringify(datastore));
-              res.end(JSON.stringify(response.statusCode));
-          }
-          else {
-              alert("This username is already taken!");
-              res.end("This username is already taken!");
-          }
-            
-      }) 
-}
-
-function login(req, res){
-
-}
-
-function profile(req, res){
-  
-}
-
-//example request: {"username": "user1", "password": "pass1"}
-function getFav(req, res){
-  let body = '';
-    req.on('data', data => body += data);
-    req.on('end', () => {
-        let item = JSON.parse(body);
-        if(datastore["logins"][item["username"]] && JSON.stringify(datastore["logins"][item["username"]]) === JSON.stringify(item["password"])){
-          response.end(JSON.stringify(datastore["profiles"][item["username"]]));
-        }
-        else {
-
-        }
-        
-    });
-  }
-
-//example request: {"username": "user1", "password": "pass1", "item": "Chicken Souklavia Bowl"}
-function addFav(req, res){
-  //need code to verify user is user first
-  //need something to load in username as a variable after verifying identity
-  let body = '';
-    req.on('data', data => body += data);
-    req.on('end', () => {
-        let item = JSON.parse(body);
-        datastore["profiles"][item["username"]].push(item["item"]);
-        fs.writeFileSync(filename, JSON.stringify(datastore));
-        response.end(JSON.stringify(response.statusCode));
-    });
-}
-
-//TODO: add the rest of the dining halls, make it clear any divs before updating
-function getUnique(req, res){
-  const data = datastore["uniques"];
-  const data = datastore["uniques"];
-  let hall = "berkshire";
-  for(let i = 0; i < data[hall]["breakfast"].length; ++i){
-    let newDiv = document.createElement('div');
-    newDiv.innerHTML = JSON.stringify(data[hall]["breakfast"][i]);
-    uniquePage.document.getElementById("bbreakfast").appendChild(newDiv);
-  }
-  for(let i = 0; i < data[hall]["lunch"].length; ++i){
-    let newDiv = document.createElement('div');
-    newDiv.innerHTML = JSON.stringify(data[hall]["lunch"][i]);
-    uniquePage.document.getElementById("blunch").appendChild(newDiv);
-  }
-  for(let i = 0; i < data[hall]["dinner"].length; ++i){
-    let newDiv = document.createElement('div');
-    newDiv.innerHTML = JSON.stringify(data[hall]["dinner"][i]);
-    uniquePage.document.getElementById("bdinner").appendChild(newDiv);
-  }
-
-  let hall = "hampshire";
-  for(let i = 0; i < data[hall]["breakfast"].length; ++i){
-    let newDiv = document.createElement('div');
-    newDiv.innerHTML = JSON.stringify(data[hall]["breakfast"][i]);
-    uniquePage.document.getElementById("hbreakfast").appendChild(newDiv);
-  }
-  for(let i = 0; i < data[hall]["lunch"].length; ++i){
-    let newDiv = document.createElement('div');
-    newDiv.innerHTML = JSON.stringify(data[hall]["lunch"][i]);
-    uniquePage.document.getElementById("hlunch").appendChild(newDiv);
-  }
-  for(let i = 0; i < data[hall]["dinner"].length; ++i){
-    let newDiv = document.createElement('div');
-    newDiv.innerHTML = JSON.stringify(data[hall]["dinner"][i]);
-    uniquePage.document.getElementById("hdinner").appendChild(newDiv);
-  }
-
-}
-
-function search(req, res){
-
-}
-let server = http.createServer();
-server.on('request', async (request, response) => {
-  datastore = reload(JSONfile);
-  if (request.url.startsWith("/register")) {
-    register(request, response);
-  }
-  else if (request.url.startsWith("/login")) {
-    login(request, response);
-  }
-  else if (request.url.startsWith("/user")) {
-    profile(request, response);
-  }
-  else if (request.url.startsWith("/user/favorites/view")) {
-    getFav(request, response);
-  }
-  else if (request.url.startsWith("/user/favorites/add")) {
-    addFav(request, response);
-  }
-  else if (request.url.startsWith("/unique/view")) {
-    getUnique(request, response);
-  }
-  else if (request.url.startsWith("/berkshire/view")) {
-    getBerk(request, response);
-  }
-  else if (request.url.startsWith("/hampshire/view")) {
-    getHamp(request, response);
-  }
-  else if (request.url.startsWith("/worcester/view")) {
-    getWoo(request, response);
-  }
-  else if (request.url.startsWith("/franklin/view")) {
-    getFrank(request, response);
-  }
-  else if (request.url.startsWith("/search")) {
-    search(request, response);
-  }
-  else {
-    response.write("no command found.");
-  }
-  response.end();
+// req: {'username': 'password'}
+app.post('/register', (req, res) => {
+  // TODO: PARSE OUT KEY AND VALUE FROM *QUERY* INTO k AND v
+  req
+  //bring the html page of profile.html
 });
-server.listen(8080);
+
+// req 'user1'
+app.get('/user/favorites/view', (req, res) => {
+  res.send(datastore.profiles[req]);
+});
+
+// ['user', 'fav1']
+app.post('/user/favorites/add', (req, res) => {
+  let body = '';
+  req.on('data', data => body += data);
+  req.on('end', async () => {
+    const o = JSON.parse(body);
+    let fav = datastore.profiles[o[0]];
+    if(!fav.includes(o[1]))
+      fav.push(o[1]);
+  });
+  res.end();
+});
+
+app.delete('/user/delete', (req, res) => {
+  // TODO: PARSE OUT KEY AND VALUE FROM req.body INTO k and v
+  let body = '';
+  req.on('data', data => body += data);
+  req.on('end', async () => {
+    delete datastore.logins[body];
+  });
+  res.end();
+});
+
+app.listen(port, () => {
+    console.log(`Example app listening at http://localhost:${port}`);
+});
