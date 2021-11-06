@@ -1,5 +1,9 @@
 'use strict';
 // const express = require('express');
+
+import * as http from 'http';
+import * as url from 'url';
+import * as fs from 'fs';
 import express from 'express';
 const app = express();
 
@@ -10,36 +14,49 @@ const port = 8080;
 const datastore = {};
 const JSONfile = 'storage.json';
 
-
-
-
-async function search() {
-  let berk = await berk();
-  let hamp = await hamp();
-  let woo = await woo();
-  let frank = await frank();
-
+function reload(filename) {
+  if (fs.existsSync(filename)) {
+    return JSON.parse(fs.readFileSync(filename));
+  } else {
+    return {"wordScore": [], "gameScore": []};
+  }
 }
 
-async function berk() {
 
-}
+async function search(obj, arr) {
+  let ret = JSON.parse(JSON.stringify(obj));
 
-async function hamp() {
+  for(let i = 0; i <= arr[1]; ++i) {
+    for (let hall in obj.food[i]) {
+      for (let meal in hall) {
+        let keys = Object.keys(meal);
+        let 
+      }
+    }
+  }
 
-}
-
-async function woo() {
-
-}
-
-async function frank() {
-
+  for(let hall in ret){
+      for(let time in ret[hall]){
+          for(let item in ret[hall][time]){ // loops through names
+              for(let tag in ret[hall][time][item]){
+                  for(let i = 1; i < searchItem.length; ++i){
+                      if(ret[hall][time][item][tag] !== searchItem[i]){
+                          delete(obj);
+                      }
+                  }
+              }            
+          }
+      }
+  }
 }
 
 // ['search', int, true, false, true]
 app.get('/search', async (req, res) => {
   const o = datastore.food
+  
+});
+
+app.get('/uniques', async (req, res) => {
   
 });
 

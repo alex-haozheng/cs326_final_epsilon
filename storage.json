@@ -20,7 +20,6 @@
             "lunch": ["ribs", "burgers", "french fries"],
             "dinner": ["fish", "spaghetti", "chicken pot pie"]
         }
-    
     },
 
     "logins": {
@@ -35,8 +34,8 @@
         "user3": ["fav5", "fav6"] 
     },
     
-    "food":{
-        "date1": {
+    "food":[
+        {
             "berkshire": {
                 "breakfast": {
                     "name1": {
@@ -131,6 +130,6 @@
             }
     
         }
-    }
+      ]
     
 }
