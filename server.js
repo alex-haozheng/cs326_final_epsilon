@@ -150,23 +150,35 @@ const JSONfile = 'storage.json';
 
 
 async function search(obj, arr) {
-  let output = [];
   let o = JSON.parse(JSON.stringify(obj));
   for(let i = 0; i <= arr[1]; ++i) {
     for (let hall in obj.food[i]) {
       for (let meal in hall) {
-        let keys = Object.keys(meal);
-        let 
+        for (let name in meal) {
+          let j = 2;
+          for (let filter in name) {
+            if(name.includes(arr[0])) {
+              if(arr[j++]) {
+                if(!o[hall][meal][name][filter]) {
+                  delete o[hall][meal][name];
+                }
+              }
+            } else {
+              delete o[hall][meal][name];
+              break;
+            }
+          }
+        }
       }
     }
   }
+  return o;
 }
 
 // ['search', int, true, false, true]
 app.get('/search', async (req, res) => {
   const arr = JSON.parse(req);
-  const o = JSON.parse(JSON.stringify(datastore.food))
-  o = await search(datastore, arr);
+  const o = await search(datastore, arr);
   res.end(o);
 });
 
