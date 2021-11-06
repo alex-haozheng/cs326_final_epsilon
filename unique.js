@@ -1,4 +1,4 @@
-
+'use strict';
 
 async function getUnique() {
     let response = await fetch('/unique/view',{
@@ -37,3 +37,5 @@ function helper(data, hall, time){
     }
 
 }
+
+window.onload = getUnique();
