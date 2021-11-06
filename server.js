@@ -149,24 +149,36 @@ const JSONfile = 'storage.json';
 
 
 
-async function search(obj, arr) {
+async function search(obj, req) {
+  let keyword = req.body.keyword;
+  let days = req.body.days;
+  let halal = req.body.halal;
+  let vegetarian = req.body.vegetarian;
+  let glutenFree = req.body.glutenFree;
   let o = JSON.parse(JSON.stringify(obj));
-  for(let i = 0; i <= arr[1]; ++i) {
+  for(let i = 0; i <= days; ++i) {
     for (let hall in obj.food[i]) {
       for (let meal in hall) {
         for (let name in meal) {
-          let j = 2;
-          for (let filter in name) {
-            if(name.includes(arr[0])) {
-              if(arr[j++]) {
-                if(!o[hall][meal][name][filter]) {
-                  delete o[hall][meal][name];
-                }
+          if (name.includes(keyword)) {
+            let tags = o[hall][meal][name];
+            if(halal) {
+              if(!tags.halal) {
+                delete tags;
               }
-            } else {
-              delete o[hall][meal][name];
-              break;
             }
+            if(vegetarian) {
+              if(!tags.vegetarian) {
+                delete tags;
+              }
+            }
+            if(glutenFree) {
+              if(!tags.glutenFree) {
+                delete tags;
+              }
+            }
+          } else {
+            delete o[hall][meal][name];
           }
         }
       }
@@ -177,12 +189,7 @@ async function search(obj, arr) {
 
 // req: {"keyword": "name1", "days": 1, "halal": true, "vegetarian": true, "glutenFree": false}
 app.get('/search', async (req, res) => {
-  let keyword = req.body.keyword;
-  let days = req.body.keyword;
-  let halal = req.body.halal;
-  let vegetarian = req.body.vegetarian;
-  let glutenFree = req.body.glutenFree;
-  const o = await search(datastore, arr);
+  const o = await search(datastore, req);
   res.end(o);
 });
 
