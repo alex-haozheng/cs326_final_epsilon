@@ -34,20 +34,6 @@ async function search(obj, arr) {
       }
     }
   }
-
-  for(let hall in ret){
-      for(let time in ret[hall]){
-          for(let item in ret[hall][time]){ // loops through names
-              for(let tag in ret[hall][time][item]){
-                  for(let i = 1; i < searchItem.length; ++i){
-                      if(ret[hall][time][item][tag] !== searchItem[i]){
-                          delete(obj);
-                      }
-                  }
-              }            
-          }
-      }
-  }
 }
 
 // ['search', int, true, false, true]
@@ -57,7 +43,7 @@ app.get('/search', async (req, res) => {
 });
 
 app.get('/uniques', async (req, res) => {
-  
+
 });
 
 // req: ['user', 'pass']
