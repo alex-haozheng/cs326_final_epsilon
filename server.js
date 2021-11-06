@@ -164,17 +164,17 @@ async function search(obj, req) {
             let tags = o[hall][meal][name];
             if(halal) {
               if(!tags.halal) {
-                delete tags;
+                delete o[hall][meal][name];
               }
             }
             if(vegetarian) {
               if(!tags.vegetarian) {
-                delete tags;
+                delete o[hall][meal][name];
               }
             }
             if(glutenFree) {
               if(!tags.glutenFree) {
-                delete tags;
+                delete o[hall][meal][name];
               }
             }
           } else {
