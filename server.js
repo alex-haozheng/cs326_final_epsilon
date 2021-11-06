@@ -39,7 +39,8 @@ async function search(obj, arr) {
 // ['search', int, true, false, true]
 app.get('/search', async (req, res) => {
   const o = JSON.parse(JSON.stringify())
-  
+  o = await search(datastore, arr);
+  res.end(o);
 });
 
 
