@@ -7,7 +7,12 @@ app.use(express.json()); // lets you handle JSON input
 
 const port = 3000;
 
-const datastore = {};
+const datastore = {
+  "uniques": {},
+  "logins": {},
+  "profiles": {},
+  "searchResults": {}
+};
 
 // req: ['user', 'pass']
 app.post('/register', (req, res) => {
