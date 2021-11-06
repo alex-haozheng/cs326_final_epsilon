@@ -6,7 +6,7 @@ function initialize(){
 
 }
 
-function search(){
+async function search(){
     
     let searchItem = [];
     searchItem.push(document.getElementById('mySearch').value);
