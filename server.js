@@ -42,15 +42,9 @@ app.get('/search', async (req, res) => {
   
 });
 
-<<<<<<< HEAD
-app.get('/uniques', async (req, res) => {
 
-});
 
 // req: ['user', 'pass']
-=======
-// req: {"username": "user1", "password": "pass1"}
->>>>>>> 51bf6000da7cfd692691585bd9cf6cab33f30249
 app.post('/register', (req, res) => {
   let username = req.body.username;
   let password = req.body.password;
