@@ -29,7 +29,6 @@ const datastore = {
           "lunch": ["ribs", "burgers", "french fries"],
           "dinner": ["fish", "spaghetti", "chicken pot pie"]
       }
-  
   },
 
   "logins": {
@@ -44,8 +43,8 @@ const datastore = {
       "user3": ["fav5", "fav6"] 
   },
   
-  "food":{
-      "date1": {
+  "food":[
+      {
           "berkshire": {
               "breakfast": {
                   "name1": {
@@ -140,26 +139,33 @@ const datastore = {
           }
   
       }
-  }
+    ]
   
 };
+
 
 const JSONfile = 'storage.json';
 
 
 
 
-async function search() {
-  let berk = await berk();
-  let hamp = await hamp();
-  let woo = await woo();
-  let frank = await frank();
-
+async function search(obj, arr) {
+  let output = [];
+  let o = JSON.parse(JSON.stringify(obj));
+  for(let i = 0; i <= arr[1]; ++i) {
+    for (let hall in obj.food[i]) {
+      for (let meal in hall) {
+        let keys = Object.keys(meal);
+        let 
+      }
+    }
+  }
 }
 
 // ['search', int, true, false, true]
 app.get('/search', async (req, res) => {
-  const o = JSON.parse(JSON.stringify())
+  const arr = JSON.parse(req);
+  const o = JSON.parse(JSON.stringify(datastore.food))
   o = await search(datastore, arr);
   res.end(o);
 });
@@ -170,7 +176,7 @@ app.post('/register', (req, res) => {
   let password = req.body.password;
   if(!datastore["logins"][username]){
     datastore["logins"][username] = password;
-    datstore["profiles"][username] = [];
+    datastore["profiles"][username] = [];
   }
   res.send(res.statusCode);
 });
@@ -188,7 +194,7 @@ app.get('/user/favorites/view/:key', (req, res) => {
 app.post('/user/favorites/add', (req, res) => {
   let username = req.body.username;
   let item = req.body.item;
-  datastore["profiles"][username] = item;
+  datastore["profiles"][username].push(item);
   res.send(res.statusCode);
 });
 
