@@ -4,7 +4,7 @@ async function getFavorites() {
     let u = document.getElementById("username").value;
     let response = await fetch('//user/favorites/view',{
         method: 'POST',
-        body: JSON.stringify({u})
+        body: u
     })
 
     if (response.ok) {
@@ -22,7 +22,7 @@ async function addFavorite() {
     let a = document.getElementById("adding").value;
     let response = await fetch('//user/favorites/add',{
         method: 'POST',
-        body: JSON.stringify({u: a})
+        body: JSON.stringify([u,a])
     })
 
     if (response.ok) {
@@ -36,15 +36,15 @@ async function addFavorite() {
 
 async function deleteAccount() {
     let u = document.getElementById("username").value;
-    let p = document.getElementById("password").value;
     let response = await fetch('/user/delete',{
         method: 'DELETE',
-        body: JSON.stringify({u: p})
+        body: u
     })
 
     if (response.ok) {
 
-        document.getElementById("star_count").innerHTML = JSON.stringify(json.stargazers_count);
+      alert("The account has been deleted");
+      //send back to login page
     } 
     else {
         alert("An error has occured.");
@@ -53,7 +53,9 @@ async function deleteAccount() {
 
 
 function initialize() {
+    getFavorites();
     document.getElementById("search").addEventListener("click", getFavorites);
+    document.getElementById("delete").addEventListener("click", deleteAccount);
 }
 
 window.onload = initialize;
