@@ -44,7 +44,7 @@ app.get('/search', async (req, res) => {
 
 
 
-// req: ['user', 'pass']
+// req: {"username": "user1", "password": "pass1"}
 app.post('/register', (req, res) => {
   let username = req.body.username;
   let password = req.body.password;
@@ -54,7 +54,10 @@ app.post('/register', (req, res) => {
   res.send(res.statusCode);
 });
 
-// req 'user1'
+app.get('/unique/view', (req, res) => {
+  res.send(datastore["uniques"]);
+});
+
 app.get('/user/favorites/view/:key', (req, res) => {
   let name = req.params.key;
   res.send(datastore.profiles[name]);
