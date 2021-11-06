@@ -1,4 +1,35 @@
+'use strict';
 
+function initialize(){
+    document.getElementById('search').addEventListener('onClick', search);
+
+
+}
+
+function search(){
+    
+    let searchItem = [];
+    searchItem.push(document.getElementById('mySearch').value);
+    if(document.getElementById('halal').checked){
+        searchItem.push('true');
+    }else{
+        searchItem.push('false');
+    }
+
+    if(document.getElementById('vegetarian').checked){
+        searchItem.push('true');
+    }else{
+        searchItem.push('false');
+    }
+
+    if(document.getElementById('gluten free').checked){
+        searchItem.push('true');
+    }else{
+        searchItem.push('false');
+    }
+
+    return searchItem;
+}
 
 async function getResults() {
     let response = await fetch('/search',{
@@ -34,6 +65,8 @@ function helper(data, hall, time){
         let newDiv = document.createElement('div');
         newDiv.innerHTML = JSON.stringify(data[hall][time][i]);
         uniquePage.document.getElementById(JSON.stringify(JSON.stringify(hall[0]) + time)).appendChild(newDiv);    
-    }
+    };
 
-}
+};
+
+window.onload = initialize();
