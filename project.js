@@ -28,7 +28,17 @@ function search(){
         searchItem.push('false');
     }
 
-    return searchItem;
+    let response = await fetch('/search',{
+        method: 'POST',
+        body: searchItem
+    })
+
+    if (response.ok) {
+        alert("sent");
+    } 
+    else {
+        alert("An error has occured.");
+    }
 }
 
 async function getResults() {
