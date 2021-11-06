@@ -1,18 +1,47 @@
 'use strict';
-const express = require('express');
-// import express from 'express';
+// const express = require('express');
+import express from 'express';
 const app = express();
 
 app.use(express.json()); // lets you handle JSON input
 
-const port = 3000;
+const port = 8080;
 
-const datastore = {
-  "uniques": {},
-  "logins": {},
-  "profiles": {},
-  "searchResults": {}
-};
+const datastore = {};
+const JSONfile = 'storage.json';
+
+
+
+
+async function search() {
+  let berk = await berk();
+  let hamp = await hamp();
+  let woo = await woo();
+  let frank = await frank();
+
+}
+
+async function berk() {
+
+}
+
+async function hamp() {
+
+}
+
+async function woo() {
+
+}
+
+async function frank() {
+
+}
+
+// ['search', int, true, false, true]
+app.get('/search', async (req, res) => {
+  const o = datastore.food
+  
+});
 
 // req: ['user', 'pass']
 app.post('/register', (req, res) => {
