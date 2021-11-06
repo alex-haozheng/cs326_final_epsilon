@@ -33,99 +33,99 @@
         "user1": ["fav1", "fav2"],
         "user2": ["fav3", "fav4"],
         "user3": ["fav5", "fav6"] 
-    }
+    },
     
     "searchResults":{
         "date1": {
             "berkshire": {
                 "breakfast": {
                     "name1": {
-                        "tag1": "example",
-                        "tag2": "example",
-                        "tag3": "example"    
+                        "Halal": true,
+                        "Vegetarian": true,
+                        "Gluten Free": false    
                     }
                 },
                 "lunch": {
                     "name2": {
-                        "tag1": "example",
-                        "tag2": "example",
-                        "tag3": "example"    
+                        "Halal": false,
+                        "Vegetarian": false,
+                        "Gluten Free": false    
                     }
                 },
                 "dinner": {
                     "name3": {
-                        "tag1": "example",
-                        "tag2": "example",
-                        "tag3": "example"    
+                        "Halal": true,
+                        "Vegetarian": true,
+                        "Gluten Free": true    
                     }
                 }
             },
             "franklin": {
                 "breakfast": {
                     "name1": {
-                        "tag1": "example",
-                        "tag2": "example",
-                        "tag3": "example"    
+                        "Halal": true,
+                        "Vegetarian": true,
+                        "Gluten Free": true    
                     }
                 },
                 "lunch": {
                     "name2": {
-                        "tag1": "example",
-                        "tag2": "example",
-                        "tag3": "example"    
+                        "Halal": true,
+                        "Vegetarian": true,
+                        "Gluten Free": true    
                     }
                 },
                 "dinner": {
                     "name3": {
-                        "tag1": "example",
-                        "tag2": "example",
-                        "tag3": "example"    
+                        "Halal": true,
+                        "Vegetarian": true,
+                        "Gluten Free": true    
                     }
                 }
             },
             "hampshire": {
                 "breakfast": {
                     "name1": {
-                        "tag1": "example",
-                        "tag2": "example",
-                        "tag3": "example"    
+                        "Halal": true,
+                        "Vegetarian": true,
+                        "Gluten Free": true    
                     }
                 },
                 "lunch": {
                     "name2": {
-                        "tag1": "example",
-                        "tag2": "example",
-                        "tag3": "example"    
+                        "Halal": true,
+                        "Vegetarian": true,
+                        "Gluten Free": true    
                     }
                 },
                 "dinner": {
                     "name3": {
-                        "tag1": "example",
-                        "tag2": "example",
-                        "tag3": "example"    
+                        "Halal": true,
+                        "Vegetarian": true,
+                        "Gluten Free": true    
                     }
                 }
             },
             "worcester": {
                 "breakfast": {
                     "name1": {
-                        "tag1": "example",
-                        "tag2": "example",
-                        "tag3": "example"    
+                        "Halal": true,
+                        "Vegetarian": true,
+                        "Gluten Free": true    
                     }
                 },
                 "lunch": {
                     "name2": {
-                        "tag1": "example",
-                        "tag2": "example",
-                        "tag3": "example"    
+                        "Halal": true,
+                        "Vegetarian": true,
+                        "Gluten Free": true    
                     }
                 },
                 "dinner": {
                     "name3": {
-                        "tag1": "example",
-                        "tag2": "example",
-                        "tag3": "example"    
+                        "Halal": true,
+                        "Vegetarian": true,
+                        "Gluten Free": true    
                     }
                 }
             }
