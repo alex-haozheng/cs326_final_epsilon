@@ -9,11 +9,19 @@ const port = 3000;
 
 const datastore = {};
 
-// req: {'username': 'password'}
+// req: ['user', 'pass']
 app.post('/register', (req, res) => {
-  // TODO: PARSE OUT KEY AND VALUE FROM *QUERY* INTO k AND v
-  req
-  //bring the html page of profile.html
+  let body = '';
+  req.on('data', data => body += data);
+  req.on('end', async () => {
+    const arr = JSON.parse(body);
+    let acct = datastore.logins;
+    if(!acct.includes(arr[0]))
+      acct[arr[0]] = arr[1];
+    else
+      alert('account already exists');
+  });
+  res.end();
 });
 
 // req 'user1'
