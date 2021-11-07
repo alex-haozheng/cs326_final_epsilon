@@ -19,16 +19,14 @@ async function getFavorites() {
 }
 
 async function addFavorite() {
-    let u = document.getElementById("username").value;
-    let a = document.getElementById("adding").value;
     let response = await fetch('http://localhost:8080/user/favorites/add',{
         method: 'POST',
-        body: JSON.stringify({"username": JSON.stringify(u), "item": JSON.stringify(a)}),
+        body: JSON.stringify({"username": JSON.stringify(document.getElementById("username").value), "item": JSON.stringify(document.getElementById("adding").value)}),
     })
 
     if (response.ok) {
         let newDiv = document.createElement('div');
-        newDiv.innerHTML = JSON.stringify(a);
+        newDiv.innerHTML = JSON.stringify(document.getElementById("adding").value);
         document.getElementById("favoriteList").append(newDiv);
     } 
     else {
@@ -42,7 +40,6 @@ async function deleteAccount() {
     })
 
     if (response.ok) {
-
       alert("The account has been deleted");
     } 
     else {
