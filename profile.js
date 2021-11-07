@@ -1,14 +1,16 @@
 'use strict';
 
 async function getFavorites() {
-    let u = document.getElementById("username").value;
-    let response = await fetch('//user/favorites/view/' + u,{
+    let response = await fetch('http://localhost:8080/user/favorites/view/' + document.getElementById("username").value,{
         method: 'GET'
-    })
+    });
 
     if (response.ok) {
-        for(let i = 0; i <response.length; i++){
-            document.getElementById("favoriteList").value.append("\n" + response[i]);
+        let arr = await response.json();
+        for(let i = 0; i <arr.length; i++){
+            let newDiv = document.createElement('div');
+            newDiv.innerHTML = JSON.stringify(arr[i]);
+            document.getElementById("favoriteList").append(newDiv);
         }   
     } 
     else {
@@ -19,14 +21,15 @@ async function getFavorites() {
 async function addFavorite() {
     let u = document.getElementById("username").value;
     let a = document.getElementById("adding").value;
-    let response = await fetch('//user/favorites/add',{
+    let response = await fetch('http://localhost:8080/user/favorites/add',{
         method: 'POST',
-        body: JSON.stringify({"username": u, "item": a})
+        body: JSON.stringify({"username": JSON.stringify(u), "item": JSON.stringify(a)}),
     })
 
     if (response.ok) {
-
-        document.getElementById("favoriteList").value.append("\n" + a);
+        let newDiv = document.createElement('div');
+        newDiv.innerHTML = JSON.stringify(a);
+        document.getElementById("favoriteList").append(newDiv);
     } 
     else {
         alert("An error has occured.");
@@ -34,15 +37,13 @@ async function addFavorite() {
 }
 
 async function deleteAccount() {
-    let u = document.getElementById("username").value;
-    let response = await fetch('/user/delete/' + u,{
+    let response = await fetch('http://localhost:8080/user/delete/' + document.getElementById("username").value,{
         method: 'DELETE'
     })
 
     if (response.ok) {
 
       alert("The account has been deleted");
-      //send back to login page
     } 
     else {
         alert("An error has occured.");
@@ -51,9 +52,9 @@ async function deleteAccount() {
 
 
 function initialize() {
-    getFavorites();
-    document.getElementById("search").addEventListener("click", getFavorites);
+    document.getElementById("search").addEventListener("click", addFavorite);
     document.getElementById("delete").addEventListener("click", deleteAccount);
+    document.getElementById("getFav").addEventListener("click", getFavorites);
 }
 
 window.onload = initialize;

@@ -1,7 +1,7 @@
 'use strict';
 
 async function getUnique() {
-    let response = await fetch('/unique/view',{
+    let response = await fetch('http://localhost:8080/unique/view',{
         method: 'GET',
     
     });
@@ -30,11 +30,11 @@ async function getUnique() {
 }
 
 function helper(data, hall, time){
-    for(let i = 0; i < data[hall][time].length; ++i){
-        let newDiv = document.createElement('div');
-        newDiv.innerHTML = JSON.stringify(data[hall][time][i]);
-        uniquePage.document.getElementById(JSON.stringify(JSON.stringify(hall[0]) + time)).appendChild(newDiv);    
-    }
+        for(let i = 0; i < data[hall][time].length; ++i){
+            let newDiv = document.createElement('div');
+            newDiv.innerHTML = JSON.stringify(data[hall][time][i]);
+            document.getElementById(hall[0] + time).appendChild(newDiv);    
+        }   
 
 }
 

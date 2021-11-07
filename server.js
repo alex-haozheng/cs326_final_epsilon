@@ -5,6 +5,8 @@ let fs = require('fs');
 const express = require('express');
 // import express from 'express';
 const app = express();
+const cors = require("cors");
+app.use(cors());
 
 app.use(express.json()); // lets you handle JSON input
 
