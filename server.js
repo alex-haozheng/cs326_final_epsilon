@@ -41,6 +41,7 @@ app.post('/register', (req, res) => {
     datastore["logins"][username] = password;
     datastore["profiles"][username] = [];
   }
+  fs.writeFileSync(JSONfile, JSON.stringify(datastore));
   res.send(res.statusCode);
 });
 
@@ -61,6 +62,7 @@ app.post('/user/favorites/add', (req, res) => {
   let username = req.body.username;
   let item = req.body.item;
   datastore["profiles"][username].push(item);
+  fs.writeFileSync(JSONfile, JSON.stringify(datastore));
   res.send(res.statusCode);
 });
 
@@ -69,6 +71,7 @@ app.delete('/user/delete/:key', (req, res) => {
   let user = req.params.key;
   delete datastore["logins"][user];
   delete datastore["profiles"][user];
+  fs.writeFileSync(JSONfile, JSON.stringify(datastore));
   res.send(res.statusCode);
 });
 
