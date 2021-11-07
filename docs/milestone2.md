@@ -23,7 +23,7 @@ express, wrote /register, wrote /unique/view, wrote /user/favorites/view/:key, w
 
 Ben: Implemented the front end code for project.js and unique.js. Helped to build the structure for searchResults and unique JSON objects for the storage. Helped to build the filter function used by the search feature. Tested and debugged these files. 
 
-Alex: created and implemented the server using express, and implemented the storage to use to store items that help with persistent data being used when users exit off the website, created the heroku. fixed and solved issues and bugs that were throughout moments of this project
+Alex: created and implemented the back end server using express, and implemented the storage to use to store items that help with persistent data being used when users exit off the website, created the heroku. fixed and solved issues and bugs that were throughout moments of this project
 
 # Screenshots
 Below is the search page
