@@ -187,10 +187,9 @@ async function search(obj, req) {
   return o;
 }
 
-// req: {"keyword": "name1", "days": 1, "halal": true, "vegetarian": true, "glutenFree": false}
+
 app.get('/search', async (req, res) => {
-  const o = await search(datastore, req);
-  res.send(o);
+  res.send(datastore["food"]);
 });
 
 // req: {"username": "user1", "password": "pass1"}
