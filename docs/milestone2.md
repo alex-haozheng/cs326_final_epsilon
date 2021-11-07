@@ -16,7 +16,10 @@ The script files for each html page need to communicate with the server to retri
 /search a GET function that calls the dining API, filters based on days and filter functions, returns array of objects, each item in the array is a dining item, each object has "item name", "meal of the day", "date" and "dining hall"
 
 # Contributions
-Alan:
+Alan:Wrote all of login.js, fixed login.html and login.css, wrote all of profile.js, fixed profile.html and profile.css. Did all initial 
+server testing via Postman of every endpoint.
+server.js: added cors to the server to override the CORS google chrome security blocking of localhost sites, rewrote /search for 
+express, wrote /register, wrote /unique/view, wrote /user/favorites/view/:key, wrote /user/favorites/add, wrote /user/delete/:key.
 
 Ben: Implemented the front end code for project.js and unique.js. Helped to build the structure for searchResults and unique JSON objects for the storage. Helped to build the filter function used by the search feature. Tested and debugged these files. 
 
@@ -32,7 +35,14 @@ Below is the unique items page
 ![example image](/img/screenshotUnique.png)
 
 
+Below is the profile page after correctly doing a DELETE request to the api to delete a user from the database
+![example image](/img/profileDeleteAccount.png)
 
-#heroku link
+Below is the profile page after correctly doing a UPDATE post request to the api to update an existing array in the database 
+![example image](/img/profileAddFavorite.png)
 
-https://protected-retreat-63927.herokuapp.com/
+Below is the profile page after correctly doing a READ get request to the api to return an existing array from the database
+![example image](/img/profileGetFavorites.png)
+
+Below is the login page after correctly doing a CREATE post request to the api to create a new user in the database
+![example image](/img/loginRegister.png)
