@@ -27,45 +27,6 @@ function reload(filename) {
   }
 }
 
-async function search(obj, req) {
-  let keyword = req.body.keyword;
-  let days = req.body.days;
-  let halal = req.body.halal;
-  let vegetarian = req.body.vegetarian;
-  let glutenFree = req.body.glutenFree;
-  let o = JSON.parse(JSON.stringify(obj));
-  for(let i = 0; i <= days; ++i) {
-    for (let hall in obj.food[i]) {
-      for (let meal in hall) {
-        for (let name in meal) {
-          if (name.includes(keyword)) {
-            let tags = o[hall][meal][name];
-            if(halal) {
-              if(!tags.halal) {
-                delete o[hall][meal][name];
-              }
-            }
-            if(vegetarian) {
-              if(!tags.vegetarian) {
-                delete o[hall][meal][name];
-              }
-            }
-            if(glutenFree) {
-              if(!tags.glutenFree) {
-                delete o[hall][meal][name];
-              }
-            }
-          } else {
-            delete o[hall][meal][name];
-          }
-        }
-      }
-    }
-  }
-  return o;
-}
-
-
 app.get('/search', async (req, res) => {
   datastore = reload(JSONfile);
   res.send(datastore["food"]);
