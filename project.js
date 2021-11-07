@@ -62,11 +62,15 @@ function filter(data) {
  */
 async function getResults() {
     let data = await search();
-    filter(data);
-    for(let i = 0; i < JSON.parse(data).length; ++i){   //loop through each date and display its data
-        for(let hall in JSON.parse(data)){              //loop through each hall
-            display(data[i], i, hall);
-        }
+    
+   // filter(data);
+    console.log(typeof(data));
+    for(let i = 0; i < data.length; ++i){   //loop through each date and display its data
+            display(data[i], i, "berkshire");
+            display(data[i], i, "hampshire");
+            display(data[i], i, "franklin");
+            display(data[i], i, "worcester");
+
     }
     
 }
@@ -78,21 +82,21 @@ async function getResults() {
  * @param {*} hall which hall card it is being displayed in
  */
 function display(data, date, hall){
-        
+        console.log(hall);
         let dateDiv = document.createElement('div');
         dateDiv.classList.add("list-group-item");
         dateDiv.innerHtml = date;
-        uniquePage.document.getElementById(hall).appendChild(newDiv);
+        document.getElementById(hall).appendChild(dateDiv);
 
-        for(let meal in data[i][hall]){                     //create a div for each meal, append to date div
+        for(let meal in data[hall]){                     //create a div for each meal, append to date div
             let mealDiv = document.createElement('div');
             mealDiv.innerHTML = meal;
             dateDiv.appendChild(mealDiv);
 
-            for(let item in meal){                              //create a div for each item, append to meal div
+            for(let item in data[hall][meal]){                              //create a div for each item, append to meal div
                 let itemDiv = document.createElement('div');
                 itemDiv.innerHTML = item;
-                newDiv.appendChild(itemDiv);
+                dateDiv.appendChild(itemDiv);
             }
     
         }
