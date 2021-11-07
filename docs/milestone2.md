@@ -1,17 +1,17 @@
 # Server API
 The script files for each html page need to communicate with the server to retrieve information from the storage JSON. The API does this with the following operations:
+endpoints
 
-/register which allows for a new user to sign up
+/register - POST: takes request as a username:password key-value pair to make a new username and password in the “logins” object within datastore(writefilesync)
+Example: {“user1”:”pass1”}, will lead to datastore[“logins”][“user1”] = “pass1”
 
-/login which allows for a user to login
+/user/favorites/view/:key GET - takes request as a string ‘username’ and returns the list of datastore.profile string array (readfilesync)
 
-/user is the profile page
+/user/favorites/add POST - takes a request as a string and adds it to datastore.profile string array(writefilesync)
 
-/user/favorites/view returns the favorites array
+user/delete/:key - DELETE: takes request of {username:password} and removes that key value pair from the datastore[“logins”] using delete() (writefilesync)
 
-/user/favorites/add adds new items to the favorites array 
-
-/uniques/view returns unique menus of all 4 dining halls
+/unique/view - GET: takes request and returns the daily unique items object
 
 /search a GET function that calls the dining API, filters based on days and filter functions, returns array of objects, each item in the array is a dining item, each object has "item name", "meal of the day", "date" and "dining hall"
 
