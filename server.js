@@ -1,8 +1,7 @@
 'use strict';
-
-import * as http from 'http';
-import * as url from 'url';
-import * as fs from 'fs';
+let http = require('http');
+let url = require('url');
+let fs = require('fs');
 const express = require('express');
 // import express from 'express';
 const app = express();
