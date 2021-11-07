@@ -26,11 +26,11 @@ Ben: Implemented the front end code for project.js and unique.js. Helped to buil
 Alex: created and implemented the server using express, and implemented the storage to use to store items that help with persistent data being used when users exit off the website, created the heroku. fixed and solved issues and bugs that were throughout moments of this project
 
 # Screenshots
-Below is the search page
+Below is the search page after doing a READ get request to the api to return the search results object
 
 ![example image](/img/screenshotSearch.png)
 
-Below is the unique items page
+Below is the unique items page after doing a READ get request to the api to return the unique items object
 
 ![example image](/img/screenshotUnique.png)
 
@@ -46,8 +46,3 @@ Below is the profile page after correctly doing a READ get request to the api to
 
 Below is the login page after correctly doing a CREATE post request to the api to create a new user in the database
 ![example image](/img/loginRegister.png)
-
-
-# heroku link
-
-https://protected-retreat-63927.herokuapp.com/
