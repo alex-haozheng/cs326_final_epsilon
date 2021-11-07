@@ -3,7 +3,7 @@
 async function register() {
     let u = document.getElementById("username").value;
     let p = document.getElementById("password").value;
-    let response = await fetch('/register',{
+    let response = await fetch('http://localhost:8080/register',{
         method: 'POST',
         body: JSON.stringify({"username": u, "password": p})
     })
