@@ -10,7 +10,7 @@ app.use(express.json()); // lets you handle JSON input
 
 const port = 8080;
 
-const datastore = {};
+let datastore = {};
 const JSONfile = './storage.json';
 
 function reload(filename) {
