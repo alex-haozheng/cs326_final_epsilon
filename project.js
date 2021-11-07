@@ -1,35 +1,25 @@
 'use strict';
 
 /**
- * initialize event listener to search
- */
-function initialize(){
-    document.getElementById('search').addEventListener('onClick', search);
-
-}
-
-/**
  * send search info to server
  */
 async function search(){
-    const data;
-    let response = await fetch('/search',{
+    let response = await fetch('http://localhost:8080/search',{
         method: 'GET'
     })
 
     if (response.ok) {
-        data = response.json();
-        alert("sent");
+        const data = response.json();
+        return data;
     } 
     else {
         alert("An error has occured.");
     }
-    filter(data);
-    return data;
+    
 }
 
 function filter(data) {
-  let keyword = document.getElementById("search").value;
+  let keyword = document.getElementById("mySearch").value;
   let days = document.getElementById("count").value;
   let halal = document.getElementById("halal").checked;
   let vegetarian = document.getElementById("vegetarian").checked;
@@ -70,8 +60,8 @@ function filter(data) {
 /**
  * request results from server and display resultss
  */
-function getResults() {
-    let data = await response.json();
+async function getResults() {
+    let data = await search();
     filter(data);
     for(let i = 0; i < JSON.parse(data).length; ++i){   //loop through each date and display its data
         for(let hall in JSON.parse(data)){              //loop through each hall
@@ -110,4 +100,7 @@ function display(data, date, hall){
     
 };
 
-window.onload = initialize();
+window.onload = initialize;
+function initialize(){
+    document.getElementById("searchBtn").addEventListener("click", getResults)
+}
