@@ -21,9 +21,9 @@ server testing via Postman of every endpoint.
 server.js: added cors to the server to override the CORS google chrome security blocking of localhost sites, rewrote /search for 
 express, wrote /register, wrote /unique/view, wrote /user/favorites/view/:key, wrote /user/favorites/add, wrote /user/delete/:key.
 
-Ben: Implemented the front end code for project.js and unique.js. Helped to build the structure for searchResults and unique JSON objects for the storage. Helped to build the filter function used by the search feature. Tested and debugged these files. 
+Ben: Implemented the front end code for project.js(search, getResults, display, initialize) and unique.js(getUnique and helper). Helped to build the structure for searchResults and unique JSON objects for the storage. Helped to build the filter function used by the search feature and integrate it into the the rest of the front end code. Tested and debugged these files. Contributed to markdown file
 
-Alex: created and implemented the back end server using express, and implemented the storage to use to store items that help with persistent data being used when users exit off the website, created the heroku. fixed and solved issues and bugs that were throughout moments of this project
+Alex: created and implemented the server using express, and implemented the storage to use to store items that help with persistent data being used when users exit off the website, created the heroku. fixed and solved issues and bugs that were throughout moments of this project
 
 # Screenshots
 Below is the search page after doing a READ get request to the api to return the search results object
