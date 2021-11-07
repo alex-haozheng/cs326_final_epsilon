@@ -14,15 +14,7 @@ function initialize(){
 async function search(){
     const data;
     let response = await fetch('/search',{
-        method: 'POST',
-        body: {
-            "keyword": document.getElementById("search").value,
-            "days": document.getElementById("count").value,
-            "halal": document.getElementById("halal").checked,
-            "vegetarian": document.getElementById("vegetarian").checked,
-            "glutenFree": document.getElementById("gluten").checked
-        }
-
+        method: 'GET'
     })
 
     if (response.ok) {
@@ -32,49 +24,47 @@ async function search(){
     else {
         alert("An error has occured.");
     }
+    filter(data);
     return data;
 }
 
-
-async function search(obj, req) {
-  let keyword = req.body.keyword;
-  let days = req.body.days;
-  let halal = req.body.halal;
-  let vegetarian = req.body.vegetarian;
-  let glutenFree = req.body.glutenFree;
-  let o = JSON.parse(JSON.stringify(obj));
+function filter(data) {
+  let keyword = document.getElementById("search").value;
+  let days = document.getElementById("count").value;
+  let halal = document.getElementById("halal").checked;
+  let vegetarian = document.getElementById("vegetarian").checked;
+  let glutenFree = document.getElementById("gluten").checked;
   for(let i = 0; i <= days; ++i) {
-    for (let hall in obj.food[i]) {
+    for (let hall in data.food[i]) {
       for (let meal in hall) {
         for (let name in meal) {
           if (name.includes(keyword)) {
-            let tags = o[hall][meal][name];
+            let tags = data[hall][meal][name];
             if(halal) {
               if(!tags.halal) {
-                delete o[hall][meal][name];
+                delete data[hall][meal][name];
+                continue;
               }
             }
             if(vegetarian) {
               if(!tags.vegetarian) {
-                delete o[hall][meal][name];
+                delete data[hall][meal][name];
+                continue;
               }
             }
             if(glutenFree) {
               if(!tags.glutenFree) {
-                delete o[hall][meal][name];
+                delete data[hall][meal][name];
+                continue;
               }
             }
           } else {
-            delete o[hall][meal][name];
+            delete data[hall][meal][name];
           }
         }
       }
     }
   }
-  return o;
-}
-
-function filter() {
 
 }
 /**
@@ -82,7 +72,7 @@ function filter() {
  */
 function getResults() {
     let data = await response.json();
-
+    filter(data);
     for(let i = 0; i < JSON.parse(data).length; ++i){   //loop through each date and display its data
         for(let hall in JSON.parse(data)){              //loop through each hall
             display(data[i], i, hall);
