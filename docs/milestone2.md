@@ -23,3 +23,10 @@ Ben: Implemented the front end code for project.js and unique.js. Helped to buil
 Alex: created and implemented the server using express, and implemented the storage to use to store items that help with persistent data being used when users exit off the website, created the heroku. fixed and solved issues and bugs that were throughout moments of this project
 
 # Screenshots
+Below is the search page
+
+![example image](/img/screenshotSearch.png)
+
+Below is the unique items page
+
+![example image](/img/screenshotUnique.png)
