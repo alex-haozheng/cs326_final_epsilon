@@ -19,4 +19,4 @@ Alan:
 
 Ben:
 
-Alex: created and implemented the server, 
+Alex: created and implemented the server using express, and implemented the storage to use to store items that help with persistent data being used when users exit off the website, created the heroku. fixed and solved issues and bugs that were throughout moments of this project
