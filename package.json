@@ -14,6 +14,11 @@
     "type": "git",
     "url": "git+https://github.com/sazzle2/cs326-final-epsilon.git"
   },
+  "dependencies": {
+    "express":"*",
+    "body-parser":"*",
+    "bcrypt": "^0.8.5"
+ },
   "author": "",
   "license": "ISC",
   "bugs": {
