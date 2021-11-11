@@ -27,7 +27,7 @@ async function addFavorite() {
     let response = await fetch('http://localhost:8080/user/favorites/add', {
         method: 'POST',
         body: g
-      }),
+      }), //perhaps missing headers
       headers: { 'Content-Type': 'application/json' }
     if (response.ok) {
         console.log('here');
