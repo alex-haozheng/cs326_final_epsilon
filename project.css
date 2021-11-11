@@ -12,6 +12,16 @@ div {text-align: center; justify-content: center;}
     width:100px; 
 }
 
+.btn-xlarge-right {
+    float: right;
+    padding: 18px 28px;
+    font-size: 22px;
+    line-height: normal;
+    -webkit-border-radius: 8px;
+       -moz-border-radius: 8px;
+            border-radius: 8px;
+    }
+
 .leftCard{
     width: 18rem; text-align: center; border-color: black; float: left;
 }
@@ -20,12 +30,6 @@ div {text-align: center; justify-content: center;}
     
     width: 18rem; text-align: center; border-color: black; float: right;
 }
-
-.card-group{
-    position:fixed; bottom:0; width: 100%; height: 43% ; overflow: scroll;
-    
-}
-
 
 input[type="text"]
 {
