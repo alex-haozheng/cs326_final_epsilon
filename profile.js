@@ -2,13 +2,14 @@
 
 async function getFavorites() {
     let response = await fetch('http://localhost:8080/user/favorites/view/' + document.getElementById("username").value,{
-        method: 'GET'
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
     });
 
     if (response.ok) {
         let arr = await response.json(); // array of favorites
         document.getElementById('favoriteList').innerHTML = '';
-        for(let i = 0; i < arr.length; i++){
+        for(let i = 0; i < arr.length; i++) {
             let newDiv = document.createElement('div');
             newDiv.innerHTML = JSON.stringify(arr[i]);
             document.getElementById("favoriteList").append(newDiv);
@@ -20,14 +21,13 @@ async function getFavorites() {
 }
 //test comment
 async function addFavorite() {
-    let u = document.getElementById("username").value;
-    let i = document.getElementById("adding").value;
-    let g = JSON.stringify({username: u, item: i});
-    let response = await fetch('/user/favorites/add', {
+    let g = JSON.stringify({username: document.getElementById("username").value, item: document.getElementById("adding").value});
+    let response = await fetch('http://localhost:8080/user/favorites/add', {
         method: 'POST',
         body: g,
         headers: { 'Content-Type': 'application/json' }
     });
+
     if (response.ok) {
         await getFavorites();
     }
@@ -37,9 +37,9 @@ async function addFavorite() {
 }
 
 async function deleteAccount() {
-    let response = await fetch('http://localhost:8080/user/delete/' + document.getElementById("username").value,{
+    let response = await fetch('http://localhost:8080/user/delete/' + document.getElementById("username").value, {
         method: 'DELETE'
-    })
+    });
 
     if (response.ok) {
       alert("The account has been deleted");
