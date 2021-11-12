@@ -1,10 +1,9 @@
 'use strict';
 
 async function getFavorites() {
-    let response = await fetch('http://localhost:8080/user/favorites/view/' + document.getElementById("username").value,{
+    let response = await fetch('/user/favorites/view/' + document.getElementById("username").value,{
         method: 'GET'
     });
-
     if (response.ok) {
       console.log(response);
         let arr = await response.json(); // array of favorites
