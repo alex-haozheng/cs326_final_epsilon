@@ -1,10 +1,9 @@
 'use strict';
 
 async function getFavorites() {
-    let response = await fetch('http://localhost:8080/user/favorites/view/' + document.getElementById("username").value,{
+    let response = await fetch('/user/favorites/view/' + document.getElementById("username").value,{
         method: 'GET'
     });
-
     if (response.ok) {
         let arr = await response.json(); // array of favorites
         document.getElementById('favoriteList').innerHTML = '';
@@ -37,7 +36,7 @@ async function addFavorite() {
 }
 
 async function deleteAccount() {
-    let response = await fetch('http://localhost:8080/user/delete/' + document.getElementById("username").value,{
+    let response = await fetch('/user/delete/' + document.getElementById("username").value,{
         method: 'DELETE'
     })
 
