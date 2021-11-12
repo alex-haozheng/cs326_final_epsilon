@@ -13,24 +13,22 @@ async function getFavorites() {
             newDiv.innerHTML = JSON.stringify(arr[i]);
             document.getElementById("favoriteList").append(newDiv);
         } 
-    } 
+    }
     else {
         alert("An error has occured.");
     }
 }
-
+//test comment
 async function addFavorite() {
     let u = document.getElementById("username").value;
     let i = document.getElementById("adding").value;
     let g = JSON.stringify({username: u, item: i});
-
-    let response = await fetch('http://localhost:8080/user/favorites/add', {
+    let response = await fetch('/user/favorites/add', {
         method: 'POST',
-        body: g
-      }), //perhaps missing headers
-      headers: { 'Content-Type': 'application/json' }
+        body: g,
+        headers: { 'Content-Type': 'application/json' }
+    });
     if (response.ok) {
-        console.log('here');
         await getFavorites();
     }
     else {

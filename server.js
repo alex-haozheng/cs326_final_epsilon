@@ -63,8 +63,6 @@ app.post('/user/favorites/add', (req, res) => {
   console.log(req.body);
   let username = req.body.username;
   let item = req.body.item;
-  console.log(username);
-  console.log(item);
   datastore.profiles[username].push(item);
   // console.log(datastore.profiles[username]);
   fs.writeFileSync(JSONfile, JSON.stringify(datastore));
