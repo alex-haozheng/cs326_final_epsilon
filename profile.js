@@ -6,6 +6,7 @@ async function getFavorites() {
     });
 
     if (response.ok) {
+      console.log(response);
         let arr = await response.json(); // array of favorites
         document.getElementById('favoriteList').innerHTML = '';
         for(let i = 0; i < arr.length; i++) {
@@ -13,7 +14,6 @@ async function getFavorites() {
             newDiv.innerHTML = JSON.stringify(arr[i]);
             document.getElementById("favoriteList").append(newDiv);
         }
-        
     }
     else {
         alert("An error has occured.");
