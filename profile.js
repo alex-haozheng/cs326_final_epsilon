@@ -2,8 +2,7 @@
 
 async function getFavorites() {
     let response = await fetch('http://localhost:8080/user/favorites/view/' + document.getElementById("username").value,{
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' }
+        method: 'GET'
     });
 
     if (response.ok) {

@@ -35,7 +35,7 @@ app.get('/search', async (req, res) => {
 
 // req: {"username": "user1", "password": "pass1"}
 app.post('/register', (req, res) => {
-  datastore = reload(JSONfile);
+  datastore = reload(JSONfile); //reload function causing the pages to function weird
   let username = req.body.username;
   let password = req.body.password;
   if(!datastore["logins"][username]) {
@@ -43,7 +43,7 @@ app.post('/register', (req, res) => {
     datastore["profiles"][username] = [];
   }
   fs.writeFileSync(JSONfile, JSON.stringify(datastore));
-  res.end(res.statusCode);
+  res.end();
 });
 
 app.get('/unique/view', (req, res) => {
@@ -53,9 +53,12 @@ app.get('/unique/view', (req, res) => {
 
 app.get('/user/favorites/view/:key', (req, res) => {
   datastore = reload(JSONfile);
-  let name = req.params.key;
-  console.log(datastore.profiles[name]);
-  res.send(datastore.profiles[name]);
+  let username = req.params.key;
+  if(datastore.profiles[username] === undefined) {
+    //make response be not ok / display error message
+    res.end('no user exists');
+  }
+  res.end(datastore.profiles[username]);
 });
 
 // req: {"username": "user1", "item": "chicken"}
@@ -66,7 +69,7 @@ app.post('/user/favorites/add', (req, res) => {
   let item = req.body.item;
   if(datastore.profiles[username] === undefined) {
     //make response be not ok / display error message
-
+    res.end('no user exists');
   }
   datastore.profiles[username].push(item);
   // console.log(datastore.profiles[username]);
@@ -74,13 +77,14 @@ app.post('/user/favorites/add', (req, res) => {
   res.end();
 });
 
+// should work 100% :)
 app.delete('/user/delete/:key', (req, res) => {
   datastore = reload(JSONfile);
   let user = req.params.key;
   delete datastore["logins"][user];
   delete datastore["profiles"][user];
   fs.writeFileSync(JSONfile, JSON.stringify(datastore));
-  res.send(res.statusCode);
+  res.end();
 });
 
 app.listen(port, () => {

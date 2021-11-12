@@ -3,7 +3,8 @@
 async function register() {
     let response = await fetch('http://localhost:8080/register',{
         method: 'POST',
-        body: JSON.stringify({"username": document.getElementById("username").value, "password": document.getElementById("password").value})
+        body: JSON.stringify({"username": document.getElementById("username").value, "password": document.getElementById("password").value}),
+        headers: {'Content-Type': 'application/json' }
     })
 
     if (response.ok) {

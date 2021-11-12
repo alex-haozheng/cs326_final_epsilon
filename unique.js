@@ -2,27 +2,26 @@
 
 async function getUnique() {
     let response = await fetch('http://localhost:8080/unique/view',{
-        method: 'GET',
-    
+        method: 'GET'
     });
     if (response.ok) {
-        let JSON = await response.json();
+        let out = await response.json();
 
-        helper(JSON, "berkshire", "breakfast");
-        helper(JSON, "berkshire", "lunch");
-        helper(JSON, "berkshire", "dinner");
+        helper(out, "berkshire", "breakfast");
+        helper(out, "berkshire", "lunch");
+        helper(out, "berkshire", "dinner");
 
-        helper(JSON, "hampshire", "breakfast");
-        helper(JSON, "hampshire", "lunch");
-        helper(JSON, "hampshire", "dinner");
+        helper(out, "hampshire", "breakfast");
+        helper(out, "hampshire", "lunch");
+        helper(out, "hampshire", "dinner");
 
-        helper(JSON, "franklin", "breakfast");
-        helper(JSON, "franklin", "lunch");
-        helper(JSON, "franklin", "dinner");
+        helper(out, "franklin", "breakfast");
+        helper(out, "franklin", "lunch");
+        helper(out, "franklin", "dinner");
 
-        helper(JSON, "worcester", "breakfast");
-        helper(JSON, "worcester", "lunch");
-        helper(JSON, "worcester", "dinner");
+        helper(out, "worcester", "breakfast");
+        helper(out, "worcester", "lunch");
+        helper(out, "worcester", "dinner");
     } 
     else {
         alert("An error has occured.");
