@@ -12,48 +12,7 @@ app.use(express.json()); // lets you handle JSON input
 
 const port = 8080;
 
-let datastore = {
-  // "uniques":{
-  //    "berkshire": {
-  //        "breakfast": ["pancakes", "sausages", "eggs"],
-  //        "lunch": ["pizza", "burgers", "french fries"],
-  //        "dinner": ["fish", "spaghetti", "chicken pot pie"]
-  //    },
-  //    "franklin": {
-  //        "breakfast": ["waffles", "sausages", "eggs"],
-  //        "lunch": ["pasta", "burgers", "french fries"],
-  //        "dinner": ["pork", "spaghetti", "chicken pot pie"]
-  //    },
-  //    "hampshire": {
-  //        "breakfast": ["biscuits", "sausages", "eggs"],
-  //        "lunch": ["soup", "burgers", "french fries"],
-  //        "dinner": ["turkey", "spaghetti", "chicken pot pie"]
-  //    },
-  //    "worcester": {
-  //        "breakfast": ["danish", "sausages", "eggs"],
-  //        "lunch": ["ribs", "burgers", "french fries"],
-  //        "dinner": ["fish", "spaghetti", "chicken pot pie"]
-  //    }
-  // },
-
-  // "logins": {
-  //     "user1": "pass1",
-  //     "user2": "pass2",
-  //     "user3": "pass3"
-  // },
-
-  // "profiles":{
-  //     "user1": ["fav1", "fav2"],
-  //     "user2": ["fav3", "fav4"],
-  //     "user3": ["fav5", "fav6"] 
-  // },
-  // food: {
-  //   berkshire: {},
-  //   hampshire: {},
-  //   worcester: {},
-  //   franklin: {}
-  // }
-};
+let datastore = {};
 const JSONfile = './storage.json';
 
 function reload(filename) {
