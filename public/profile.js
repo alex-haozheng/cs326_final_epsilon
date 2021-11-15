@@ -5,7 +5,6 @@ async function getFavorites() {
         method: 'GET'
     });
     if (response.ok) {
-      console.log(response);
         let arr = await response.json(); // array of favorites
         document.getElementById('favoriteList').innerHTML = '';
         for(let i = 0; i < arr.length; i++) {
