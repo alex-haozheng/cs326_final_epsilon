@@ -1,57 +1,6 @@
 form {text-align: center;}
 body {text-align: center; background-color: rgb(136,28,28);}
 div {text-align: center; justify-content: center;}
-* {
-  box-sizing: border-box;
-}
-.btn-xlarge-left {
-  float: left;
-  padding: 18px 28px;
-  font-size: 22px;
-  line-height: normal;
-  -webkit-border-radius: 8px;
-     -moz-border-radius: 8px;
-          border-radius: 8px;
-  }
-
-  .form-control{
-    text-align: center;
-    font-size: 35px;
-    font-family: 'Times New Roman', Times, serif;
-}
-
-  .btn-xlarge-right {
-    float: right;
-    padding: 18px 28px;
-    font-size: 22px;
-    line-height: normal;
-    -webkit-border-radius: 8px;
-       -moz-border-radius: 8px;
-            border-radius: 8px;
-    }
-
-/* Create two equal columns that floats next to each other */
-.column {
-  float: left;
-  width: 40%;
-  padding: 10px;
-  height: 300px; /* Should be removed. Only for demonstration */
-}
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 500px) {
-  .column {
-    width: 100%;
-  }
-}
-
 #search{
     margin-right:auto;
     margin-left:auto;
@@ -62,6 +11,26 @@ div {text-align: center; justify-content: center;}
     margin-left:auto;
     width:100px; 
 }
+
+.btn-xlarge-right {
+    float: right;
+    padding: 18px 28px;
+    font-size: 22px;
+    line-height: normal;
+    -webkit-border-radius: 8px;
+       -moz-border-radius: 8px;
+            border-radius: 8px;
+    }
+
+.leftCard{
+    width: 18rem; text-align: center; border-color: black; float: left;
+}
+
+.rightCard{
+    
+    width: 18rem; text-align: center; border-color: black; float: right;
+}
+
 input[type="text"]
 {
     text-align: center;
@@ -86,7 +55,22 @@ input[type="range"] {
     width:300px;
 }
 h1 {text-align: center; color: white;}
-h2 {text-align: center; color: white;}
+h2 {text-align: center;}
 h3 {text-align: center; color: white;}
 h4 {text-align: center;}
 a {text-align: center;}
+
+.star {
+    visibility:hidden;
+    font-size:30px;
+    cursor:pointer;
+    line-height: 0.5em;
+    float: right;
+}
+.star:before {  
+   content: "\2605";
+   visibility:visible;
+}
+.star:checked:before {
+   content: "\2606";
+}
