@@ -120,5 +120,5 @@ function display(data, date, hall){
 
 window.onload = initialize;
 function initialize(){
-    document.getElementById("searchBtn").addEventListener("click", getResults)
+    document.getElementById("search").addEventListener("click", getResults)
 }
