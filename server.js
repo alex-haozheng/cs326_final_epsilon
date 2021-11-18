@@ -82,7 +82,7 @@ app.post('/register', (req, res) => {
     datastore["logins"][username] = password;
     datastore["profiles"][username] = [];
   }
-  fs.writeFileSync(JSONfile, JSON.stringify(datastore));
+  // fs.writeFileSync(JSONfile, JSON.stringify(datastore));
   res.end();
 });
 
@@ -112,7 +112,7 @@ app.post('/user/favorites/add', (req, res) => {
   //   res.end('no user exists');
   // }
   datastore.profiles[username].push(item);
-  fs.writeFileSync(JSONfile, JSON.stringify(datastore));
+  // fs.writeFileSync(JSONfile, JSON.stringify(datastore));
   res.end();
 });
 
@@ -122,7 +122,7 @@ app.delete('/user/delete/:key', (req, res) => {
   let user = req.params.key;
   delete datastore["logins"][user];
   delete datastore["profiles"][user];
-  fs.writeFileSync(JSONfile, JSON.stringify(datastore));
+  // fs.writeFileSync(JSONfile, JSON.stringify(datastore));
   res.end();
 });
 

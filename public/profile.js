@@ -27,13 +27,7 @@ async function addFavorite() {
     });
 
     if (response.ok) {
-        let arr = await response.json(); // array of favorites
-        document.getElementById('favoriteList').innerHTML = '';
-        for(let i = 0; i < arr.length; i++) {
-            let newDiv = document.createElement('div');
-            newDiv.innerHTML = JSON.stringify(arr[i]);
-            document.getElementById("favoriteList").append(newDiv);
-        }
+        getFavorites();
     }
     else {
         alert("An error has occured.");
