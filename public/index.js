@@ -74,19 +74,18 @@ async function search(){
 async function getResults() {
     let data = await search();
     console.log(data);
-    let copy = data;
-    console.log(copy);
-   // filter(data);
-    console.log(typeof(data));
-    for(let i = 0; i < data.length; ++i){   //loop through each date and display its data
-            display(data[i], i, "berkshire");
-            display(data[i], i, "hampshire");
-            display(data[i], i, "franklin");
-            display(data[i], i, "worcester");
+    let copy = filter(data);
+    console.log(typeof(copy));
+    for(let i = 0; i < copy.length; ++i){   //loop through each date and display its data
+            display(copy[i], i, "berkshire");
+            display(copy[i], i, "hampshire");
+            display(copy[i], i, "franklin");
+            display(copy[i], i, "worcester");
 
     }
     
 }
+
 
 /**
  * display results of search
