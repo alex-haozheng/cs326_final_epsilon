@@ -46,12 +46,54 @@ let datastore = {
       "user2": ["fav3", "fav4"],
       "user3": ["fav5", "fav6"] 
   },
-  food: {
-    berkshire: {},
-    hampshire: {},
-    worcester: {},
-    franklin: {}
-  }
+  "food":[
+      {
+        "berkshire": {
+            "breakfast": {
+                "waffles": {
+                    "halal": true,
+                    "vegetarian": true
+                },
+                "sausages": {
+                },
+                "eggs": {
+                    "halal": true
+                }
+            },
+            "lunch": {
+                "pasta": {
+                    "halal": true,
+                    "vegetarian": true
+                },
+                "burgers": {
+                },
+                "french fries": {
+                    "vegetarian": true
+                }
+              },
+              "dinner": {
+                "pasta": {
+                    "halal": true,
+                    "vegetarian": true
+                },
+                "spaghetti": {
+                    "vegetarian": true,
+                    "gluten free": true
+                },
+                "chicken pot pie": {
+                    "halal": true
+                }
+              }
+          },
+          "franklin": {
+          },
+          "hampshire": {
+          },
+          "worcester": {
+          }
+  
+      }
+    ]
 };
 // const JSONfile = './storage.json';
 
