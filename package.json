@@ -18,7 +18,7 @@
     "bcrypt": "^0.8.5",
     "body-parser": "*",
     "cors": "^2.8.5",
-    "express": "*"
+    "express": "^4.17.1"
   },
   "author": "",
   "license": "ISC",
