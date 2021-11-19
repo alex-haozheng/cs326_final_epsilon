@@ -17,57 +17,67 @@ async function search(){
     }
     
 }
-//do later
-// function filter(data) {
-//   let copy = JSON.parse(JSON.stringify(data));
-//   console.log(copy);
-//   let keyword = document.getElementById("mySearch").value;
-//   let days = 1;
-//   let halal = document.getElementById("halal").checked;
-//   let vegetarian = document.getElementById("vegetarian").checked;
-//   let glutenFree = document.getElementById("gluten").checked;
-//   for(let i = 0; i <= days; ++i) {
-//     console.log(copy[i]);
-//     for (let hall in copy[i]) {
 
-//       for (let meal in hall) {
-//         for (let name in meal) {
-//           //console.log(hall);
-//           console.log(copy[i][hall]);  
-//           if (name.includes(keyword) && keyword !== '') {
-//             console.log(keyword);
-//             if(halal) {                         //checked halal
-//               console.log('checked hal');
-//               if(!name.hasOwnProperty("halal")) {                 //food is/not halal
-//                 console.log("not halal");
-//                 delete copy[hall][meal][name];
-//               }
-//             }
-//             if(vegetarian) {
-//               if(!name.hasOwnProperty("vegetarian")) {
-//                 console.log("not veg");
 
-//                 delete copy[hall][meal][name];
-//               }
-//             }
-//             if(glutenFree) {
-//               if(!name.hasOwnProperty("gluten free")) {
-//                 console.log("not glu");
+function filter(data) {
+    let copy = JSON.parse(JSON.stringify(data));
+    console.log('copy');
+    // console.log(copy[0]);
+    let keyword = document.getElementById("mySearch").value;
+    let days = 1;
+    let halal = document.getElementById("halal").checked;
+    let vegetarian = document.getElementById("vegetarian").checked;
+    let glutenFree = document.getElementById("gluten").checked;
+    console.log('halal: ' + halal + ', veg: ' + vegetarian + ', glu: ' + glutenFree);
+    const res = {};
+    for(let date = 0; date < copy.length; ++date){
+        console.log(copy[date]);
+        recurse(copy[date]);
+    }
 
-//                 delete copy[hall][meal][name];
-//               }
-//             }
-//           } else {
-//             console.log(name);
-//             console.log(copy[i][hall]);
-//           //  delete name;
-//           }
-//         }
-//       }
-//     }
-//   }
-//   return copy;
-// }
+      
+
+    function recurse(obj) {
+        //console.log("obj: " + obj);
+        for (let key in obj) {            //iterate through layer
+            console.log(Object.keys(obj));
+            if((Object.keys(obj[key]).length > 0) && !(typeof Object.values(obj[key])[0] === 'boolean')){   //checks if the key is item
+                recurse(obj[key]);                                                                          //if not recurse until find an item
+            }else{                                                                                          //if item, check the tags 
+                if(halal) {                         //checked halal
+                    console.log('checked hal');
+                    if(!obj[key].hasOwnProperty("halal")) {                 //food is/not halal
+                      console.log("not halal");
+                      obj[key] = null;
+                      continue;
+                    }
+                }
+                if(vegetarian) {
+                    if(!obj[key].hasOwnProperty("vegetarian")) {
+                      console.log("not veg");
+                      obj[key] = null;
+                      continue;
+
+                    }
+                }
+                if(glutenFree) {
+                    if(!obj[key].hasOwnProperty("gluten free")) {
+                      console.log("not glu");
+                      obj[key] = null;
+                      continue;
+
+                    }
+                }
+            }
+
+        }
+
+    }
+    console.log(copy);
+    return copy;
+}
+
+
 /**
  * request results from server and display resultss
  */
