@@ -107,9 +107,12 @@ function display(data, date, hall){
             dateDiv.appendChild(mealDiv);
 
             for(let item in data[hall][meal]){                              //create a div for each item, append to meal div
-                let itemDiv = document.createElement('div');
-                itemDiv.innerHTML = item;
-                mealDiv.appendChild(itemDiv);
+                if(data[hall][meal][item] !== null){
+                    let itemDiv = document.createElement('div');
+                    itemDiv.innerHTML = item;
+                    mealDiv.appendChild(itemDiv);
+    
+                }
             }
     
         }
