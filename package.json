@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/sazzle2/cs326-final-epsilon/issues"
   },
-  "homepage": "https://github.com/sazzle2/cs326-final-epsilon#readme"
+  "homepage": "https://github.com/sazzle2/cs326-final-epsilon#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
