@@ -18,12 +18,11 @@
     "bcrypt": "^0.8.5",
     "body-parser": "*",
     "cors": "^2.8.5",
-    "express": "^4.17.1"
+    "express": "*"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/sazzle2/cs326-final-epsilon/issues"
   },
-  "homepage": "https://github.com/sazzle2/cs326-final-epsilon#readme"
 }
