@@ -168,6 +168,4 @@ app.delete('/user/delete/:key', (req, res) => {
   res.end();
 });
 
-app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`);
-});
+app.listen(process.env.PORT || port, () => console.log(`Example app listening at http://localhost:${port}`));
