@@ -3,7 +3,7 @@ let http = require('http');
 let url = require('url');
 let fs = require('fs');
 const express = require('express');
-// import express from 'express';
+ import express from 'express';
 const app = express();
 app.use(express.static('public'));
 
@@ -168,6 +168,6 @@ app.delete('/user/delete/:key', (req, res) => {
   res.end();
 });
 
-app.listen(port, () => {
+app.listen(process.ENV.PORT || port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
 });
