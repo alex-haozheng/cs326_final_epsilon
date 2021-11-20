@@ -1,22 +1,17 @@
+
+
 {
   "name": "cs326-final-epsilon",
   "version": "1.0.0",
   "description": "MADining",
-  "main": "server.js",
-  "directories": {
-    "doc": "docs"
-  },
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node index.js"
   },
-
-  "dependencies": {
-    "express": "*"
-  },
+  "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/sazzle2/cs326-final-epsilon/issues"
+  "dependencies": {
+    "express": "*"
   }
 }
