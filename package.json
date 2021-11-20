@@ -4,9 +4,9 @@
   "name": "cs326-final-epsilon",
   "version": "1.0.0",
   "description": "MADining",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
