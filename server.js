@@ -2,7 +2,7 @@
 const express = require('express');
 // import express from 'express';
 const app = express();
-const port = 8080;
+//const port = 8080;
 
 let http = require('http');
 let url = require('url');
@@ -14,7 +14,6 @@ app.use(express.json()); // lets you handle JSON input
 
 //app.get('/', (req, res) => res.send('its over!!'));
 
-app.listen(process.env.PORT || port, () => console.log(`Example app listening at http://localhost:${port}`));
 // 'use strict';
 // let http = require('http');
 // let url = require('url');
@@ -184,6 +183,7 @@ app.delete('/user/delete/:key', (req, res) => {
   fs.writeFileSync(JSONfile, JSON.stringify(datastore));
   res.end();
 });
+app.listen(process.env.PORT, () => console.log(`Example app listening at http://localhost:${port}`));
 
 // app.listen(process.ENV.PORT || port, () => {
 //     console.log(`Example app listening at http://localhost:${port}`);
