@@ -4,7 +4,7 @@
  * send search info to server
  */
 async function search(){
-    let response = await fetch('https://umassdining.herokuapp.com/search',{
+    let response = await fetch('/search',{
         method: 'GET'
     })
 
