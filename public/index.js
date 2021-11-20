@@ -27,8 +27,8 @@ function filter(data) {
     let days = 1;
     let halal = document.getElementById("halal").checked;
     let vegetarian = document.getElementById("vegetarian").checked;
-    let glutenFree = document.getElementById("gluten").checked;
-    console.log('halal: ' + halal + ', veg: ' + vegetarian + ', glu: ' + glutenFree);
+    let wholeGrain = document.getElementById("wholeGrain").checked;
+    console.log('halal: ' + halal + ', veg: ' + vegetarian + ', glu: ' + wholeGrain);
     const res = {};
     for(let date = 0; date < copy.length; ++date){
         console.log(copy[date]);
