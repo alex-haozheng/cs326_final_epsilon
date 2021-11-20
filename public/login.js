@@ -1,7 +1,7 @@
 'use strict';
 
 async function register() {
-    let response = await fetch('http://localhost:8080/register',{
+    let response = await fetch('/register',{
         method: 'POST',
         body: JSON.stringify({"username": document.getElementById("username").value, "password": document.getElementById("password").value}),
         headers: {'Content-Type': 'application/json' }
