@@ -1,0 +1,76 @@
+form {text-align: center;}
+body {text-align: center; background-color: rgb(136,28,28);}
+div {text-align: center; justify-content: center;}
+#search{
+    margin-right:auto;
+    margin-left:auto;
+    width:100px; 
+}
+#button{
+    margin-right:auto;
+    margin-left:auto;
+    width:100px; 
+}
+
+.btn-xlarge-right {
+    float: right;
+    padding: 18px 28px;
+    font-size: 22px;
+    line-height: normal;
+    -webkit-border-radius: 8px;
+       -moz-border-radius: 8px;
+            border-radius: 8px;
+    }
+
+.leftCard{
+    width: 18rem; text-align: center; border-color: black; float: left;
+}
+
+.rightCard{
+    
+    width: 18rem; text-align: center; border-color: black; float: right;
+}
+
+input[type="text"]
+{
+    text-align: center;
+    font-family: fantasy;
+    font-size: 25px
+}
+input[type="search"]
+{
+    text-align: center;
+    font-family: fantasy;
+    font-size: 30px
+}
+
+input[type="number"]
+{
+    font-family: fantasy;
+    font-size: 25px
+}
+input[type="range"] {
+    color: black;
+    justify-content: center;
+    width:300px;
+}
+h1 {text-align: center; color: white;}
+h2 {text-align: center;}
+h3 {text-align: center; color: white;}
+h4 {text-align: center;}
+a {text-align: center;}
+
+.star {
+    visibility:hidden;
+    font-size:30px;
+    cursor:pointer;
+    line-height: 0.5em;
+    float: right;
+}
+.star:before {  
+   content: "\2605";
+   visibility:visible;
+}
+.star:checked:before {
+   content: "\2606";
+}
