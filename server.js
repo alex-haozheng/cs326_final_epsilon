@@ -7,6 +7,9 @@ const port = 8080;
 let http = require('http');
 let url = require('url');
 let fs = require('fs');
+app.use(express.static('public'));
+
+app.use(express.json()); // lets you handle JSON input
 
 
 app.get('/', (req, res) => res.send('its over!!'));
