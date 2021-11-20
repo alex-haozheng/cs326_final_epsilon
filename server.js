@@ -2,9 +2,10 @@
 const express = require('express');
 // import express from 'express';
 const app = express();
-const port = 3000;
-app.get('/', (req, res) => res.send('its over!'));
-app.listen(process.env.PORT || () => console.log(`Example app listening at http://localhost:${port}`));
+const port = 8080;
+app.get('/', (req, res) => res.send('its over!!'));
+
+app.listen(process.env.PORT || port, () => console.log(`Example app listening at http://localhost:${port}`));
 // 'use strict';
 // let http = require('http');
 // let url = require('url');
