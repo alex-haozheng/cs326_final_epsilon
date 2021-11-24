@@ -1,78 +1,97 @@
 'use strict';
-import {createServer} from 'http';
-import {parse} from 'url';
-import {join} from 'path';
-import {writeFile, readFileSync, existsSync, fstat} from 'fs';
-import { MongoClient } from 'mongodb'
 
-let http = require('http');
-let url = require('url');
-let fs = require('fs');
-const express = require('express');
-// import express from 'express';
+// for loading environment variables
+require('dotenv').config();
+
+const express = require('express');                 // express routing
+const expressSession = require('express-session');  // for managing session state
+const passport = require('passport');               // handles authentication
+const LocalStrategy = require('passport-local').Strategy; // username/password strategy
 const app = express();
-app.use(express.static('public'));
+const port = process.env.PORT || 8080;
 
-app.use(express.json()); // lets you handle JSON input
-app.use(express.urlenconded({'extended': true})); // allow URLencoded data
+const url = "mongodb+srv://alex:2HKRCoy6TImzUamS@menu.yeoac.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const client = new MongoClient(url);
 
-const port = process.env.PORT;
+// const parsed = parse(req.url, true);
+await client.connect();
+
+const uDine = await client.db('UDine'); // if this creates delete
+
+const foods = await uDine.collection('food');
+const logins = await uDine.collection('logins');
 
 app.get('/search', async (req, res) => {
-  // datastore = reload(JSONfile);
-  res.send(datastore.food);
+  const str = document.getElementById('mySearch').value;
+  const halal = document.getElementById('halal').checked;
+  const veg = document.getElementById('vegetarian').checked; 
+  const wGrain = document.getElementById('wholeGrain').checked;
+    // dont set if not true thus comparing boolean during search
+  if(halal) {
+    halal = 'Yes';
+  }
+  if (veg) {
+    veg = 'Yes'; 
+  }
+  if (wGrain) {
+    wGrain = 'Yes';
+  }
+  res.end(JSON.stringify(await foods.find({
+      $and: [
+        {$contains: {'name': str}},
+        {'halal': halal},
+        {'vegetarian': veg},
+        {'whole-grain': wGrain}
+      ]    
+    })
+  ));
 });
 
 // req: {"username": "user1", "password": "pass1"}
 app.post('/register', (req, res) => {
-  // datastore = reload(JSONfile); //reload function causing the pages to function weird
-  let username = req.body.username;
-  let password = req.body.password;
-  if(!datastore["logins"][username]) {
-    datastore["logins"][username] = password;
-    datastore["profiles"][username] = [];
-  }
-  // fs.writeFileSync(JSONfile, JSON.stringify(datastore));
-  res.end();
+  // send in {"username": "user1", "password": "pass1"}
+  let body = '';
+  req.on('data', data => body += data);
+  req.on('end', async () => {
+    const data = JSON.parse(body);
+    await logins.insertOne(data);
+  }); res.end();
 });
 
 app.get('/unique/view', (req, res) => {
-  // datastore = reload(JSONfile);
-  res.send(datastore["uniques"]);
+  // returns all food 
+  let d8 = "11/23/2021"; // hardcoded for now
+  res.end(JSON.stringify( await foods.find({date: d8}))); // if not .toArray()  
 });
 
 app.get('/user/favorites/view/:key', (req, res) => {
-  // datastore = reload(JSONfile);
-  let username = req.params.key;
-  // if(datastore.profiles[username] === undefined) {
-  //   //make response be not ok / display error message
-  //   res.end('no user exists');
-  // }
-  res.send(datastore.profiles[username]);
-  res.end();
+  const user = req.params.key; // how would i change this to express
+  const result = await logins.findOne(
+    {username: user}
+  ); const arr = result.favorites;
+  const fav = document.getElementById('adding').value;
+  res.end(JSON.stringify(await logins.update(
+    {username: user},
+    {favorites: arr.push(fav)}
+  ))); // should be pushing it to this arrray
 });
 
 // req: {"username": "user1", "item": "chicken"}
 app.post('/user/favorites/add/:key', (req, res) => {
-  // datastore = reload(JSONfile);
-  let username = req.body.username;
-  let item = req.body.item;
-  // if(datastore.profiles[username] === undefined) {
-  //   //make response be not ok / display error message
-  //   res.end('no user exists');
-  // }
-  datastore.profiles[username].push(item);
-  // fs.writeFileSync(JSONfile, JSON.stringify(datastore));
-  res.end();
+  const user = req.params.key;
+  const fav = (await logins.findOne(
+    {username: user}
+  )).favorites;
+  res.end(JSON.stringify(fav)); 
 });
 
 // should work 100% :)
 app.delete('/user/delete/:key', (req, res) => {
-  // datastore = reload(JSONfile);
-  let user = req.params.key;
-  delete datastore["logins"][user];
-  delete datastore["profiles"][user];
-  // fs.writeFileSync(JSONfile, JSON.stringify(datastore));
+  const user = req.params.key;
+  logins.remove(
+    {username: user},
+    {justOne: True}
+  );
   res.end();
 });
 
