@@ -1,7 +1,7 @@
 import {createServer} from 'http';
 import {parse} from 'url';
 import {join} from 'path';
-import {writeFile, readFileSync, existsSync, fstat} from 'fs';
+import {readFileSync, existsSync} from 'fs';
 import { MongoClient } from 'mongodb';
 
 const url = "mongodb+srv://alex:2HKRCoy6TImzUamS@menu.yeoac.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
