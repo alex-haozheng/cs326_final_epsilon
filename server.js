@@ -1,4 +1,10 @@
 'use strict';
+import {createServer} from 'http';
+import {parse} from 'url';
+import {join} from 'path';
+import {writeFile, readFileSync, existsSync, fstat} from 'fs';
+import { MongoClient } from 'mongodb'
+
 let http = require('http');
 let url = require('url');
 let fs = require('fs');
@@ -59,7 +65,8 @@ app.use(express.static('public'));
 
 app.use(express.json()); // lets you handle JSON input
 
-const port = 8080;
+const port = process.env.PORT || 8080;
+
 let datastore = {
   "uniques":{
      "berkshire": {
@@ -144,20 +151,6 @@ let datastore = {
       }
     ]
 };
-// const JSONfile = './storage.json';
-
-// function reload(filename) {
-//   if (fs.existsSync(filename)) {
-//     return JSON.parse(fs.readFileSync(filename));
-//   } else {
-//     return {
-//       unique: {},
-//       logins: {},
-//       profiles: {},
-//       food: {}
-//     };
-//   }
-// }
 
 app.get('/search', async (req, res) => {
   // datastore = reload(JSONfile);
@@ -194,7 +187,7 @@ app.get('/user/favorites/view/:key', (req, res) => {
 });
 
 // req: {"username": "user1", "item": "chicken"}
-app.post('/user/favorites/add', (req, res) => {
+app.post('/user/favorites/add/:key', (req, res) => {
   // datastore = reload(JSONfile);
   let username = req.body.username;
   let item = req.body.item;
