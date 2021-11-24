@@ -1,6 +1,5 @@
 {
   "name": "mongodb",
-  "type": "module",
   "version": "1.0.0",
   "description": "MADining",
   "main": "server.js",
