@@ -34,23 +34,11 @@ async function addFavorite() {
     }
 }
 
-async function deleteAccount() {
-    let response = await fetch('http://localhost:8080/user/delete/' + document.getElementById("username").value, {
-        method: 'DELETE'
-    });
 
-    if (response.ok) {
-      alert("The account has been deleted");
-    } 
-    else {
-        alert("An error has occured.");
-    }
-}
 
 
 
 window.addEventListener('load', () => {
   document.getElementById("search").addEventListener("click", addFavorite);
-  document.getElementById("delete").addEventListener("click", deleteAccount);
   document.getElementById("getFav").addEventListener("click", getFavorites);
 });

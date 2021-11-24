@@ -1,7 +1,7 @@
 'use strict';
 
 async function getUnique() {
-    let response = await fetch('/unique/view',{
+    let response = await fetch('http://localhost:8080/unique/view',{
         method: 'GET'
     });
     if (response.ok) {
