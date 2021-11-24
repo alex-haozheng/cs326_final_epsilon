@@ -14,6 +14,7 @@ const app = express();
 app.use(express.static('public'));
 
 app.use(express.json()); // lets you handle JSON input
+app.use(express.urlenconded({'extended': true})); // allow URLencoded data
 
 const port = process.env.PORT;
 
