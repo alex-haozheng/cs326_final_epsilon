@@ -1,26 +1,17 @@
+
+
 {
   "name": "cs326-final-epsilon",
   "version": "1.0.0",
   "description": "MADining",
-  "main": "database.js",
-  "directories": {
-    "doc": "docs"
-  },
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/sazzle2/cs326-final-epsilon.git"
-  },
+  "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/sazzle2/cs326-final-epsilon/issues"
-  },
-  "homepage": "https://github.com/sazzle2/cs326-final-epsilon#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "*"
   }
 }

@@ -1,14 +1,14 @@
 'use strict';
 
-async function login() {
-    let response = await fetch('/login',{
+async function register() {
+    let response = await fetch('/register',{
         method: 'POST',
         body: JSON.stringify({"username": document.getElementById("username").value, "password": document.getElementById("password").value}),
         headers: {'Content-Type': 'application/json' }
     })
 
     if (response.ok) {
-        continue;
+        alert("Account has been created successfully.");
     } 
     else {
         alert("An error has occured.");
@@ -17,7 +17,7 @@ async function login() {
  
 
 function initialize() {
-    document.getElementById("login").addEventListener("click", login);
+    document.getElementById("signup").addEventListener("click", register);
 }
 
 window.onload = initialize;
