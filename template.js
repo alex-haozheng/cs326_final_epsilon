@@ -46,17 +46,21 @@ createServer(async (req, res) => {
       //   let data = JSON.parse(body);
       //   await ws.insertOne(data);
       // }); res.end();
-  } else if (parsed.pathname === '/gameScore') {
+  } else if (parsed.pathname === '/register') {
+    // send in {"username": "user1", "password": "pass1"}
     let body = '';
     req.on('data', data => body += data);
     req.on('end', async () => {
-      let data = JSON.parse(body);
-      await gs.insertOne(data);
+      const data = JSON.parse(body);
+      await logins.insertOne(data);
     }); res.end();
-  } else if (parsed.pathname === '/highestWordScores') {
-      res.end(JSON.stringify(await ws.find().limit(10).sort({score: -1}).toArray()));
-  } else if (parsed.pathname === '/highestGameScores') {
-      res.end(JSON.stringify(await gs.find().limit(10).sort({score: -1}).toArray()));
+  } else if (parsed.pathname === '/unique/view') {
+    // returns all food 
+    let d8 = '2021-11-23T05:00:00.000+00:00';
+    res.end(JSON.stringify( await foods.find({date: d8}).toArray()));
+  } else if (parsed.pathname === '/user/favorites/view/:key') {
+    const user = req.params.key; // how would i change this to express
+    res.end(JSON.stringify(await gs.find().limit(10).sort({score: -1}).toArray()));
   } else {
       // If the client did not request an API endpoint, we assume we need to fetch a file.
       // This is terrible security-wise, since we don't check the file requested is in the same directory.
