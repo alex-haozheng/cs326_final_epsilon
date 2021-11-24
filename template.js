@@ -74,6 +74,13 @@ createServer(async (req, res) => {
       {username: user}
     )).favorites;
     res.end(JSON.stringify(fav)); 
+  } else if (parsed.pathname === 'user/delete/:key'){
+    const user = req.params.key;
+    logins.remove(
+      {username: user},
+      {justOne: True}
+    );
+    res.end();
   } else {
       // If the client did not request an API endpoint, we assume we need to fetch a file.
       // This is terrible security-wise, since we don't check the file requested is in the same directory.
