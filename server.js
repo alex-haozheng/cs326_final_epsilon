@@ -1,10 +1,4 @@
 'use strict';
-// import {createServer} from 'http';
-// import {parse} from 'url';
-// import {join} from 'path';
-// import {writeFile, readFileSync, existsSync, fstat} from 'fs';
-// import { MongoClient } from 'mongodb'ee
-
 let http = require('http');
 let url = require('url');
 let fs = require('fs');
@@ -13,10 +7,10 @@ const expressSession = require('express-session');  // for managing session stat
 const express = require('express');
 const passport = require('passport');               // handles authentication
 const LocalStrategy = require('passport-local').Strategy; // username/password strategy
-
+const port = 8080;
 // import express from 'express';
 const app = express();
-
+app.use(require('body-parser').urlencoded());
 
 const session = {
   secret : process.env.SECRET || 'SECRET', // set this encryption key in Heroku config (never in GitHub)!
@@ -62,95 +56,138 @@ passport.deserializeUser((uid, done) => {
 });
 
 app.use(express.static('public'));
-
 app.use(express.json()); // lets you handle JSON input
+let users = {};
 
-const port = 8080;
+// Returns true iff the user exists.
+function findUser(username) {
+  if (!users[username]) {
+    return false;
+  } else {
+    return true;
+  }
+}
 
-let datastore = {
-  "uniques":{
-     "berkshire": {
-         "breakfast": ["pancakes", "sausages", "eggs"],
-         "lunch": ["pizza", "burgers", "french fries"],
-         "dinner": ["fish", "spaghetti", "chicken pot pie"]
-     },
-     "franklin": {
-         "breakfast": ["waffles", "sausages", "eggs"],
-         "lunch": ["pasta", "burgers", "french fries"],
-         "dinner": ["pork", "spaghetti", "chicken pot pie"]
-     },
-     "hampshire": {
-         "breakfast": ["biscuits", "sausages", "eggs"],
-         "lunch": ["soup", "burgers", "french fries"],
-         "dinner": ["turkey", "spaghetti", "chicken pot pie"]
-     },
-     "worcester": {
-         "breakfast": ["danish", "sausages", "eggs"],
-         "lunch": ["ribs", "burgers", "french fries"],
-         "dinner": ["fish", "spaghetti", "chicken pot pie"]
-     }
-  },
+// Returns true iff the password is the one we have stored (in plaintext = bad but easy).
+function validatePassword(name, pwd) {
+  if (!findUser(name)) {
+    return false;
+  }
+  if (users[name] !== pwd) {
+    return false;
+  }
+  return true;
+}
 
-  "logins": {
-      "user1": "pass1",
-      "user2": "pass2",
-      "user3": "pass3"
-  },
+// Add a user to the "database".
+// Return true if added, false otherwise (because it was already there).
+// TODO
+function addUser(name, pwd) {
+  // TODO
+  if(!findUser(name)){
+    users[name] = pwd;
+    return true;
+  }else{
+    return false;
+  } 
+}
 
-  "profiles":{
-      "user1": ["fav1", "fav2"],
-      "user2": ["fav3", "fav4"],
-      "user3": ["fav5", "fav6"] 
-  },
-  "food":[
-      {
-        "berkshire": {
-            "breakfast": {
-                "waffles": {
-                    "halal": true,
-                    "vegetarian": true
-                },
-                "sausages": {
-                },
-                "eggs": {
-                    "halal": true
-                }
-            },
-            "lunch": {
-                "pasta": {
-                    "halal": true,
-                    "vegetarian": true
-                },
-                "burgers": {
-                },
-                "french fries": {
-                    "vegetarian": true
-                }
-              },
-              "dinner": {
-                "pasta": {
-                    "halal": true,
-                    "vegetarian": true
-                },
-                "spaghetti": {
-                    "vegetarian": true,
-                    "gluten free": true
-                },
-                "chicken pot pie": {
-                    "halal": true
-                }
-              }
-          },
-          "franklin": {
-          },
-          "hampshire": {
-          },
-          "worcester": {
-          }
-  
-      }
-    ]
-};
+// Routes
+
+function checkLoggedIn(req, res, next) {
+  if (req.isAuthenticated()) {
+  // If we are authenticated, run the next route.
+    next();
+  } else {
+  // Otherwise, redirect to the login page.
+    res.redirect('/login');
+  }
+}
+
+app.get('/',
+  checkLoggedIn,
+  (req, res) => {
+    res.send("hello world");
+});
+
+// Handle post data from the login.html form.
+app.post('/login',
+ passport.authenticate('local' , {     // use username/password authentication
+     'successRedirect' : '/private',   // when we login, go to /private 
+     'failureRedirect' : '/login'      // otherwise, back to login
+ }));
+
+// Handle the URL /login (just output the login.html file).
+app.get('/login',
+  (req, res) => res.sendFile('/public/login.html',
+      { 'root' : __dirname }));
+
+// Handle logging out (takes us back to the login page).
+// app.get('/logout', (req, res) => {
+//   req.logout(); // Logs us out!
+//   res.redirect('/login'); // back to login
+// });
+
+
+// Add a new user and password IFF one doesn't exist already.
+// If we successfully add a new user, go to /login, else, back to /register.
+// Use req.body to access data (as in, req.body['username']).
+// Use res.redirect to change URLs.
+// TODO
+app.post('/register',
+	 (req, res) => {
+	     const username = req.body['username'];
+	     const password = req.body['password'];
+	     // TODO
+	     // Check if we successfully added the user.
+		 if(addUser(username, password) === true){
+       console.log(username);
+       console.log(password);
+
+       console.log(users);
+       console.log('added user');
+			 res.redirect('/login');
+		 }else{
+      console.log(users);
+
+       console('did not add user')
+			 res.redirect('/register');
+		 }
+	     // If so, redirect to '/login'
+	     // If not, redirect to '/register'.
+	 });
+
+// Register URL
+app.get('/register',
+  (req, res) => res.sendFile('/public/register.html',
+         { 'root' : __dirname }));
+
+// Private data
+app.get('/private',
+// IF we are logged in...
+// TODO
+// Go to the user's page ('/private/' + req.user)
+  (req, res) => {
+    checkLoggedIn(req, res, () => res.redirect('/private/' + req.user))
+    // TODO
+});
+
+// A dummy page for the user.
+app.get('/private/:userID/',
+  checkLoggedIn, // We also protect this route: authenticated...
+  (req, res) => {
+    // Verify this is the right user.
+    if (req.params.userID === req.user) {
+      res.writeHead(200, {"Content-Type" : "text/html"});
+      res.write('<H1>HELLO ' + req.params.userID + "</H1>");
+      res.write('<br/><a href="/logout">click here to logout</a>');
+      res.end();
+    } else {
+      res.redirect('/private/');
+    }
+});
+
+
 
 app.get('/search', async (req, res) => {
   // datastore = reload(JSONfile);
@@ -158,17 +195,22 @@ app.get('/search', async (req, res) => {
 });
 
 // req: {"username": "user1", "password": "pass1"}
-app.post('/register', (req, res) => {
-  // datastore = reload(JSONfile); //reload function causing the pages to function weird
-  let username = req.body.username;
-  let password = req.body.password;
-  if(!datastore["logins"][username]) {
-    datastore["logins"][username] = password;
-    datastore["profiles"][username] = [];
-  }
-  // fs.writeFileSync(JSONfile, JSON.stringify(datastore));
-  res.end();
-});
+// app.post('/register', (req, res) => {
+//   // datastore = reload(JSONfile); //reload function causing the pages to function weird
+//   let username = req.body.username;
+//   let password = req.body.password;
+// 	if(!findUser(username)){
+// 		users[username] = password;
+// 	}
+
+
+//   // if(!datastore["logins"][username]) {
+//   //   datastore["logins"][username] = password;
+//   //   datastore["profiles"][username] = [];
+//   // }
+//   // fs.writeFileSync(JSONfile, JSON.stringify(datastore));
+//   res.end();
+// });
 
 app.get('/unique/view', (req, res) => {
   // datastore = reload(JSONfile);
@@ -187,7 +229,7 @@ app.get('/user/favorites/view/:key', (req, res) => {
 });
 
 // req: {"username": "user1", "item": "chicken"}
-app.post('/user/favorites/add/:key', (req, res) => {
+app.post('/user/favorites/add', (req, res) => {
   // datastore = reload(JSONfile);
   let username = req.body.username;
   let item = req.body.item;
