@@ -56,11 +56,24 @@ createServer(async (req, res) => {
     }); res.end();
   } else if (parsed.pathname === '/unique/view') {
     // returns all food 
-    let d8 = "11/23/2021";
+    let d8 = "11/23/2021"; // hardcoded for now
     res.end(JSON.stringify( await foods.find({date: d8}).toArray()));
-  } else if (parsed.pathname === '/user/favorites/view/:key') {
+  } else if (parsed.pathname === '/user/favorites/add/:key') {
     const user = req.params.key; // how would i change this to express
-    res.end(JSON.stringify(await gs.find().limit(10).sort({score: -1}).toArray()));
+    const result = await logins.findOne(
+      {username: user}
+    ); const arr = result.favorites;
+    const fav = document.getElementById('adding').value;
+    res.end(JSON.stringify(await logins.update(
+      {username: user},
+      {favorites: arr.push(fav)}
+    ))); // should be pushing it to this arrray
+  } else if (parsed.pathname === '/user/favorites/view/:key') {
+    const user = req.params.key;
+    const fav = (await logins.findOne(
+      {username: user}
+    )).favorites;
+    res.end(JSON.stringify(fav)); 
   } else {
       // If the client did not request an API endpoint, we assume we need to fetch a file.
       // This is terrible security-wise, since we don't check the file requested is in the same directory.

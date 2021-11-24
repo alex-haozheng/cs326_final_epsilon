@@ -137,7 +137,7 @@ app.get('/user/favorites/view/:key', (req, res) => {
 });
 
 // req: {"username": "user1", "item": "chicken"}
-app.post('/user/favorites/add', (req, res) => {
+app.post('/user/favorites/add/:key', (req, res) => {
   // datastore = reload(JSONfile);
   let username = req.body.username;
   let item = req.body.item;
