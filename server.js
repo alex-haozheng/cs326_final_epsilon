@@ -2,14 +2,22 @@
 let http = require('http');
 let url = require('url');
 let fs = require('fs');
-const express = require('express');
-// import express from 'express';
-const app = express();
+
 app.use(express.static('public'));
 
 app.use(express.json()); // lets you handle JSON input
 
 const port = 8080;
+
+// For loading environment variables.
+require('dotenv').config();
+​
+const express = require('express');                 // express routing
+const expressSession = require('express-session');  // for managing session state
+const passport = require('passport');               // handles authentication
+const LocalStrategy = require('passport-local').Strategy; // username/password strategy
+const app = express();
+const port = process.env.PORT || 8080;
 
 let datastore = {
   "uniques":{
@@ -168,4 +176,10 @@ app.delete('/user/delete/:key', (req, res) => {
   res.end();
 });
 
-app.listen(process.env.PORT || port, () => console.log(`Example app listening at http://localhost:${port}`));
+app.get('*', (req, res) => {
+  res.send('Error');
+});
+​
+app.listen(port, () => {
+    console.log(`App now listening at http://localhost:${port}`);
+});
