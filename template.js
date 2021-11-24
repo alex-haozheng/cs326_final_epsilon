@@ -56,7 +56,7 @@ createServer(async (req, res) => {
     }); res.end();
   } else if (parsed.pathname === '/unique/view') {
     // returns all food 
-    let d8 = '2021-11-23T05:00:00.000+00:00';
+    let d8 = "11/23/2021";
     res.end(JSON.stringify( await foods.find({date: d8}).toArray()));
   } else if (parsed.pathname === '/user/favorites/view/:key') {
     const user = req.params.key; // how would i change this to express
@@ -78,7 +78,6 @@ createServer(async (req, res) => {
           } else {
               res.writeHead(200);
           }
-
           res.write(readFileSync(path));
           res.end();
       } else {
