@@ -15,7 +15,7 @@ app.use(express.static('public'));
 
 app.use(express.json()); // lets you handle JSON input
 
-const port = process.env.PORT || 8080;
+const port = process.env.PORT;
 
 app.get('/search', async (req, res) => {
   // datastore = reload(JSONfile);
