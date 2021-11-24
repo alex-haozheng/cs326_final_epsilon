@@ -11,10 +11,10 @@ createServer(async (req, res) => {
   const parsed = parse(req.url, true);
   await client.connect();
 
-  const UDINE = await client.db('UDine'); // if this creates delete
+  const uDine = await client.db('UDine'); // if this creates delete
 
-  const foods = await gsdb.collection('food');
-  const logins = await wsdb.collection('logins');
+  const foods = await uDine.collection('food');
+  const logins = await uDine.collection('logins');
 
   if (parsed.pathname === '/search') {
     const str = document.getElementById('mySearch').value;
@@ -26,7 +26,7 @@ createServer(async (req, res) => {
       halal = 'Yes';
     }
     if (veg) {
-      veg = 'Yes';
+      veg = 'Yes'; 
     }
     if (wGrain) {
       wGrain = 'Yes';
@@ -40,12 +40,6 @@ createServer(async (req, res) => {
         ]    
       })
     ));
-      // let body = '';
-      // req.on('data', data => body += data);
-      // req.on('end', async () => {
-      //   let data = JSON.parse(body);
-      //   await ws.insertOne(data);
-      // }); res.end();
   } else if (parsed.pathname === '/register') {
     // send in {"username": "user1", "password": "pass1"}
     let body = '';
@@ -57,7 +51,7 @@ createServer(async (req, res) => {
   } else if (parsed.pathname === '/unique/view') {
     // returns all food 
     let d8 = "11/23/2021"; // hardcoded for now
-    res.end(JSON.stringify( await foods.find({date: d8}).toArray()));
+    res.end(JSON.stringify( await foods.find({date: d8}))); // if not .toArray()
   } else if (parsed.pathname === '/user/favorites/add/:key') {
     const user = req.params.key; // how would i change this to express
     const result = await logins.findOne(
