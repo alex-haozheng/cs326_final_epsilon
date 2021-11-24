@@ -20,8 +20,5 @@
   "bugs": {
     "url": "https://github.com/sazzle2/cs326-final-epsilon/issues"
   },
-  "homepage": "https://github.com/sazzle2/cs326-final-epsilon#readme",
-  "dependencies": {
-    "modules": "^0.4.0"
-  }
+  "homepage": "https://github.com/sazzle2/cs326-final-epsilon#readme"
 }
