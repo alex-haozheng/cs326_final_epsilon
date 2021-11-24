@@ -1,4 +1,10 @@
 'use strict';
+import {createServer} from 'http';
+import {parse} from 'url';
+import {join} from 'path';
+import {writeFile, readFileSync, existsSync, fstat} from 'fs';
+import { MongoClient } from 'mongodb'
+
 let http = require('http');
 let url = require('url');
 let fs = require('fs');
@@ -9,7 +15,7 @@ app.use(express.static('public'));
 
 app.use(express.json()); // lets you handle JSON input
 
-const port = 8080;
+const port = process.env.PORT || 8080;
 
 let datastore = {
   "uniques":{
@@ -95,23 +101,6 @@ let datastore = {
       }
     ]
 };
-<<<<<<< HEAD
-=======
-// const JSONfile = './storage.json';
-
-// function reload(filename) {
-//   if (fs.existsSync(filename)) {
-//     return JSON.parse(fs.readFileSync(filename));
-//   } else {
-//     return {
-//       unique: {},
-//       logins: {},
-//       profiles: {},
-//       food: {}
-//     };
-//   }
-// }
->>>>>>> main
 
 app.get('/search', async (req, res) => {
   // datastore = reload(JSONfile);
