@@ -95,20 +95,6 @@ let datastore = {
       }
     ]
 };
-// const JSONfile = './storage.json';
-
-// function reload(filename) {
-//   if (fs.existsSync(filename)) {
-//     return JSON.parse(fs.readFileSync(filename));
-//   } else {
-//     return {
-//       unique: {},
-//       logins: {},
-//       profiles: {},
-//       food: {}
-//     };
-//   }
-// }
 
 app.get('/search', async (req, res) => {
   // datastore = reload(JSONfile);
