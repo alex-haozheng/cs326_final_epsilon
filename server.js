@@ -1,7 +1,7 @@
 'use strict';
 
 // for loading environment variables
-require('dotenv').config();
+// require('dotenv').config();
 
 const express = require('express');                 // express routing
 const expressSession = require('express-session');  // for managing session state
