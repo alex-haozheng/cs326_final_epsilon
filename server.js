@@ -48,7 +48,7 @@ app.get('/search', async (req, res) => {
 });
 
 // req: {"username": "user1", "password": "pass1"}
-app.post('/register', (req, res) => {
+app.post('/register', async (req, res) => {
   // send in {"username": "user1", "password": "pass1"}
   let body = '';
   req.on('data', data => body += data);
@@ -58,13 +58,13 @@ app.post('/register', (req, res) => {
   }); res.end();
 });
 
-app.get('/unique/view', (req, res) => {
+app.get('/unique/view', async (req, res) => {
   // returns all food 
   let d8 = "11/23/2021"; // hardcoded for now
   res.end(JSON.stringify( await foods.find({date: d8}))); // if not .toArray()  
 });
 
-app.get('/user/favorites/view/:key', (req, res) => {
+app.get('/user/favorites/view/:key', async (req, res) => {
   const user = req.params.key; // how would i change this to express
   const result = await logins.findOne(
     {username: user}
@@ -77,7 +77,7 @@ app.get('/user/favorites/view/:key', (req, res) => {
 });
 
 // req: {"username": "user1", "item": "chicken"}
-app.post('/user/favorites/add/:key', (req, res) => {
+app.post('/user/favorites/add/:key', async (req, res) => {
   const user = req.params.key;
   const fav = (await logins.findOne(
     {username: user}
@@ -86,7 +86,7 @@ app.post('/user/favorites/add/:key', (req, res) => {
 });
 
 // should work 100% :)
-app.delete('/user/delete/:key', (req, res) => {
+app.delete('/user/delete/:key', async (req, res) => {
   const user = req.params.key;
   logins.remove(
     {username: user},
