@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/sazzle2/cs326-final-epsilon#readme",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "dotenv": "^10.0.0",
     "express": "*",
     "express-session": "^1.17.2",
