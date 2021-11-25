@@ -64,10 +64,8 @@ const client = new MongoClient(url);
 app.use(express.static('public'));
 
 app.get('/search', async (req, res) => {
-  console.log(5);
   const uDine = await client.db('UDine'); // if this creates delete
   const foods = await uDine.collection('food');
-  console.log(uDine, foods);
   const str = document.getElementById('mySearch').value;
   const halal = document.getElementById('halal').checked;
   const veg = document.getElementById('vegetarian').checked; 
@@ -108,10 +106,19 @@ app.post('/register', async (req, res) => {
 
 app.get('/unique/view', async (req, res) => {
   // returns all food 
-  const uDine = await client.db('UDine'); // if this creates delete
-  const foods = await uDine.collection('food');
-  let d8 = "11/23/2021"; // hardcoded for now
-  res.end(JSON.stringify( await foods.find({date: d8}))); // if not .toArray()  
+  console.log("BIE");
+  try {
+    await client.connect();
+    const uDine = await client.db('UDine'); // if this creates delete
+    const foods = await uDine.collection('food');
+  
+    let d8 = "11/23/2021"; // hardcoded for now
+    console.log(await foods.find({date: d8}));
+    res.end(JSON.stringify( await foods.find({date: d8}))); // if not .toArray()  
+  } catch (err) {
+    console.log('unique error');
+    return;
+  }
 });
 
 app.get('/user/favorites/view/:key', async (req, res) => {
