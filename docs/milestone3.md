@@ -35,11 +35,10 @@ date":"11/21/2021", //this is the date that this item is available
 # Division of Labor:
 
 ## Alan: 
-made a get unique function (unfinished) , all of routing in html, started getUnique search, fixed href of favicons, added some buttons, made register/ login page
+made a getUnique function for /unique/view endpoint call, all of inter-page routing in html, made search function for /search endpoint call, fixed href of favicons and icons to work on heroku, added some buttons, created register.html, created register.js, created register.css, edited login due to creation of register, set up search function to work with the database, edited profile for auth,  added delete function for the delete endpoint with corresponding button and js
 
 ## Alex: 
-made the mongoDB for some of the functions planning to implement express into it
-
+set up mongoDB and connected the endpoints in server to requried database collections, worked on setting up register passwords, search, and getunique functions to work with the database 
 ## Ben: 
-heroku deployment, fixed several bugs related to incorrect package-log dependencies, set up passport requirements, changed some localhost issues in server.js
+heroku deployment, fixed several bugs related to incorrect package-log dependencies, set up passport requirements, edited the login.html and register.html to work with passport, changed some localhost issues in server.js
 
