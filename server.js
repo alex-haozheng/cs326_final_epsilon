@@ -167,39 +167,41 @@ const client = new MongoClient(url);
 
 app.use(express.static('public'));
 
+async function searcher(str, halal, veg, wGrain) {
+  await client.connect();
+  const uDine = client.db('UDine');
+  const foods = uDine.collection('food');
+  const obj = await foods.find({
+    'name': {$regex: str},
+    "halal": halal,
+    "vegetarian": veg,
+    "whole-grain": wGrain
+  }).toArray();
+  return obj;
+}
+
 app.post('/search', async (req, res) => {
-  try {
     let str = req.body.keyword;
     let halal = req.body.halal;
     let veg = req.body.vegetarian;
     let wGrain = req.body.wholeGrain;
     if(halal) {
       halal = 'Yes';
+    } else {
+      halal = 'No';
     }
     if (veg) {
       veg = 'Yes'; 
+    } else {
+      veg = 'No';
     }
     if (wGrain) {
       wGrain = 'Yes';
+    } else {
+      wGrain = 'No';
     }
-    await client.connect();
-    console.log(wGrain);
-    const uDine = await client.db('UDine');
-    const foods = await uDine.collection('food');
-    const obj = await foods.find({
-      'name': {
-        $regex: str
-      },
-      "halal": halal,
-      "vegetarian": veg,
-      "whole-grain": wGrain
-    });
-    console.log(await obj.json());
-    res.send(JSON.stringify(obj));
-  } catch (err) {
-    console.log('error');
-    return;
-  } res.end();
+    console.log(await searcher(str, halal, veg, wGrain));
+    res.end(JSON.stringify(await searcher(str, halal, veg, wGrain)));
 });
 
 app.get('/unique/view', async (req, res) => {
@@ -210,7 +212,6 @@ app.get('/unique/view', async (req, res) => {
     const foods = await uDine.collection('food');
     console.log(foods);
     let d8 = "11/23/2021"; // hardcoded for now
-    console.log("HIIIIIIISDJIAIASDASDIAJSIDA\n\n\n");
     // console.log(await foods.find({date: d8}));
     res.end(JSON.stringify( await foods.find({date: d8}))); // if not .toArray()  
   } catch (err) {
