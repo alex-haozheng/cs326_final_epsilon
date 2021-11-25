@@ -163,7 +163,7 @@ app.get('/profile/:userID/',
 const port = process.env.PORT || 8080;
 
 let secrets;
-let password;
+let url;
 if (!process.env.URL) {
 secrets = require('secrets.json');
 url = secrets.url;
