@@ -11,9 +11,7 @@ async function search(){
         headers: { 'Content-Type': 'application/json'}
     })
     if (response.ok) {
-        console.log('hi');
-        const data = await response.json();
-        console.log(data);
+        const data = JSON.parse(response);
         for (let i = 0; i < data.length; i++){
             if(data[i]['hall'] === "Berkshire"){
                 let newDiv = document.createElement('div');
