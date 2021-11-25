@@ -35,11 +35,10 @@ date":"11/21/2021", //this is the date that this item is available
 # Division of Labor:
 
 ## Alan: 
-made a get unique function (unfinished) , all of routing in html, started getUnique search, fixed href of favicons, added some buttons, made register/ login page
+made a get unique function (unfinished) , all of routing in html, started getUnique search, fixed href of favicons, added some buttons, made register/ login page, set up search function to work with the database
 
 ## Alex: 
-made the mongoDB for some of the functions planning to implement express into it
-
+set up mongoDB and connected the endpoints in server to requried database collections, worked on setting up register passwords, search, and getunique functions to work with the database 
 ## Ben: 
-heroku deployment, fixed several bugs related to incorrect package-log dependencies, set up passport requirements, changed some localhost issues in server.js
+heroku deployment, fixed several bugs related to incorrect package-log dependencies, set up passport requirements, edited the login.html and register.html to work with passport, changed some localhost issues in server.js
 
