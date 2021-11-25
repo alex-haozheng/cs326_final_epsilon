@@ -1,22 +1,10 @@
 'use strict';
-<<<<<<< HEAD
-
-=======
-let http = require('http');
-let url = require('url');
-let fs = require('fs');
->>>>>>> main
 const expressSession = require('express-session');  // for managing session state
 
 const express = require('express');
 const passport = require('passport');               // handles authentication
 const LocalStrategy = require('passport-local').Strategy; // username/password strategy
-<<<<<<< HEAD
 const { MongoClient } = require('mongodb');
-=======
-const port = 8080;
-// import express from 'express';
->>>>>>> main
 const app = express();
 app.use(require('body-parser').urlencoded());
 
@@ -195,16 +183,12 @@ app.get('/private/:userID/',
     }
 });
 
-<<<<<<< HEAD
 const port = process.env.PORT || 8080;
 
 const url = "mongodb+srv://alex:2HKRCoy6TImzUamS@menu.yeoac.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 const client = new MongoClient(url);
 
 app.use(express.static('public'));
-=======
-
->>>>>>> main
 
 app.get('/search', async (req, res) => {
   const uDine = await client.db('UDine'); // if this creates delete
@@ -235,7 +219,6 @@ app.get('/search', async (req, res) => {
 });
 
 // req: {"username": "user1", "password": "pass1"}
-<<<<<<< HEAD
 app.post('/register', async (req, res) => {
   // send in {"username": "user1", "password": "pass1"}
   const uDine = await client.db('UDine'); // if this creates delete
@@ -247,24 +230,6 @@ app.post('/register', async (req, res) => {
     await logins.insertOne(data);
   }); res.end();
 });
-=======
-// app.post('/register', (req, res) => {
-//   // datastore = reload(JSONfile); //reload function causing the pages to function weird
-//   let username = req.body.username;
-//   let password = req.body.password;
-// 	if(!findUser(username)){
-// 		users[username] = password;
-// 	}
-
-
-//   // if(!datastore["logins"][username]) {
-//   //   datastore["logins"][username] = password;
-//   //   datastore["profiles"][username] = [];
-//   // }
-//   // fs.writeFileSync(JSONfile, JSON.stringify(datastore));
-//   res.end();
-// });
->>>>>>> main
 
 app.get('/unique/view', async (req, res) => {
   // returns all food 
@@ -298,7 +263,6 @@ app.get('/user/favorites/view/:key', async (req, res) => {
 });
 
 // req: {"username": "user1", "item": "chicken"}
-<<<<<<< HEAD
 app.post('/user/favorites/add/:key', async (req, res) => {
   const uDine = await client.db('UDine'); // if this creates delete
   const logins = await uDine.collection('logins');
@@ -307,19 +271,6 @@ app.post('/user/favorites/add/:key', async (req, res) => {
     {username: user}
   )).favorites;
   res.end(JSON.stringify(fav)); 
-=======
-app.post('/user/favorites/add', (req, res) => {
-  // datastore = reload(JSONfile);
-  let username = req.body.username;
-  let item = req.body.item;
-  // if(datastore.profiles[username] === undefined) {
-  //   //make response be not ok / display error message
-  //   res.end('no user exists');
-  // }
-  datastore.profiles[username].push(item);
-  // fs.writeFileSync(JSONfile, JSON.stringify(datastore));
-  res.end();
->>>>>>> main
 });
 
 // should work 100% :)
