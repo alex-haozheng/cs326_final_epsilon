@@ -141,8 +141,7 @@ app.get('/profile',
 // TODO
 // Go to the user's page ('/private/' + req.user)
   (req, res) => {
-    checkLoggedIn(req, res, () => res.redirect('/profile/' + req.user))
-    // TODO
+    checkLoggedIn(req, res, () => res.redirect('/profile/' + req.user));
 });
 
 // A dummy page for the user.
@@ -208,7 +207,6 @@ app.post('/search', async (req, res) => {
     } else {
       wGrain = 'No';
     }
-    console.log(await searcher(str, halal, veg, wGrain));
     res.end(JSON.stringify(await searcher(str, halal, veg, wGrain)));
 });
 
