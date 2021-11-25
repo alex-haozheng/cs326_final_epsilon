@@ -164,11 +164,11 @@ const port = process.env.PORT || 8080;
 
 let secrets;
 let password;
-if (!process.env.PASSWORD) {
+if (!process.env.URL) {
 secrets = require('secrets.json');
 url = secrets.url;
 } else {
-	password = process.env.PASSWORD;
+	url = process.env.URL;
 }
 
 const client = new MongoClient(url);
