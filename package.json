@@ -29,5 +29,19 @@
   "bugs": {
     "url": "https://github.com/sazzle2/cs326-final-epsilon/issues"
   },
+<<<<<<< HEAD
   "homepage": "https://github.com/sazzle2/cs326-final-epsilon#readme"
+=======
+  "homepage": "https://github.com/sazzle2/cs326-final-epsilon#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^10.0.0",
+    "express": "*",
+    "express-session": "^1.17.2",
+    "passport": "^0.5.0",
+    "passport-local": "^1.0.0"
+  
+
+  }
+>>>>>>> main
 }
