@@ -121,7 +121,7 @@ function checkLoggedIn(req, res, next) {
 // Handle post data from the login.html form.
 app.post('/login',
  passport.authenticate('local' , {     // use username/password authentication
-     'successRedirect' : '/private',   // when we login, go to /private 
+     'successRedirect' : '/profile',   // when we login, go to /private 
      'failureRedirect' : '/login'      // otherwise, back to login
  }));
 
@@ -136,27 +136,27 @@ app.get('/register',
          { 'root' : __dirname }));
 
 // Private data
-app.get('/private',
+app.get('/profile',
 // IF we are logged in...
 // TODO
 // Go to the user's page ('/private/' + req.user)
   (req, res) => {
-    checkLoggedIn(req, res, () => res.redirect('/private/' + req.user))
+    checkLoggedIn(req, res, () => res.redirect('/profile/' + req.user))
     // TODO
 });
 
 // A dummy page for the user.
-app.get('/private/:userID/',
+app.get('/profile/:userID/',
   checkLoggedIn, // We also protect this route: authenticated...
   (req, res) => {
     // Verify this is the right user.
     if (req.params.userID === req.user) {
       res.writeHead(200, {"Content-Type" : "text/html"});
       res.write('<H1>HELLO ' + req.params.userID + "</H1>");
-      res.write('<br/><a href="/logout">click here to logout</a>');
+      res.write('<br/><a href="/index.html">click here to go back to the search page</a>');
       res.end();
     } else {
-      res.redirect('/private/');
+      res.redirect('/profile/');
     }
 });
 
@@ -227,7 +227,7 @@ app.get('/unique/view', async (req, res) => {
   }
 });
 
-app.get('/user/favorites/view/:key', async (req, res) => {
+app.get('/user/favorites/view/:key', checkLoggedIn, async (req, res) => {
   const uDine = await client.db('UDine'); // if this creates delete
   const logins = await uDine.collection('logins');
   const user = req.params.key; // how would i change this to express
@@ -235,14 +235,14 @@ app.get('/user/favorites/view/:key', async (req, res) => {
     {username: user}
   ); const arr = result.favorites;
   const fav = document.getElementById('adding').value;
-  res.end(JSON.stringify(await logins.update(
+  res.end(JSON.stringify(await logins.updateOne(
     {username: user},
     {favorites: arr.push(fav)}
   ))); // should be pushing it to this arrray
 });
 
 // req: {"username": "user1", "item": "chicken"}
-app.post('/user/favorites/add/:key', async (req, res) => {
+app.post('/user/favorites/add/:key', checkLoggedIn, async (req, res) => {
   const uDine = await client.db('UDine'); // if this creates delete
   const logins = await uDine.collection('logins');
   const user = req.params.key;
@@ -253,11 +253,11 @@ app.post('/user/favorites/add/:key', async (req, res) => {
 });
 
 // should work 100% :)
-app.delete('/user/delete/:key', async (req, res) => {
+app.delete('/user/delete/:key', checkLoggedIn, async (req, res) => {
   const uDine = await client.db('UDine'); // if this creates delete
   const logins = await uDine.collection('logins');
   const user = req.params.key;
-  logins.remove(
+  logins.removeOne(
     {username: user},
     {justOne: True}
   );
