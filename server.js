@@ -168,18 +168,22 @@ const client = new MongoClient(url);
 app.use(express.static('public'));
 
 app.post('/search', async (req, res) => {
-  const {str, halal, veg, wGrain } = req.body;
-  if(halal) {
-    halal = 'Yes';
-  }
-  if (veg) {
-    veg = 'Yes'; 
-  }
-  if (wGrain) {
-    wGrain = 'Yes';
-  }
   try {
+    let str = req.body.keyword;
+    let halal = req.body.halal;
+    let veg = req.body.vegetarian;
+    let wGrain = req.body.wholeGrain;
+    if(halal) {
+      halal = 'Yes';
+    }
+    if (veg) {
+      veg = 'Yes'; 
+    }
+    if (wGrain) {
+      wGrain = 'Yes';
+    }
     await client.connect();
+    console.log(wGrain);
     const uDine = await client.db('UDine');
     const foods = await uDine.collection('food');
     const obj = await foods.find({
@@ -190,25 +194,13 @@ app.post('/search', async (req, res) => {
       "vegetarian": veg,
       "whole-grain": wGrain
     });
-    console.log(JSON.stringify(obj));
+    console.log(await obj.json());
     res.send(JSON.stringify(obj));
   } catch (err) {
     console.log('error');
     return;
   } res.end();
 });
-
-// // req: {"username": "user1", "password": "pass1"}
-// app.post('/register', async (req, res) => {
-  
-//   // let body = '';
-//   // req.on('data', data => body += data);
-//   // req.on('end', async () => {
-//   //   let data = JSON.parse(body);
-//   //   data.favorites = [];
-//   //   await logins.insertOne(data);
-//   // }); res.end();
-// });
 
 app.get('/unique/view', async (req, res) => {
   // returns all food 
@@ -258,8 +250,7 @@ app.delete('/user/delete/:key', checkLoggedIn, async (req, res) => {
   const logins = await uDine.collection('logins');
   const user = req.params.key;
   logins.removeOne(
-    {username: user},
-    {justOne: True}
+    {username: user}
   );
   res.end();
 });
