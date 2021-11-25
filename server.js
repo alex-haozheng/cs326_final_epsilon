@@ -1,20 +1,11 @@
 'use strict';
-// import {createServer} from 'http';
-// import {parse} from 'url';
-// import {join} from 'path';
-// import {writeFile, readFileSync, existsSync, fstat} from 'fs';
-// import { MongoClient } from 'mongodb'
 
-let http = require('http');
-let url = require('url');
-let fs = require('fs');
 const expressSession = require('express-session');  // for managing session state
 
 const express = require('express');
 const passport = require('passport');               // handles authentication
 const LocalStrategy = require('passport-local').Strategy; // username/password strategy
-const {MongoClient } = require('mongodb');
-// import express from 'express';
+const { MongoClient } = require('mongodb');
 const app = express();
 
 
