@@ -4,7 +4,6 @@
 // require('dotenv').config();
 
 const express = require('express');                 // express routing
-const expressSession = require('express-session');  // for managing session state
 const passport = require('passport');               // handles authentication
 const LocalStrategy = require('passport-local').Strategy; // username/password strategy
 const app = express();
@@ -19,7 +18,7 @@ mClient.connect(url, {useUnifiedTopology: true}).then(async function(client) {
   const foods = await uDine.collection('food');
   const logins = await uDine.collection('logins');
 
-  
+
   app.get('/search', async (req, res) => {
     const str = document.getElementById('mySearch').value;
     const halal = document.getElementById('halal').checked;
