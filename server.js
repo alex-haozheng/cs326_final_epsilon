@@ -162,7 +162,15 @@ app.get('/profile/:userID/',
 
 const port = process.env.PORT || 8080;
 
-const url = "mongodb+srv://alex:2HKRCoy6TImzUamS@menu.yeoac.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+let secrets;
+let password;
+if (!process.env.PASSWORD) {
+secrets = require('secrets.json');
+url = secrets.url;
+} else {
+	password = process.env.PASSWORD;
+}
+
 const client = new MongoClient(url);
 
 app.use(express.static('public'));
