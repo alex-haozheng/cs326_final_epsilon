@@ -3,7 +3,7 @@
 async function register() {
     let response = await fetch('/register',{
         method: 'POST',
-        body: JSON.stringify({"username": document.getElementById("username").value, "password": document.getElementById("password").value}),
+        body: JSON.stringify({"username": document.getElementById("username").value, "password": document.getElementById("password").value, 'favorites': []}),
         headers: {'Content-Type': 'application/json' }
     })
 

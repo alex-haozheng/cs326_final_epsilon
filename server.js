@@ -113,26 +113,28 @@ app.get('/login',
       { 'root' : __dirname }));
 
 app.post('/register',
-	 (req, res) => {
-	     const username = req.body['username'];
-	     const password = req.body['password'];
-	     // TODO
-	     // Check if we successfully added the user.
+	 async (req, res) => {
+      const username = req.body['username'];
+      const password = req.body['password'];
+      // TODO
+      // Check if we successfully added the user.
 		 if(addUser(username, password) === true){
-       console.log(username);
-       console.log(password);
-
-       console.log(users);
-       console.log('added user');
 			 res.redirect('/login');
 		 }else{
-      console.log(users);
-
        console('did not add user')
 			 res.redirect('/register');
 		 }
-	     // If so, redirect to '/login'
-	     // If not, redirect to '/register'.
+     try {
+      // send in {"username": "user1", "password": "pass1"}
+      await client.connect();
+      const uDine = await client.db('UDine'); // if this creates delete
+      const logins = await uDine.collection('logins');
+      await logins.insertOne(req.body);
+      res.end();
+    } catch (err) {
+      console.log('error');
+      return;
+    }
 	 });
 
 // Register URL
@@ -203,18 +205,17 @@ app.post('/search', async (req, res) => {
   } res.end();
 });
 
-// req: {"username": "user1", "password": "pass1"}
-app.post('/register', async (req, res) => {
-  // send in {"username": "user1", "password": "pass1"}
-  const uDine = await client.db('UDine'); // if this creates delete
-  const logins = await uDine.collection('logins');
-  let body = '';
-  req.on('data', data => body += data);
-  req.on('end', async () => {
-    const data = JSON.parse(body);
-    await logins.insertOne(data);
-  }); res.end();
-});
+// // req: {"username": "user1", "password": "pass1"}
+// app.post('/register', async (req, res) => {
+  
+//   // let body = '';
+//   // req.on('data', data => body += data);
+//   // req.on('end', async () => {
+//   //   let data = JSON.parse(body);
+//   //   data.favorites = [];
+//   //   await logins.insertOne(data);
+//   // }); res.end();
+// });
 
 app.get('/unique/view', async (req, res) => {
   // returns all food 
