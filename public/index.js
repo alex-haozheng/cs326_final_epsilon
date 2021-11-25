@@ -10,26 +10,27 @@ async function search(){
         body: g,
         headers: { 'Content-Type': 'application/json'}
     })
-
     if (response.ok) {
-        const data = response.json();
+        console.log('hi');
+        const data = await response.json();
+        console.log(data);
         for (let e in data){
-            if(e[hall] === "Berkshire"){
+            if(e['hall'] === "Berkshire"){
                 let newDiv = document.createElement('div');
                 newDiv.innerHTML = 'item: ${JSON.stringify(e[name])} date: ${JSON.stringify(e[date])} meal: ${JSON.stringify(e[meal])}';
                 document.getElementById("berkshire").appendChild(newDiv);
             }
-            if(e[hall] === "Hampshire"){
+            if(e['hall'] === "Hampshire"){
                 let newDiv = document.createElement('div');
                 newDiv.innerHTML = 'item: ${JSON.stringify(e[name])} date: ${JSON.stringify(e[date])} meal: ${JSON.stringify(e[meal])}';
                 document.getElementById("hampshire").appendChild(newDiv);
             }
-            if(e[hall] === "Franklin"){
+            if(e['hall'] === "Franklin"){
                 let newDiv = document.createElement('div');
                 newDiv.innerHTML = 'item: ${JSON.stringify(e[name])} date: ${JSON.stringify(e[date])} meal: ${JSON.stringify(e[meal])}';
                 document.getElementById("franklin").appendChild(newDiv);
             }
-            if(e[hall] === "Worcester"){
+            if(e['hall'] === "Worcester"){
                 let newDiv = document.createElement('div');
                 newDiv.innerHTML = 'item: ${JSON.stringify(e[name])} date: ${JSON.stringify(e[date])} meal: ${JSON.stringify(e[meal])}';
                 document.getElementById("worcester").appendChild(newDiv);

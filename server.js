@@ -173,37 +173,35 @@ const client = new MongoClient(url);
 app.use(express.static('public'));
 
 app.post('/search', async (req, res) => {
-  const uDine = await client.db('UDine'); // if this creates delete
-  const foods = await uDine.collection('food');
-  let body = '';
-  req.on('data', data => body += data);
-  req.on('end', async () => {
-    const data = JSON.parse(body);
-    const str = data.keyword;
-    const halal = data.halal;
-    const veg = data.vegetarian;
-    const wGrain = data.wholeGrain;
-    // dont set if not true thus comparing boolean during search
-    if(halal) {
-      halal = 'Yes';
-    }
-    if (veg) {
-      veg = 'Yes'; 
-    }
-    if (wGrain) {
-      wGrain = 'Yes';
-    }
-    res.end(JSON.stringify(await foods.find({
-        $and: [
-          {$contains: {'name': str}},
-          {'halal': halal},
-          {'vegetarian': veg},
-          {'whole-grain': wGrain}
-        ]
-      })
-    ));
+  const {str, halal, veg, wGrain } = req.body;
+  if(halal) {
+    halal = 'Yes';
   }
-);
+  if (veg) {
+    veg = 'Yes'; 
+  }
+  if (wGrain) {
+    wGrain = 'Yes';
+  }
+  try {
+    await client.connect();
+    const uDine = await client.db('UDine');
+    const foods = await uDine.collection('food');
+    const obj = await foods.find({
+      'name': {
+        $regex: str
+      },
+      "halal": halal,
+      "vegetarian": veg,
+      "whole-grain": wGrain
+    });
+    console.log(JSON.stringify(obj));
+    res.send(JSON.stringify(obj));
+  } catch (err) {
+    console.log('error');
+    return;
+  } res.end();
+});
 
 // req: {"username": "user1", "password": "pass1"}
 app.post('/register', async (req, res) => {
