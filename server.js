@@ -56,12 +56,14 @@ app.use(express.json()); // lets you handle JSON input
 let users = {};
 
 // Returns true iff the user exists.
-function findUser(username) {
-  if (!users[username]) {
-    return false;
-  } else {
-    return true;
-  }
+function findUser(arr, name) {
+  let b = false;
+  arr.forEach((e) => {
+    if (e.username === name) {
+      b = true;
+    }
+  });
+  return b;
 }
 
 // Returns true iff the password is the one we have stored (in plaintext = bad but easy).
@@ -78,16 +80,34 @@ function validatePassword(name, pwd) {
 // Add a user to the "database".
 // Return true if added, false otherwise (because it was already there).
 // TODO
-function addUser(name, pwd) {
-  // TODO
-  if(!findUser(name)){
-    users[name] = pwd;
-    return true;
-  }else{
-    return false;
-  } 
+async function addUser(name, pwd) {
+    await client.connect();
+    const uDine = client.db('UDine'); // if this creates delete
+    const logins = uDine.collection('logins');
+    const arr = await logins.find().toArray();
+    // chceks if user is in 
+    if(!findUser(arr, name)){
+      await logins.insertOne({
+        username: name,
+        password: pwd,
+        favorites: []
+      }); return true;
+    } else { 
+      return false;
+    }
 }
 
+app.post('/register',
+   async (req, res) => {
+    const {username, password, favorites} = req.body;
+    let b = await addUser(username, password);
+    if (b){
+      res.redirect('/login');
+    }else{
+      // console('did not add user');
+      res.redirect('/register');
+    }
+});
 // Routes
 
 function checkLoggedIn(req, res, next) {
@@ -111,31 +131,6 @@ app.post('/login',
 app.get('/login',
   (req, res) => res.sendFile('/public/login.html',
       { 'root' : __dirname }));
-
-app.post('/register',
-	 async (req, res) => {
-      const username = req.body['username'];
-      const password = req.body['password'];
-      // TODO
-      // Check if we successfully added the user.
-		 if(addUser(username, password) === true){
-			 res.redirect('/login');
-		 }else{
-       console('did not add user')
-			 res.redirect('/register');
-		 }
-     try {
-      // send in {"username": "user1", "password": "pass1"}
-      await client.connect();
-      const uDine = await client.db('UDine'); // if this creates delete
-      const logins = await uDine.collection('logins');
-      await logins.insertOne(req.body);
-      res.end();
-    } catch (err) {
-      console.log('error');
-      return;
-    }
-	 });
 
 // Register URL
 app.get('/register',
