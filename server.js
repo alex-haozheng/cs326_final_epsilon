@@ -100,11 +100,9 @@ async function addUser(name, pwd) {
 app.post('/register',
    async (req, res) => {
     const {username, password, favorites} = req.body;
-    let b = await addUser(username, password);
-    if (b){
+    if (await addUser(username, password)) {
       res.redirect('/login');
     }else{
-      // console('did not add user');
       res.redirect('/register');
     }
 });
