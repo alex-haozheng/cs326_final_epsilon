@@ -16,8 +16,10 @@ const client = new MongoClient(url);
 app.use(express.static('public'));
 
 app.get('/search', async (req, res) => {
+  console.log(5);
   const uDine = await client.db('UDine'); // if this creates delete
   const foods = await uDine.collection('food');
+  console.log(uDine, foods);
   const str = document.getElementById('mySearch').value;
   const halal = document.getElementById('halal').checked;
   const veg = document.getElementById('vegetarian').checked; 
