@@ -39,6 +39,8 @@ made a getUnique function for /unique/view endpoint call, all of inter-page rout
 
 ## Alex: 
 set up mongoDB and connected the endpoints in server to requried database collections, worked on setting up register passwords, search, and getunique functions to work with the database
+
+
 ## Ben: 
 heroku deployment, fixed several bugs related to incorrect package-log dependencies, set up passport requirements, edited the login.html and register.html to work with passport, changed some localhost issues in server.js
 
