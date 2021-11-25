@@ -41,5 +41,5 @@ made a get unique function (unfinished) , all of routing in html, started getUni
 made the mongoDB for some of the functions planning to implement express into it
 
 ## Ben: 
-heroku deployment (fixed heroku ) set up passport requirements, changed some localhost issues in server.js
+heroku deployment, fixed several bugs related to incorrect package-log dependencies, set up passport requirements, changed some localhost issues in server.js
 
