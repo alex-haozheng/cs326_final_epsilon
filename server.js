@@ -8,10 +8,14 @@ const passport = require('passport');               // handles authentication
 const LocalStrategy = require('passport-local').Strategy; // username/password strategy
 const app = express();
 const port = process.env.PORT || 8080;
-const MongoClient = require('mongodb');
+const { MongoClient } = require('mongodb');
 
 const url = "mongodb+srv://alex:2HKRCoy6TImzUamS@menu.yeoac.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 const client = new MongoClient(url);
+
+app.get('/', (req, res) => {
+  res.send("Hello world");
+});
 
 app.get('/search', async (req, res) => {
   const uDine = await client.db('UDine'); // if this creates delete
@@ -36,7 +40,7 @@ app.get('/search', async (req, res) => {
         {'halal': halal},
         {'vegetarian': veg},
         {'whole-grain': wGrain}
-      ]    
+      ]
     })
   ));
 });
