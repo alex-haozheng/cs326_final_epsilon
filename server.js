@@ -13,9 +13,7 @@ const { MongoClient } = require('mongodb');
 const url = "mongodb+srv://alex:2HKRCoy6TImzUamS@menu.yeoac.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 const client = new MongoClient(url);
 
-app.get('/', (req, res) => {
-  res.send("Hello world");
-});
+app.use(express.static('public'));
 
 app.get('/search', async (req, res) => {
   const uDine = await client.db('UDine'); // if this creates delete
