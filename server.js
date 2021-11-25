@@ -100,12 +100,6 @@ function checkLoggedIn(req, res, next) {
   }
 }
 
-app.get('/',
-  checkLoggedIn,
-  (req, res) => {
-    res.send("hello world");
-});
-
 // Handle post data from the login.html form.
 app.post('/login',
  passport.authenticate('local' , {     // use username/password authentication
@@ -118,18 +112,6 @@ app.get('/login',
   (req, res) => res.sendFile('/public/login.html',
       { 'root' : __dirname }));
 
-// Handle logging out (takes us back to the login page).
-// app.get('/logout', (req, res) => {
-//   req.logout(); // Logs us out!
-//   res.redirect('/login'); // back to login
-// });
-
-
-// Add a new user and password IFF one doesn't exist already.
-// If we successfully add a new user, go to /login, else, back to /register.
-// Use req.body to access data (as in, req.body['username']).
-// Use res.redirect to change URLs.
-// TODO
 app.post('/register',
 	 (req, res) => {
 	     const username = req.body['username'];
@@ -190,33 +172,38 @@ const client = new MongoClient(url);
 
 app.use(express.static('public'));
 
-app.get('/search', async (req, res) => {
+app.post('/search', async (req, res) => {
   const uDine = await client.db('UDine'); // if this creates delete
   const foods = await uDine.collection('food');
-  const str = document.getElementById('mySearch').value;
-  const halal = document.getElementById('halal').checked;
-  const veg = document.getElementById('vegetarian').checked; 
-  const wGrain = document.getElementById('wholeGrain').checked;
+  let body = '';
+  req.on('data', data => body += data);
+  req.on('end', async () => {
+    const data = JSON.parse(body);
+    const str = data.keyword;
+    const halal = data.halal;
+    const veg = data.vegetarian;
+    const wGrain = data.wholeGrain;
     // dont set if not true thus comparing boolean during search
-  if(halal) {
-    halal = 'Yes';
+    if(halal) {
+      halal = 'Yes';
+    }
+    if (veg) {
+      veg = 'Yes'; 
+    }
+    if (wGrain) {
+      wGrain = 'Yes';
+    }
+    res.end(JSON.stringify(await foods.find({
+        $and: [
+          {$contains: {'name': str}},
+          {'halal': halal},
+          {'vegetarian': veg},
+          {'whole-grain': wGrain}
+        ]
+      })
+    ));
   }
-  if (veg) {
-    veg = 'Yes'; 
-  }
-  if (wGrain) {
-    wGrain = 'Yes';
-  }
-  res.end(JSON.stringify(await foods.find({
-      $and: [
-        {$contains: {'name': str}},
-        {'halal': halal},
-        {'vegetarian': veg},
-        {'whole-grain': wGrain}
-      ]
-    })
-  ));
-});
+);
 
 // req: {"username": "user1", "password": "pass1"}
 app.post('/register', async (req, res) => {
@@ -233,14 +220,14 @@ app.post('/register', async (req, res) => {
 
 app.get('/unique/view', async (req, res) => {
   // returns all food 
-  console.log("BIE");
   try {
     await client.connect();
     const uDine = await client.db('UDine'); // if this creates delete
     const foods = await uDine.collection('food');
-  
+    console.log(foods);
     let d8 = "11/23/2021"; // hardcoded for now
-    console.log(await foods.find({date: d8}));
+    console.log("HIIIIIIISDJIAIASDASDIAJSIDA\n\n\n");
+    // console.log(await foods.find({date: d8}));
     res.end(JSON.stringify( await foods.find({date: d8}))); // if not .toArray()  
   } catch (err) {
     console.log('unique error');

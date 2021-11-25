@@ -6,6 +6,7 @@ async function getUnique() {
     });
     if (response.ok) {
         let out = await response.json();
+        console.log(out);
         //create variables that will be arrays for each menu at each dining hall
         let bbreakfast = [];
         let blunch = [];
@@ -19,55 +20,55 @@ async function getUnique() {
         let wbreakfast = [];
         let wlunch = [];
         let wdinner = [];
-        //out will be today's menu, this makes arrays for each meal at each dining hall
+        //out will be today's menu, this makes arrays for each 'meal' at each dining hall
         for(let item in out){
-            if(item[hall] === "Berkshire"){
-                if(item[meal] === "Breakfast"){
-                    bbreakfast.push(item[name]);
+            if(item['hall'] === "Berkshire"){
+                if(item['meal'] === "Breakfast"){
+                    bbreakfast.push(item['name']);
                 }
-                if(item[meal] === "Lunch"){
-                    blunch.push(item[name]);
+                if(item['meal'] === "Lunch"){
+                    blunch.push(item['name']);
                 }
-                if(item[meal] === "Dinner"){
-                    bdinner.push(item[name]);
-                }
-            }
-            if(item[hall] === "Hampshire"){
-                if(item[meal] === "Breakfast"){
-                    hbreakfast.push(item[name]);
-                }
-                if(item[meal] === "Lunch"){
-                    hlunch.push(item[name]);
-                }
-                if(item[meal] === "Dinner"){
-                    hdinner.push(item[name]);
+                if(item['meal'] === "Dinner"){
+                    bdinner.push(item['name']);
                 }
             }
-            if(item[hall] === "Franklin"){
-                if(item[meal] === "Breakfast"){
-                    fbreakfast.push(item[name]);
+            if(item['hall'] === "Hampshire"){
+                if(item['meal'] === "Breakfast"){
+                    hbreakfast.push(item['name']);
                 }
-                if(item[meal] === "Lunch"){
-                    flunch.push(item[name]);
+                if(item['meal'] === "Lunch"){
+                    hlunch.push(item['name']);
                 }
-                if(item[meal] === "Dinner"){
-                    fdinner.push(item[name]);
+                if(item['meal'] === "Dinner"){
+                    hdinner.push(item['name']);
                 }
             }
-            if(item[hall] === "Worcester"){
-                if(item[meal] === "Breakfast"){
-                    wbreakfast.push(item[name]);
+            if(item['hall'] === "Franklin"){
+                if(item['meal'] === "Breakfast"){
+                    fbreakfast.push(item['name']);
                 }
-                if(item[meal] === "Lunch"){
-                    wlunch.push(item[name]);
+                if(item['meal'] === "Lunch"){
+                    flunch.push(item['name']);
                 }
-                if(item[meal] === "Dinner"){
-                    wdinner.push(item[name]);
+                if(item['meal'] === "Dinner"){
+                    fdinner.push(item['name']);
+                }
+            }
+            if(item['hall'] === "Worcester"){
+                if(item['meal'] === "Breakfast"){
+                    wbreakfast.push(item['name']);
+                }
+                if(item['meal'] === "Lunch"){
+                    wlunch.push(item['name']);
+                }
+                if(item['meal'] === "Dinner"){
+                    wdinner.push(item['name']);
                 }
             }
         }
 
-        // these all create new filtered array versions for each meal where each item is unique for that meal to that dining hall
+        // these all create new filtered array versions for each 'meal' where each item is unique for that 'meal' to that dining hall
         // for example, each item in fbbreakfast (filtered Berkshire breakfast) will have items no other breakfast has 
         let fbbreakfast = bbreakfast.filter(function(e){
             if (!hbreakfast.includes(e) && !fbreakfast.includes(e) && !wbreakfast.includes(e)){
@@ -207,7 +208,8 @@ async function getUnique() {
             newDiv.innerHTML = JSON.stringify(fwdinner[i]);
             document.getElementById("wdinner").append(newDiv);
         }
-
+        console.log(bbreakfast);
+        console.log(hbreakfast);
     } 
     else {
         alert("An error has occured.");
