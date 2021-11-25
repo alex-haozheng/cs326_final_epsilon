@@ -1,14 +1,71 @@
 'use strict';
+// import {createServer} from 'http';
+// import {parse} from 'url';
+// import {join} from 'path';
+// import {writeFile, readFileSync, existsSync, fstat} from 'fs';
+// import { MongoClient } from 'mongodb'
 
-// for loading environment variables
-// require('dotenv').config();
+let http = require('http');
+let url = require('url');
+let fs = require('fs');
+const expressSession = require('express-session');  // for managing session state
 
-const express = require('express');                 // express routing
+const express = require('express');
 const passport = require('passport');               // handles authentication
 const LocalStrategy = require('passport-local').Strategy; // username/password strategy
+const {MongoClient } = require('mongodb');
+// import express from 'express';
 const app = express();
+
+
+const session = {
+  secret : process.env.SECRET || 'SECRET', // set this encryption key in Heroku config (never in GitHub)!
+  resave : false,
+  saveUninitialized: false
+};
+
+// Passport configuration
+
+const strategy = new LocalStrategy(
+  async (username, password, done) => {
+if (!findUser(username)) {
+    // no such user
+    return done(null, false, { 'message' : 'Wrong username' });
+}
+if (!validatePassword(username, password)) {
+    // invalid password
+    // should disable logins after N messages
+    // delay return to rate-limit brute-force attacks
+    await new Promise((r) => setTimeout(r, 2000)); // two second delay
+    return done(null, false, { 'message' : 'Wrong password' });
+}
+// success!
+// should create a user object here, associated with a unique identifier
+return done(null, username);
+  });
+
+
+// App configuration
+
+app.use(expressSession(session));
+passport.use(strategy);
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Convert user object to a unique identifier.
+passport.serializeUser((user, done) => {
+  done(null, user);
+});
+// Convert a unique identifier to a user object.
+passport.deserializeUser((uid, done) => {
+  done(null, uid);
+});
+
+app.use(express.static('public'));
+
+app.use(express.json()); // lets you handle JSON input
+
 const port = process.env.PORT || 8080;
-const { MongoClient } = require('mongodb');
 
 const url = "mongodb+srv://alex:2HKRCoy6TImzUamS@menu.yeoac.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 const client = new MongoClient(url);
