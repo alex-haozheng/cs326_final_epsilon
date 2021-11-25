@@ -1,29 +1,20 @@
 {
-  "name": "mongodb",
+  "name": "cs326-final-epsilon",
   "version": "1.0.0",
   "description": "MADining",
   "main": "server.js",
-  "directories": {
-    "doc": "docs"
-  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/sazzle2/cs326-final-epsilon.git"
-  },
+  "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/sazzle2/cs326-final-epsilon/issues"
-  },
-  "homepage": "https://github.com/sazzle2/cs326-final-epsilon#readme",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "dotenv": "^10.0.0",
-    "express": "^4.17.1",
+    "express": "*",
     "express-session": "^1.17.2",
+    "mongodb": "^4.2.0",
     "passport": "^0.5.0",
     "passport-local": "^1.0.0"
   }
