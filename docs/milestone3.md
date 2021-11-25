@@ -35,11 +35,11 @@ date":"11/21/2021", //this is the date that this item is available
 # Division of Labor:
 
 ## Alan: 
-
+made a get unique function (unfinished) , all of routing in html, started getUnique search, fixed href of favicons, added some buttons, made register/ login page
 
 ## Alex: 
-
+made the mongoDB for some of the functions planning to implement express into it
 
 ## Ben: 
-
+heroku deployment (fixed heroku ) set up passport requirements, changed some localhost issues in server.js
 
