@@ -218,7 +218,7 @@ app.get('/unique/view', async (req, res) => {
     const foods = await uDine.collection('food');
     console.log(foods);
     let d8 = "11/23/2021"; // hardcoded for now
-    // console.log(await foods.find({date: d8}));
+    console.log(await foods.find({date: d8}));
     res.end(JSON.stringify( await foods.find({date: d8}))); // if not .toArray()  
   } catch (err) {
     console.log('unique error');
