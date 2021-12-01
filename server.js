@@ -164,8 +164,8 @@ const port = process.env.PORT || 8080;
 let secrets;
 let url;
 if (!process.env.URL) {
-secrets = require('secrets.json');
-url = secrets.url;
+  secrets = require('./secrets.json');
+  url = secrets.url;
 } else {
 	url = process.env.URL;
 }
