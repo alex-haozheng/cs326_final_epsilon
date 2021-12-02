@@ -8,7 +8,7 @@ async function login() {
     })
 
     if (response.ok) {
-        continue;
+        alert("Successful login");
     } 
     else {
         alert("An error has occured.");
