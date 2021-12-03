@@ -189,8 +189,6 @@ app.get('/profile/:userID/',
 });
 
 
-<<<<<<< HEAD
-=======
 let secrets;
 let url;
 if (!process.env.URL) {
@@ -203,7 +201,6 @@ url = secrets.url;
 const client = new MongoClient(url);
 
 app.use(express.static('public'));
->>>>>>> f0b70f13b6398c2b9fc9821136f08ae91e7103bc
 
 async function searcher(str, halal, veg, wGrain) {
   await client.connect();
