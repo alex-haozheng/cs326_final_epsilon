@@ -189,14 +189,6 @@ app.get('/profile/:userID/',
 });
 
 
-let secrets;
-let url;
-if (!process.env.URL) {
-secrets = require('./secrets.json');
-url = secrets.url;
-} else {
-	url = process.env.URL;
-}
 
 const client = new MongoClient(url);
 
