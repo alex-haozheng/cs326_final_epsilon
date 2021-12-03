@@ -8,6 +8,22 @@ const { MongoClient } = require('mongodb');
 const app = express();
 app.use(require('body-parser').urlencoded());
 
+
+const port = process.env.PORT || 8080;
+
+let secrets;
+let url;
+if (!process.env.URL) {
+  secrets = require('./secrets.json');
+  url = secrets.url;
+} else {
+	url = process.env.URL;
+}
+
+const client = new MongoClient(url);
+
+app.use(express.static('public'));
+
 const session = {
   secret : process.env.SECRET || 'SECRET', // set this encryption key in Heroku config (never in GitHub)!
   resave : false,
@@ -18,21 +34,21 @@ const session = {
 
 const strategy = new LocalStrategy(
   async (username, password, done) => {
-if (!findUser(username)) {
-    // no such user
-    return done(null, false, { 'message' : 'Wrong username' });
-}
-if (!validatePassword(username, password)) {
-    // invalid password
-    // should disable logins after N messages
-    // delay return to rate-limit brute-force attacks
-    await new Promise((r) => setTimeout(r, 2000)); // two second delay
-    return done(null, false, { 'message' : 'Wrong password' });
-}
-// success!
-// should create a user object here, associated with a unique identifier
-return done(null, username);
-  });
+  if (!findUser(username)) {
+      // no such user
+      return done(null, false, { 'message' : 'Wrong username' });
+  }
+  if (!validatePassword(username, password)) {
+      // invalid password
+      // should disable logins after N messages
+      // delay return to rate-limit brute-force attacks
+      await new Promise((r) => setTimeout(r, 2000)); // two second delay
+      return done(null, false, { 'message' : 'Wrong password' });
+  }
+  // success!
+  // should create a user object here, associated with a unique identifier
+  return done(null, username);
+});
 
 
 // App configuration
@@ -159,20 +175,7 @@ app.get('/profile/:userID/',
     }
 });
 
-const port = process.env.PORT || 8080;
 
-let secrets;
-let url;
-if (!process.env.URL) {
-secrets = require('secrets.json');
-url = secrets.url;
-} else {
-	url = process.env.URL;
-}
-
-const client = new MongoClient(url);
-
-app.use(express.static('public'));
 
 async function searcher(str, halal, veg, wGrain) {
   await client.connect();
@@ -218,7 +221,7 @@ app.get('/unique/view', async (req, res) => {
     const foods = await uDine.collection('food');
     console.log(foods);
     let d8 = "11/23/2021"; // hardcoded for now
-    // console.log(await foods.find({date: d8}));
+    console.log(await foods.find({date: d8}));
     res.end(JSON.stringify( await foods.find({date: d8}))); // if not .toArray()  
   } catch (err) {
     console.log('unique error');
