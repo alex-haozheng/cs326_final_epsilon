@@ -188,14 +188,7 @@ app.get('/profile/:userID/',
     }
 });
 
-<<<<<<< HEAD
-=======
 
-
->>>>>>> e5f08dbe698e58817eb173c3b990f5f51dc8cd91
-const client = new MongoClient(url);
-
-app.use(express.static('public'));
 
 async function searcher(str, halal, veg, wGrain) {
   await client.connect();
