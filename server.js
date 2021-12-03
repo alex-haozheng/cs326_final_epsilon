@@ -188,10 +188,6 @@ app.get('/profile/:userID/',
     }
 });
 
-const client = new MongoClient(url);
-
-app.use(express.static('public'));
-
 async function searcher(str, halal, veg, wGrain) {
   await client.connect();
   const uDine = client.db('UDine');
