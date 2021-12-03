@@ -13,26 +13,43 @@ async function search(){
     if (response.ok) {
         const data = await response.json();
         console.log(data);
+        document.getElementById("berkshire").innerHTML = '';
+        document.getElementById("hampshire").innerHTML = '';
+        document.getElementById("franklin").innerHTML = '';
+        document.getElementById("worcester").innerHTML = '';
         for (let i = 0; i < data.length; i++){
             if(data[i]['hall'] === "Berkshire"){
                 let newDiv = document.createElement('div');
+                let spacer = document.createElement('div');
+                spacer.innerHTML = ' ';
                 newDiv.innerHTML = `item: ${JSON.stringify(data[i]['name'])} date: ${JSON.stringify(data[i]['date'])} meal: ${JSON.stringify(data[i]['meal'])}`;
                 document.getElementById("berkshire").appendChild(newDiv);
+                document.getElementById("berkshire").appendChild(spacer);
+
             }
             if(data[i]['hall'] === "Hampshire"){
                 let newDiv = document.createElement('div');
+                let spacer = document.createElement('div');
+                spacer.innerHTML = ' ';
                 newDiv.innerHTML = `item: ${JSON.stringify(data[i]['name'])} date: ${JSON.stringify(data[i]['date'])} meal: ${JSON.stringify(data[i]['meal'])}`;
                 document.getElementById("hampshire").appendChild(newDiv);
+                document.getElementById("berkshire").appendChild(spacer);
             }
             if(data[i]['hall'] === "Franklin"){
                 let newDiv = document.createElement('div');
+                let spacer = document.createElement('div');
+                spacer.innerHTML = ' ';
                 newDiv.innerHTML = `item: ${JSON.stringify(data[i]['name'])} date: ${JSON.stringify(data[i]['date'])} meal: ${JSON.stringify(data[i]['meal'])}`;
                 document.getElementById("franklin").appendChild(newDiv);
+                document.getElementById("berkshire").appendChild(spacer);
             }
             if(data[i]['hall'] === "Worcester"){
                 let newDiv = document.createElement('div');
+                let spacer = document.createElement('div');
+                spacer.innerHTML = ' ';
                 newDiv.innerHTML = `item: ${JSON.stringify(data[i]['name'])} date: ${JSON.stringify(data[i]['date'])} meal: ${JSON.stringify(data[i]['meal'])}`;
                 document.getElementById("worcester").appendChild(newDiv);
+                document.getElementById("berkshire").appendChild(spacer);
             }
         }
     } 
