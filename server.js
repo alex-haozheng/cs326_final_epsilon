@@ -1,4 +1,8 @@
 'use strict';
+
+// For loading environment variables.
+require('dotenv').config();
+
 const expressSession = require('express-session');  // for managing session state
 
 const express = require('express');
@@ -7,6 +11,10 @@ const LocalStrategy = require('passport-local').Strategy; // username/password s
 const { MongoClient } = require('mongodb');
 const app = express();
 app.use(require('body-parser').urlencoded());
+const minicrypt = require('./miniCrypt');
+
+const mc = new minicrypt();
+
 
 
 const port = process.env.PORT || 8080;
@@ -69,6 +77,8 @@ passport.deserializeUser((uid, done) => {
 
 app.use(express.static('public'));
 app.use(express.json()); // lets you handle JSON input
+app.use(express.urlencoded({'extended' : true})); // allow URLencoded data
+
 let users = {};
 
 // Returns true iff the user exists.
@@ -87,7 +97,7 @@ function validatePassword(name, pwd) {
   if (!findUser(name)) {
     return false;
   }
-  if (users[name] !== pwd) {
+  if (!mc.check(pwd, users[name][0], users[name][1])) {
     return false;
   }
   return true;
@@ -102,10 +112,13 @@ async function addUser(name, pwd) {
     const logins = uDine.collection('logins');
     const arr = await logins.find().toArray();
     // chceks if user is in 
+
     if(!findUser(arr, name)){
+      const [salt, hash] = mc.hash(pwd);
+
       await logins.insertOne({
         username: name,
-        password: pwd,
+        password: [salt, hash],
         favorites: []
       }); return true;
     } else { 
@@ -176,6 +189,21 @@ app.get('/profile/:userID/',
 });
 
 
+<<<<<<< HEAD
+=======
+let secrets;
+let url;
+if (!process.env.URL) {
+secrets = require('./secrets.json');
+url = secrets.url;
+} else {
+	url = process.env.URL;
+}
+
+const client = new MongoClient(url);
+
+app.use(express.static('public'));
+>>>>>>> f0b70f13b6398c2b9fc9821136f08ae91e7103bc
 
 async function searcher(str, halal, veg, wGrain) {
   await client.connect();

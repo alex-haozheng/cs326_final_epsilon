@@ -35,7 +35,7 @@ async function addFavorite() {
 }
 
 async function deleteAccount() {
-    let response = await fetch('http://localhost:8080/user/delete/' + document.getElementById("username").value, {
+    let response = await fetch('/user/delete/' + document.getElementById("username").value, {
         method: 'DELETE'
     });
 
