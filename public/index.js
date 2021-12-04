@@ -63,8 +63,40 @@ async function search(){
     
 }
 
+function berkPic(){
+    document.body.style.backgroundImage = "url('berkshire.jpg')";
+    document.body.style.backgroundSize = "cover";
+}
+
+function hampPic(){
+    document.body.style.backgroundImage = "url('hampshire.png')";
+    document.body.style.backgroundSize = "cover";
+}
+
+function frankPic(){
+    document.body.style.backgroundImage = "url('franklin.jpg')";
+    document.body.style.backgroundSize = "cover";
+}
+
+function wooPic(){
+    document.body.style.backgroundImage = "url('worcester.jpg')";
+    document.body.style.backgroundSize = "cover";
+}
+
+function normBack(){
+    document.body.style.background = "rgb(136,28,28)";
+}
 
 window.onload = initialize;
 function initialize(){
-    document.getElementById("search").addEventListener("click", search)
+    document.getElementById("search").addEventListener("click", search);
+    document.getElementById("berktitle").addEventListener("mouseover", berkPic);
+    document.getElementById("berktitle").addEventListener("mouseout", normBack);
+    document.getElementById("hamptitle").addEventListener("mouseover", hampPic);
+    document.getElementById("hamptitle").addEventListener("mouseout", normBack);
+    document.getElementById("franktitle").addEventListener("mouseover", frankPic);
+    document.getElementById("franktitle").addEventListener("mouseout", normBack);
+    document.getElementById("wootitle").addEventListener("mouseover", wooPic);
+    document.getElementById("wootitle").addEventListener("mouseout", normBack);
+
 }

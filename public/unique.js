@@ -6,12 +6,13 @@ async function getUnique() {
     });
     if (response.ok) {
         let out = JSON.parse(response);
+        console.log
         //create variables that will be arrays for each menu at each dining hall
         let bbreakfast = [];
         let blunch = [];
         let bdinner = [];
         let hbreakfast = [];
-        let hlunch = [];
+        let hlunch = []; 
         let hdinner = [];
         let fbreakfast = [];
         let flunch = [];
@@ -215,6 +216,39 @@ async function getUnique() {
     }
 }
 
+function berkPic(){
+    document.body.style.backgroundImage = "url('berkshire.jpg')";
+    document.body.style.backgroundSize = "100% 75%";
+}
+
+function hampPic(){
+    document.body.style.backgroundImage = "url('hampshire.png')";
+    document.body.style.backgroundSize = "100% 75%";
+}
+
+function frankPic(){
+    document.body.style.backgroundImage = "url('franklin.jpg')";
+    document.body.style.backgroundSize = "100% 75%";
+}
+
+function wooPic(){
+    document.body.style.backgroundImage = "url('worcester.jpg')";
+    document.body.style.backgroundSize = "100% 75%";
+}
+
+function normBack(){
+    document.body.style.background = "rgb(136,28,28)";
+}
 
 
-window.onload = getUnique();
+window.addEventListener('load', () => {
+    document.getElementById("berktitle").addEventListener("mouseover", berkPic);
+    document.getElementById("berktitle").addEventListener("mouseout", normBack);
+    document.getElementById("hamptitle").addEventListener("mouseover", hampPic);
+    document.getElementById("hamptitle").addEventListener("mouseout", normBack);
+    document.getElementById("franktitle").addEventListener("mouseover", frankPic);
+    document.getElementById("franktitle").addEventListener("mouseout", normBack);
+    document.getElementById("wootitle").addEventListener("mouseover", wooPic);
+    document.getElementById("wootitle").addEventListener("mouseout", normBack);
+    getUnique();
+  });
