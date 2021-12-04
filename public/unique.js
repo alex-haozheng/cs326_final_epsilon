@@ -5,7 +5,7 @@ async function getUnique() {
         method: 'GET'
     });
     if (response.ok) {
-        let out = JSON.parse(response);
+        let data = await response.json();
         //create variables that will be arrays for each menu at each dining hall
         let bbreakfast = [];
         let blunch = [];
@@ -19,8 +19,8 @@ async function getUnique() {
         let wbreakfast = [];
         let wlunch = [];
         let wdinner = [];
-        //out will be today's menu, this makes arrays for each 'meal' at each dining hall
-        for(let item in out){
+        //data will be today's menu, this makes arrays for each 'meal' at each dining hall
+        for(let item in data){
             if(item['hall'] === "Berkshire"){
                 if(item['meal'] === "Breakfast"){
                     bbreakfast.push(item['name']);
@@ -207,8 +207,6 @@ async function getUnique() {
             newDiv.innerHTML = JSON.stringify(fwdinner[i]);
             document.getElementById("wdinner").append(newDiv);
         }
-        console.log(bbreakfast);
-        console.log(hbreakfast);
     } 
     else {
         alert("An error has occured.");

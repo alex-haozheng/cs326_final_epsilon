@@ -181,10 +181,10 @@ async function searcher(str, halal, veg, wGrain) {
   const uDine = client.db('UDine');
   const foods = uDine.collection('food');
   const obj = await foods.find({
-    'name': {$regex: str},
-    "halal": {'$in': halal},
-    "vegetarian": {'$in': veg},
-    "whole-grain": {'$in': wGrain}
+    name: {$regex: str},
+    halal: {'$in': halal},
+    vegetarian: {'$in': veg},
+    'whole-grain': {'$in': wGrain}
   }).toArray();
   return obj;
 }
@@ -214,18 +214,12 @@ app.post('/search', async (req, res) => {
 
 app.get('/unique/view', async (req, res) => {
   // returns all food 
-  try {
-    await client.connect();
-    const uDine = await client.db('UDine'); // if this creates delete
-    const foods = await uDine.collection('food');
-    console.log(foods);
-    let d8 = "11/23/2021"; // hardcoded for now
-    console.log(await foods.find({date: d8}));
-    res.end(JSON.stringify( await foods.find({date: d8}))); // if not .toArray()  
-  } catch (err) {
-    console.log('unique error');
-    return;
-  }
+  await client.connect();
+  const uDine = client.db('UDine');
+  const foods = uDine.collection('food');
+  res.end(JSON.stringify(await foods.find({
+    date: '11/23/2021'
+  }).toArray())); // if not .toArray()  
 });
 
 app.get('/user/favorites/view/:key', checkLoggedIn, async (req, res) => {

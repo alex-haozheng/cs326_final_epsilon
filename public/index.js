@@ -12,7 +12,6 @@ async function search(){
     })
     if (response.ok) {
         const data = await response.json();
-        console.log(data);
         for (let i = 0; i < data.length; i++){
             if(data[i]['hall'] === "Berkshire"){
                 let newDiv = document.createElement('div');
