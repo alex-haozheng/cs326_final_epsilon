@@ -6,6 +6,11 @@ div {text-align: center; justify-content: center;}
 .card-body{
     font-family: fantasy;
 }
+
+.item{
+  border-width: 5px;
+  border-color: black;
+}
 #search{
     margin-right:auto;
     margin-left:auto;
