@@ -65,29 +65,33 @@ async function search(){
 
 function berkPic(){
     document.body.style.backgroundImage = "url('berkshire.jpg')";
-    document.body.style.backgroundSize = "cover";
+    document.body.style.backgroundSize = "100% 610px";
+    document.body.style.backgroundRepeat = "no-repeat";
 }
 
 function hampPic(){
     document.body.style.backgroundImage = "url('hampshire.png')";
-    document.body.style.backgroundSize = "cover";
+    document.body.style.backgroundSize = "100% 610px";
+    document.body.style.backgroundRepeat = "no-repeat";
 }
 
 function frankPic(){
     document.body.style.backgroundImage = "url('franklin.jpg')";
-    document.body.style.backgroundSize = "cover";
+    document.body.style.backgroundSize = "100% 610px";
+    document.body.style.backgroundRepeat = "no-repeat";
 }
 
 function wooPic(){
     document.body.style.backgroundImage = "url('worcester.jpg')";
-    document.body.style.backgroundSize = "cover";
+    document.body.style.backgroundSize = "100% 610px";
+    document.body.style.backgroundRepeat = "no-repeat";
 }
 
 function normBack(){
     document.body.style.background = "rgb(136,28,28)";
 }
 
-window.onload = initialize;
+
 function initialize(){
     document.getElementById("search").addEventListener("click", search);
     document.getElementById("berktitle").addEventListener("mouseover", berkPic);
@@ -100,3 +104,4 @@ function initialize(){
     document.getElementById("wootitle").addEventListener("mouseout", normBack);
 
 }
+window.onload = initialize;
