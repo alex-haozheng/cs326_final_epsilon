@@ -6,6 +6,9 @@ async function getUnique() {
     });
     if (response.ok) {
         let data = await response.json();
+        // perhaps create multiple get functions for each dining hall specifically
+        // this looks quite messy to look back on but if it works it works
+        
         //create variables that will be arrays for each menu at each dining hall
         let bbreakfast = [];
         let blunch = [];
