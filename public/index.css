@@ -11,6 +11,7 @@ div {text-align: center; justify-content: center;}
   display:inline-block;
   width: 25%;
   background-color: white;
+  border-width: 2px;
 }
 
 .item{
