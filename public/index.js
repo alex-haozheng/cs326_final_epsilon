@@ -23,6 +23,9 @@ async function search(){
                 newDiv.classList.add("item");
                 newDiv.innerHTML = `item: ${JSON.stringify(data[i]['name'])} date: ${JSON.stringify(data[i]['date'])} meal: ${JSON.stringify(data[i]['meal'])}`;
                 document.getElementById("berkshire").appendChild(newDiv);
+                let splitter = br = document.createElement("span");
+                br.innerHTML = "<br/>";
+                document.getElementById("berkshire").appendChild(splitter);
 
             }
             if(data[i]['hall'] === "Hampshire"){
@@ -30,18 +33,27 @@ async function search(){
                 newDiv.classList.add("item");
                 newDiv.innerHTML = `item: ${JSON.stringify(data[i]['name'])} date: ${JSON.stringify(data[i]['date'])} meal: ${JSON.stringify(data[i]['meal'])}`;
                 document.getElementById("hampshire").appendChild(newDiv);
+                let splitter = br = document.createElement("span");
+                br.innerHTML = "<br/>";
+                document.getElementById("hampshire").appendChild(splitter);
             }
             if(data[i]['hall'] === "Franklin"){
                 let newDiv = document.createElement('div');
                 newDiv.classList.add("item");
                 newDiv.innerHTML = `item: ${JSON.stringify(data[i]['name'])} date: ${JSON.stringify(data[i]['date'])} meal: ${JSON.stringify(data[i]['meal'])}`;
                 document.getElementById("franklin").appendChild(newDiv);
+                let splitter = br = document.createElement("span");
+                br.innerHTML = "<br/>";
+                document.getElementById("franklin").appendChild(splitter);
             }
             if(data[i]['hall'] === "Worcester"){
                 let newDiv = document.createElement('div');
                 newDiv.classList.add("item");
                 newDiv.innerHTML = `item: ${JSON.stringify(data[i]['name'])} date: ${JSON.stringify(data[i]['date'])} meal: ${JSON.stringify(data[i]['meal'])}`;
                 document.getElementById("worcester").appendChild(newDiv);
+                let splitter = br = document.createElement("span");
+                br.innerHTML = "<br/>";
+                document.getElementById("worcester").appendChild(splitter);
             }
         }
     } 
