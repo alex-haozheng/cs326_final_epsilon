@@ -16,7 +16,6 @@ const minicrypt = require('./miniCrypt');
 const mc = new minicrypt();
 
 
-
 const port = process.env.PORT || 8080;
 
 let secrets;
@@ -194,9 +193,9 @@ async function searcher(str, halal, veg, wGrain) {
   const foods = uDine.collection('food');
   const obj = await foods.find({
     'name': {$regex: str},
-    "halal": halal,
-    "vegetarian": veg,
-    "whole-grain": wGrain
+    "halal": {'$in': halal},
+    "vegetarian": {'$in': veg},
+    "whole-grain": {'$in': wGrain}
   }).toArray();
   return obj;
 }
@@ -207,19 +206,19 @@ app.post('/search', async (req, res) => {
     let veg = req.body.vegetarian;
     let wGrain = req.body.wholeGrain;
     if(halal) {
-      halal = 'Yes';
+      halal = ['Yes'];
     } else {
-      halal = 'No';
+      halal = ['No', 'Yes'];
     }
     if (veg) {
-      veg = 'Yes'; 
+      veg = ['Yes']; 
     } else {
-      veg = 'No';
+      veg = ['No', 'Yes'];
     }
     if (wGrain) {
-      wGrain = 'Yes';
+      wGrain = ['Yes'];
     } else {
-      wGrain = 'No';
+      wGrain = ['No', 'Yes'];
     }
     res.end(JSON.stringify(await searcher(str, halal, veg, wGrain)));
 });
