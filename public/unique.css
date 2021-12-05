@@ -1,6 +1,6 @@
 form {text-align: center;}
 body {text-align: center; background-color: rgb(136,28,28);}
-div {text-align: center; justify-content: center;}
+div {text-align: center; justify-content: center; font-size: small;}
 h1 {color:black;}
 h3 {color:black; font-size: 55px;}
 h5 {color:black; font-size: 45px;}
@@ -14,7 +14,7 @@ h5 {color:black; font-size: 45px;}
     }
 
     .list-group-item{
-        font-size: large;
+        font-size: xx-large;
         font-weight: bold;
     }
 
