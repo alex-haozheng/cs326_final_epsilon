@@ -224,15 +224,19 @@ app.post('/search', async (req, res) => {
 });
 
 app.get('/unique/view', async (req, res) => {
-  // returns all food 
+  // returns all food of the day
   try {
     await client.connect();
-    const uDine = await client.db('UDine'); // if this creates delete
-    const foods = await uDine.collection('food');
-    console.log(foods);
-    let d8 = "11/23/2021"; // hardcoded for now
-    console.log(await foods.find({date: d8}));
-    res.end(JSON.stringify( await foods.find({date: d8}))); // if not .toArray()  
+    // const uDine = await client.db('UDine'); // if this creates delete
+    // const foods = await uDine.collection('food');
+    // console.log(foods);
+    // let d8 = "11/23/2021"; // hardcoded for now
+    // console.log(await foods.find({date: d8}));
+    // res.end(JSON.stringify( await foods.find({date: d8}))); // if not .toArray()  
+
+    res.send(JSON.stringify(
+      await client.db("UDine").collection("food").find({date: "11/23/2021"})
+  ));
   } catch (err) {
     console.log('unique error');
     return;
