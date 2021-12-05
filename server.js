@@ -78,13 +78,23 @@ app.use(express.static('public'));
 app.use(express.json()); // lets you handle JSON input
 app.use(express.urlencoded({'extended' : true})); // allow URLencoded data
 
-let users = {};
+async function getUsers(){
+  await client.connect();
+  const uDine = client.db('UDine'); // if this creates delete
+  const logins = uDine.collection('logins');
+  const arr = await logins.find().toArray();
+  return arr;
+}
+
 
 // Returns true iff the user exists.
-function findUser(arr, name) {
+async function findUser(name) {
+  const users = await getUsers();
+
   let b = false;
-  arr.forEach((e) => {
+  users.forEach((e) => {
     if (e.username === name) {
+      console.log("found user " + e.username)
       b = true;
     }
   });
