@@ -247,7 +247,28 @@ app.get('/unique/view', async (req, res) => {
   }).toArray())); // if not .toArray()  
 });
 
-app.get('/user/favorites/view/:key', checkLoggedIn, async (req, res) => {
+app.get('/user/favorites/view/',
+  (req, res) => {
+    checkLoggedIn(req, res, () => res.redirect('/profile/' + req.user));
+});
+
+// req: {"username": "user1", "item": "chicken"}
+app.post('/user/favorites/view/:key', checkLoggedIn, async (req, res) => {
+  const uDine = await client.db('UDine'); // if this creates delete
+  const logins = await uDine.collection('logins');
+  const user = req.params.key;
+  const fav = (await logins.findOne(
+    {username: user}
+  )).favorites;
+  res.end(JSON.stringify(fav)); 
+});
+
+app.get('/user/favorites/add/',
+  (req, res) => {
+    checkLoggedIn(req, res, () => res.redirect('/profile/' + req.user));
+});
+
+app.get('/user/favorites/add/:key', checkLoggedIn, async (req, res) => {
   const uDine = await client.db('UDine'); // if this creates delete
   const logins = await uDine.collection('logins');
   const user = req.params.key; // how would i change this to express
@@ -261,15 +282,11 @@ app.get('/user/favorites/view/:key', checkLoggedIn, async (req, res) => {
   ))); // should be pushing it to this arrray
 });
 
-// req: {"username": "user1", "item": "chicken"}
-app.post('/user/favorites/add/:key', checkLoggedIn, async (req, res) => {
-  const uDine = await client.db('UDine'); // if this creates delete
-  const logins = await uDine.collection('logins');
-  const user = req.params.key;
-  const fav = (await logins.findOne(
-    {username: user}
-  )).favorites;
-  res.end(JSON.stringify(fav)); 
+
+
+app.get('/user/delete/',
+  (req, res) => {
+    checkLoggedIn(req, res, () => res.redirect('/profile/' + req.user));
 });
 
 // should work 100% :)
