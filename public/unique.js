@@ -140,84 +140,84 @@ async function getUnique() {
         for(let i = 0; i < fbbreakfast.length; i++) {
             let newDiv = document.createElement('div');
             newDiv.classList.add("food");
-            newDiv.innerHTML = JSON.stringify(fbbreakfast[i].replaceAll('"', ''));
+            newDiv.innerHTML = JSON.stringify(fbbreakfast[i]).replaceAll('"', '');
             document.getElementById("bbreakfast").append(newDiv);
         }
 
         for(let i = 0; i < fblunch.length; i++) {
             let newDiv = document.createElement('div');
             newDiv.classList.add("food");
-            newDiv.innerHTML = JSON.stringify(fblunch[i].replaceAll('"', ''));
+            newDiv.innerHTML = JSON.stringify(fblunch[i]).replaceAll('"', '');
             document.getElementById("blunch").append(newDiv);
         }
 
         for(let i = 0; i < fbdinner.length; i++) {
             let newDiv = document.createElement('div');
             newDiv.classList.add("food");
-            newDiv.innerHTML = JSON.stringify(fbdinner[i].replaceAll('"', ''));
+            newDiv.innerHTML = JSON.stringify(fbdinner[i]).replaceAll('"', '');
             document.getElementById("bdinner").append(newDiv);
         }
 
         for(let i = 0; i < fhbreakfast.length; i++) {
             let newDiv = document.createElement('div');
             newDiv.classList.add("food");
-            newDiv.innerHTML = JSON.stringify(fhbreakfast[i].replaceAll('"', ''));
+            newDiv.innerHTML = JSON.stringify(fhbreakfast[i]).replaceAll('"', '');
             document.getElementById("hbreakfast").append(newDiv);
         }
 
         for(let i = 0; i < fhlunch.length; i++) {
             let newDiv = document.createElement('div');
             newDiv.classList.add("food");
-            newDiv.innerHTML = JSON.stringify(fhlunch[i].replaceAll('"', ''));
+            newDiv.innerHTML = JSON.stringify(fhlunch[i]).replaceAll('"', '');
             document.getElementById("hlunch").append(newDiv);
         }
 
         for(let i = 0; i < fhdinner.length; i++) {
             let newDiv = document.createElement('div');
             newDiv.classList.add("food");
-            newDiv.innerHTML = JSON.stringify(fhdinner[i].replaceAll('"', ''));
+            newDiv.innerHTML = JSON.stringify(fhdinner[i]).replaceAll('"', '');
             document.getElementById("hdinner").append(newDiv);
         }
 
         for(let i = 0; i < ffbreakfast.length; i++) {
             let newDiv = document.createElement('div');
             newDiv.classList.add("food");
-            newDiv.innerHTML = JSON.stringify(ffbreakfast[i].replaceAll('"', ''));
+            newDiv.innerHTML = JSON.stringify(ffbreakfast[i]).replaceAll('"', '');
             document.getElementById("fbreakfast").append(newDiv);
         }
 
         for(let i = 0; i < fflunch.length; i++) {
             let newDiv = document.createElement('div');
             newDiv.classList.add("food");
-            newDiv.innerHTML = JSON.stringify(fflunch[i].replaceAll('"', ''));
+            newDiv.innerHTML = JSON.stringify(fflunch[i]).replaceAll('"', '');
             document.getElementById("flunch").append(newDiv);
         }
 
         for(let i = 0; i < ffdinner.length; i++) {
             let newDiv = document.createElement('div');
             newDiv.classList.add("food");
-            newDiv.innerHTML = JSON.stringify(ffdinner[i].replaceAll('"', ''));
+            newDiv.innerHTML = JSON.stringify(ffdinner[i]).replaceAll('"', '');
             document.getElementById("fdinner").append(newDiv);
         }
 
         for(let i = 0; i < fwbreakfast.length; i++) {
             let newDiv = document.createElement('div');
             newDiv.classList.add("food");
-            newDiv.innerHTML = JSON.stringify(fwbreakfast[i].replaceAll('"', ''));
+            newDiv.innerHTML = JSON.stringify(fwbreakfast[i]).replaceAll('"', '');
             document.getElementById("wbreakfast").append(newDiv);
         }
 
         for(let i = 0; i < fwlunch.length; i++) {
             let newDiv = document.createElement('div');
             newDiv.classList.add("food");
-            newDiv.innerHTML = JSON.stringify(fwlunch[i].replaceAll('"', ''));
+            newDiv.innerHTML = JSON.stringify(fwlunch[i]).replaceAll('"', '');
             document.getElementById("wlunch").append(newDiv);
         }
 
         for(let i = 0; i < fwdinner.length; i++) {
             let newDiv = document.createElement('div');
             newDiv.classList.add("food");
-            newDiv.innerHTML = JSON.stringify(fwdinner[i].replaceAll('"', ''));
+            newDiv.innerHTML = JSON.stringify(fwdinner[i]).replaceAll('"', '');
             document.getElementById("wdinner").append(newDiv);
         }
         console.log(bbreakfast);
