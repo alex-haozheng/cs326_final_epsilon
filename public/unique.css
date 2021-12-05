@@ -87,6 +87,13 @@ h3 {text-align: center;}
 h4 {text-align: center;}
 a {text-align: center;}
 
+.column{
+  display:inline-block;
+  width: 25%;
+  background-color: white;
+  border-width: 2px;
+} 
+
 .main{
     width:100%;  
     display:flex;
