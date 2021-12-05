@@ -21,49 +21,49 @@ async function getUnique() {
         let wlunch = [];
         let wdinner = [];
         //out will be today's menu, this makes arrays for each 'meal' at each dining hall
-        for(let item in out){
-            if(item['hall'] === "Berkshire"){
-                if(item['meal'] === "Breakfast"){
-                    bbreakfast.push(item['name']);
+        for(let i = 0; i < out.length; i++){
+            if(out[i]['hall'] === "Berkshire"){
+                if(out[i]['meal'] === "Breakfast"){
+                    bbreakfast.push(out[i]['name']);
                 }
-                if(item['meal'] === "Lunch"){
-                    blunch.push(item['name']);
+                if(out[i]['meal'] === "Lunch"){
+                    blunch.push(out[i]['name']);
                 }
-                if(item['meal'] === "Dinner"){
-                    bdinner.push(item['name']);
-                }
-            }
-            if(item['hall'] === "Hampshire"){
-                if(item['meal'] === "Breakfast"){
-                    hbreakfast.push(item['name']);
-                }
-                if(item['meal'] === "Lunch"){
-                    hlunch.push(item['name']);
-                }
-                if(item['meal'] === "Dinner"){
-                    hdinner.push(item['name']);
+                if(out[i]['meal'] === "Dinner"){
+                    bdinner.push(out[i]['name']);
                 }
             }
-            if(item['hall'] === "Franklin"){
-                if(item['meal'] === "Breakfast"){
-                    fbreakfast.push(item['name']);
+            if(out[i]['hall'] === "Hampshire"){
+                if(out[i]['meal'] === "Breakfast"){
+                    hbreakfast.push(out[i]['name']);
                 }
-                if(item['meal'] === "Lunch"){
-                    flunch.push(item['name']);
+                if(out[i]['meal'] === "Lunch"){
+                    hlunch.push(out[i]['name']);
                 }
-                if(item['meal'] === "Dinner"){
-                    fdinner.push(item['name']);
+                if(out[i]['meal'] === "Dinner"){
+                    hdinner.push(out[i]['name']);
                 }
             }
-            if(item['hall'] === "Worcester"){
-                if(item['meal'] === "Breakfast"){
-                    wbreakfast.push(item['name']);
+            if(out[i]['hall'] === "Franklin"){
+                if(out[i]['meal'] === "Breakfast"){
+                    fbreakfast.push(out[i]['name']);
                 }
-                if(item['meal'] === "Lunch"){
-                    wlunch.push(item['name']);
+                if(out[i]['meal'] === "Lunch"){
+                    flunch.push(out[i]['name']);
                 }
-                if(item['meal'] === "Dinner"){
-                    wdinner.push(item['name']);
+                if(out[i]['meal'] === "Dinner"){
+                    fdinner.push(out[i]['name']);
+                }
+            }
+            if(out[i]['hall'] === "Worcester"){
+                if(out[i]['meal'] === "Breakfast"){
+                    wbreakfast.push(out[i]['name']);
+                }
+                if(out[i]['meal'] === "Lunch"){
+                    wlunch.push(out[i]['name']);
+                }
+                if(out[i]['meal'] === "Dinner"){
+                    wdinner.push(out[i]['name']);
                 }
             }
         }
