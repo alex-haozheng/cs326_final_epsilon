@@ -1,7 +1,7 @@
 'use strict';
 
 async function getFavorites() {
-    let response = await fetch('/user/favorites/view/' + document.getElementById("username").value,{
+    let response = await fetch('/user/favorites/view/',{
         method: 'GET'
     });
     if (response.ok) {
@@ -19,7 +19,7 @@ async function getFavorites() {
 }
 //test comment
 async function addFavorite() {
-    let g = JSON.stringify({username: document.getElementById("username").value, item: document.getElementById("adding").value});
+    let g = JSON.stringify({item: document.getElementById("adding").value});
     let response = await fetch('/user/favorites/add', {
         method: 'POST',
         body: g,
@@ -35,7 +35,7 @@ async function addFavorite() {
 }
 
 async function deleteAccount() {
-    let response = await fetch('/user/delete/' + document.getElementById("username").value, {
+    let response = await fetch('/user/delete/', {
         method: 'DELETE'
     });
 
