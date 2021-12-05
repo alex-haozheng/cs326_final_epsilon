@@ -21,7 +21,7 @@ async function search(){
             if(data[i]['hall'] === "Berkshire"){
                 let newDiv = document.createElement('div');
                 newDiv.classList.add("item");
-                newDiv.innerHTML = `item: ${JSON.stringify(data[i]['name'])} date: ${JSON.stringify(data[i]['date'])} meal: ${JSON.stringify(data[i]['meal'])}`;
+                newDiv.innerHTML = `item: ${JSON.stringify(data[i]['name']).replaceAll('"', '')} date: ${JSON.stringify(data[i]['date']).replaceAll('"', '')} meal: ${JSON.stringify(data[i]['meal']).replaceAll('"', '')}`;
                 document.getElementById("berkshire").appendChild(newDiv);
                 let splitter = document.createElement("span");
                 splitter.innerHTML = "<br/>";
@@ -31,7 +31,7 @@ async function search(){
             if(data[i]['hall'] === "Hampshire"){
                 let newDiv = document.createElement('div');
                 newDiv.classList.add("item");
-                newDiv.innerHTML = `item: ${JSON.stringify(data[i]['name'])} date: ${JSON.stringify(data[i]['date'])} meal: ${JSON.stringify(data[i]['meal'])}`;
+                newDiv.innerHTML = `item: ${JSON.stringify(data[i]['name']).replaceAll('"', '')} date: ${JSON.stringify(data[i]['date']).replaceAll('"', '')} meal: ${JSON.stringify(data[i]['meal']).replaceAll('"', '')}`;
                 document.getElementById("hampshire").appendChild(newDiv);
                 let splitter = document.createElement("span");
                 splitter.innerHTML = "<br/>";
@@ -40,7 +40,7 @@ async function search(){
             if(data[i]['hall'] === "Franklin"){
                 let newDiv = document.createElement('div');
                 newDiv.classList.add("item");
-                newDiv.innerHTML = `item: ${JSON.stringify(data[i]['name'])} date: ${JSON.stringify(data[i]['date'])} meal: ${JSON.stringify(data[i]['meal'])}`;
+                newDiv.innerHTML = `item: ${JSON.stringify(data[i]['name']).replaceAll('"', '')} date: ${JSON.stringify(data[i]['date']).replaceAll('"', '')} meal: ${JSON.stringify(data[i]['meal']).replaceAll('"', '')}`;
                 document.getElementById("franklin").appendChild(newDiv);
                 let splitter = document.createElement("span");
                 splitter.innerHTML = "<br/>";
@@ -49,7 +49,7 @@ async function search(){
             if(data[i]['hall'] === "Worcester"){
                 let newDiv = document.createElement('div');
                 newDiv.classList.add("item");
-                newDiv.innerHTML = `item: ${JSON.stringify(data[i]['name'])} date: ${JSON.stringify(data[i]['date'])} meal: ${JSON.stringify(data[i]['meal'])}`;
+                newDiv.innerHTML = `item: ${JSON.stringify(data[i]['name']).replaceAll('"', '')} date: ${JSON.stringify(data[i]['date']).replaceAll('"', '')} meal: ${JSON.stringify(data[i]['meal']).replaceAll('"', '')}`;
                 document.getElementById("worcester").appendChild(newDiv);
                 let splitter = document.createElement("span");
                 splitter.innerHTML = "<br/>";
