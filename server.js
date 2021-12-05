@@ -91,12 +91,17 @@ function findUser(arr, name) {
   return b;
 }
 
-// Returns true iff the password is the one we have stored (in plaintext = bad but easy).
-function validatePassword(name, pwd) {
-  if (!findUser(name)) {
+// Returns true iff the password is the one we have stored hashed
+async function validatePassword(name, pwd) {
+  await client.connect();
+  const uDine = client.db('UDine');
+  const logins = uDine.collection('logins');
+  const arr = await logins.find().toArray();
+  const obj = await logins.find();
+  if (!findUser(arr, name)) {
     return false;
   }
-  if (!mc.check(pwd, users[name][0], users[name][1])) {
+  if (!mc.check(pwd, obj[name][0], obj[name][1])) {
     return false;
   }
   return true;
@@ -165,9 +170,6 @@ app.get('/register',
 
 // Private data
 app.get('/profile',
-// IF we are logged in...
-// TODO
-// Go to the user's page ('/private/' + req.user)
   (req, res) => {
     checkLoggedIn(req, res, () => res.redirect('/profile/' + req.user));
 });
