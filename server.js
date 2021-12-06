@@ -127,14 +127,13 @@ async function validatePassword(name, pwd) {
   console.log('found user ' + name);
   for(let i = 0; i < arr.length; ++i){
     if(arr[i]['username'] === name){
-      if (!mc.check(pwd, arr[password][0], arr[password][1])) {
+      if (!mc.check(pwd, arr[i]['password'][0], arr[i]['password'][1])) {
         console.log('password doesnt check');
         return false;
+      }else{
+        console.log('password correct');
       }
     
-    }else{
-      console.log('did not find user in array');
-      return false;
     }
   }
 
