@@ -41,8 +41,16 @@ const session = {
 
 const strategy = new LocalStrategy(
   async (username, password, done) => {
-  if (!findUser(username)) {
+    console.log('start strategy')
+    await client.connect();
+    const uDine = client.db('UDine'); // if this creates delete
+    const logins = uDine.collection('logins');
+    const arr = await logins.find().toArray();
+  
+
+  if (!findUser(arr, username)) {
       // no such user
+      console.log("strategy did not find user");
       return done(null, false, { 'message' : 'Wrong username' });
   }
   if (!validatePassword(username, password)) {
@@ -54,6 +62,7 @@ const strategy = new LocalStrategy(
   }
   // success!
   // should create a user object here, associated with a unique identifier
+  console.log('success');
   return done(null, username);
 });
 
@@ -88,16 +97,17 @@ async function getUsers(){
 
 
 // Returns true iff the user exists.
-async function findUser(name) {
-  const users = await getUsers();
+function findUser(arr, name) {
+  console.log("starting find user")
 
   let b = false;
-  users.forEach((e) => {
+  arr.forEach((e) => {
     if (e.username === name) {
       console.log("found user " + e.username)
       b = true;
     }
   });
+  console.log(b);
   return b;
 }
 
@@ -107,13 +117,27 @@ async function validatePassword(name, pwd) {
   const uDine = client.db('UDine');
   const logins = uDine.collection('logins');
   const arr = await logins.find().toArray();
-  const obj = await logins.find();
+//   const obj = await logins.find();
+//  console.log(obj);
+  console.log(arr);
   if (!findUser(arr, name)) {
+    console.log('did not find user');
     return false;
   }
-  if (!mc.check(pwd, obj[name][0], obj[name][1])) {
-    return false;
+  console.log('found user ' + name);
+  for(let i = 0; i < arr.length; ++i){
+    if(arr[i]['username'] === name){
+      if (!mc.check(pwd, arr[password][0], arr[password][1])) {
+        console.log('password doesnt check');
+        return false;
+      }
+    
+    }else{
+      console.log('did not find user in array');
+      return false;
+    }
   }
+
   return true;
 }
 
