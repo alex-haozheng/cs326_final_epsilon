@@ -53,7 +53,7 @@ const strategy = new LocalStrategy(
       console.log("strategy did not find user");
       return done(null, false, { 'message' : 'Wrong username' });
   }
-  if (!validatePassword(username, password)) {
+  if (!(await validatePassword(username, password))) {
       // invalid password
       // should disable logins after N messages
       // delay return to rate-limit brute-force attacks
