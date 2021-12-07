@@ -4,7 +4,7 @@ div {text-align: center; justify-content: center;}
 
 
 .card-body{
-    font-family: fantasy;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
  
 .column{
@@ -59,19 +59,19 @@ div {text-align: center; justify-content: center;}
 input[type="text"]
 {
     text-align: center;
-    font-family: fantasy;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 25px
 }
 input[type="search"]
 {
     text-align: center;
-    font-family: fantasy;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 30px
 }
 
 input[type="number"]
 {
-    font-family: fantasy;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 25px
 }
 
@@ -89,7 +89,7 @@ a {text-align: center;}
 
   position: absolute;
   width: 40%;
-  font-family: fantasy;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 #search{
@@ -104,7 +104,7 @@ a {text-align: center;}
 }
 
 .card-group{
-    font-family: fantasy;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 .star {
@@ -127,14 +127,14 @@ a {text-align: center;}
     align-items:center;
     justify-content:center;
     text-align:center;
-    font-family: fantasy;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   }
   h1{
     text-align:center;
     text-transform: uppercase;
     color: black; 
     font-size: 4rem;
-    font-family: fantasy;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   }
   
   .roller{
