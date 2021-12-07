@@ -1,0 +1,214 @@
+form {text-align: center;}
+body {text-align: center; background-color: rgb(136,28,28);}
+div {text-align: center; justify-content: center;}
+
+
+.card-body{
+    font-family: fantasy;
+}
+ 
+.column{
+  display:inline-block;
+  width: 25%;
+  background-color: white;
+  border-width: 2px;
+} 
+
+.item{
+  border-width: 5px;
+  border-color: black;
+}
+#search{
+    margin-right:auto;
+    margin-left:auto;
+    width:100px; 
+}
+#button{
+    margin-right:auto;
+    margin-left:auto;
+    width:100px; 
+}
+.btn-xlarge-left {
+    float: left;
+    padding: 18px 28px;
+    font-size: 22px;
+    line-height: normal;
+    -webkit-border-radius: 8px;
+       -moz-border-radius: 8px;
+            border-radius: 8px;
+    }
+.btn-xlarge-right {
+    float: right;
+    padding: 18px 28px;
+    font-size: 22px;
+    line-height: normal;
+    -webkit-border-radius: 8px;
+       -moz-border-radius: 8px;
+            border-radius: 8px;
+    }
+
+.leftCard{
+    width: 18rem; text-align: center; border-color: black; float: left;
+}
+
+.rightCard{
+    
+    width: 18rem; text-align: center; border-color: black; float: right;
+}
+
+input[type="text"]
+{
+    text-align: center;
+    font-family: fantasy;
+    font-size: 25px
+}
+input[type="search"]
+{
+    text-align: center;
+    font-family: fantasy;
+    font-size: 30px
+}
+
+input[type="number"]
+{
+    font-family: fantasy;
+    font-size: 25px
+}
+
+h1 {text-align: center; color: white;}
+h2 {text-align: center;}
+h3 {text-align: center; color: white;}
+h4 {text-align: center;}
+a {text-align: center;}
+
+#mySearch{
+    left:0;
+    right:0;
+    margin-left: auto;
+  margin-right: auto;
+
+  position: absolute;
+  width: 40%;
+  font-family: fantasy;
+}
+
+#search{
+    left:0;
+    right:0;
+    margin-left: auto;
+  margin-right: auto;
+
+  position: absolute;
+  width: 5%;
+  
+}
+
+.card-group{
+    font-family: fantasy;
+}
+
+.star {
+    visibility:hidden;
+    font-size:30px;
+    cursor:pointer;
+    line-height: 0.5em;
+    float: right;
+}
+.star:before {  
+   content: "\2605";
+   visibility:visible;
+}
+.star:checked:before {
+   content: "\2606";
+}
+.main{
+    width:100%;  
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    font-family: fantasy;
+  }
+  h1{
+    text-align:center;
+    text-transform: uppercase;
+    color: black; 
+    font-size: 4rem;
+    font-family: fantasy;
+  }
+  
+  .roller{
+    height: 4.125rem;
+    line-height: 4rem;
+    position: relative;
+    overflow: hidden; 
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+  }
+  
+  
+  #spare-time{
+    font-size: 1rem;
+    font-style: italic;
+    letter-spacing: 1rem;
+    margin-top: 0;
+    color: white;
+    
+  }
+  
+  .roller #rolltext {
+    position: absolute;
+    top: 0;
+    animation: slide 6s infinite;  
+  }
+  
+  @keyframes slide {
+    0%{
+      top:0;
+    }
+    25%{
+      top: -4rem;    
+    }
+    50%{
+      top: -8rem;
+    }
+    72.5%{
+      top: -12.25rem;
+    }
+  }
+  
+  @media screen and (max-width: 600px){
+    h1{
+    text-align:center;
+    text-transform: uppercase;
+    color: #F1FAEE; 
+    font-size: 2.125rem;
+  }
+    
+    .roller{
+    height: 2.6rem; 
+    line-height: 2.125rem;  
+    }
+    
+    .roller #rolltext {  
+    animation: slide-mob 6s infinite;  
+  }
+    
+    @keyframes slide-mob {
+    0%{
+      top:0;
+    }
+    25%{
+      top: -2.125rem;    
+    }
+    50%{
+      top: -4.25rem;
+    }
+    72.5%{
+      top: -6.375rem;
+    }
+  }
+  }
