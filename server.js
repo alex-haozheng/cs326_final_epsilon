@@ -286,22 +286,24 @@ app.post('/user/favorites/view/:key', checkLoggedIn, async (req, res) => {
   res.end(JSON.stringify(fav)); 
 });
 
-app.get('/user/favorites/add/',
+app.get('/user/favorites/add/:food',
   (req, res) => {
-    checkLoggedIn(req, res, () => res.redirect('/profile/' + req.user));
+	const food = req.params.food;
+    checkLoggedIn(req, res, () => res.redirect('/profile/' + food + '/' + req.user));
 });
 
-app.get('/user/favorites/add/:key', checkLoggedIn, async (req, res) => {
+app.get('/user/favorites/add/:food/:key', checkLoggedIn, async (req, res) => {
   const uDine = await client.db('UDine'); // if this creates delete
   const logins = await uDine.collection('logins');
   const user = req.params.key; // how would i change this to express
+  const food = req.params.food;
   const result = await logins.findOne(
     {username: user}
   ); const arr = result.favorites;
   const fav = document.getElementById('adding').value;
   res.end(JSON.stringify(await logins.updateOne(
     {username: user},
-    {favorites: arr.push(fav)}
+    {favorites: arr.push(food)}
   ))); // should be pushing it to this arrray
 });
 
