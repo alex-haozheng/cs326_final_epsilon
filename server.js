@@ -277,8 +277,9 @@ app.get('/user/favorites/view/',
 
 // req: {"username": "user1", "item": "chicken"}
 app.post('/user/favorites/view/:key', checkLoggedIn, async (req, res) => {
-  const uDine = await client.db('UDine'); // if this creates delete
-  const logins = await uDine.collection('logins');
+	await client.connect();
+  const uDine = client.db('UDine'); // if this creates delete
+  const logins = uDine.collection('logins');
   const user = req.params.key;
   const fav = (await logins.findOne(
     {username: user}
@@ -289,12 +290,13 @@ app.post('/user/favorites/view/:key', checkLoggedIn, async (req, res) => {
 app.get('/user/favorites/add/:food',
   (req, res) => {
 	const food = req.params.food;
-    checkLoggedIn(req, res, () => res.redirect('/profile/' + food + '/' + req.user));
+    checkLoggedIn(req, res, () => res.redirect('/user/favorites/add/' + food + '/' + req.user));
 });
 
 app.get('/user/favorites/add/:food/:key', checkLoggedIn, async (req, res) => {
-  const uDine = await client.db('UDine'); // if this creates delete
-  const logins = await uDine.collection('logins');
+	await client.connect();
+  const uDine = client.db('UDine'); // if this creates delete
+  const logins = uDine.collection('logins');
   const user = req.params.key; // how would i change this to express
   const food = req.params.food;
   const result = await logins.findOne(
@@ -311,13 +313,14 @@ app.get('/user/favorites/add/:food/:key', checkLoggedIn, async (req, res) => {
 
 app.get('/user/delete/',
   (req, res) => {
-    checkLoggedIn(req, res, () => res.redirect('/profile/' + req.user));
+    checkLoggedIn(req, res, () => res.redirect('/user/delete/' + req.user));
 });
 
 // should work 100% :)
 app.delete('/user/delete/:key', checkLoggedIn, async (req, res) => {
-  const uDine = await client.db('UDine'); // if this creates delete
-  const logins = await uDine.collection('logins');
+	await client.connect();
+  const uDine = client.db('UDine'); // if this creates delete
+  const logins = uDine.collection('logins');
   const user = req.params.key;
   logins.removeOne(
     {username: user}
