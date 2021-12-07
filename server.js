@@ -165,7 +165,6 @@ app.get('/register',
 // Private data
 app.get('/profile',
 // IF we are logged in...
-// TODO
 // Go to the user's page ('/private/' + req.user)
   (req, res) => {
     checkLoggedIn(req, res, () => res.redirect('/profile/' + req.user));
@@ -233,8 +232,8 @@ app.get('/unique/view', async (req, res) => {
 });
 
 app.get('/user/favorites/view/:key', checkLoggedIn, async (req, res) => {
-  const uDine = await client.db('UDine'); // if this creates delete
-  const logins = await uDine.collection('logins');
+  const uDine = client.db('UDine'); // if this creates delete
+  const logins = uDine.collection('logins');
   const user = req.params.key; // how would i change this to express
   const result = await logins.findOne(
     {username: user}
@@ -248,8 +247,8 @@ app.get('/user/favorites/view/:key', checkLoggedIn, async (req, res) => {
 
 // req: {"username": "user1", "item": "chicken"}
 app.post('/user/favorites/add/:key', checkLoggedIn, async (req, res) => {
-  const uDine = await client.db('UDine'); // if this creates delete
-  const logins = await uDine.collection('logins');
+  const uDine = client.db('UDine'); // if this creates delete
+  const logins = uDine.collection('logins');
   const user = req.params.key;
   const fav = (await logins.findOne(
     {username: user}
