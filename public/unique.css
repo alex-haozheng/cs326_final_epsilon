@@ -62,19 +62,19 @@ h5 {color:black; font-size: 45px;}
 input[type="text"]
 {
     text-align: center;
-    font-family: fantasy;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 25px
 }
 input[type="search"]
 {
     text-align: center;
-    font-family: fantasy;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 30px
 }
 
 input[type="number"]
 {
-    font-family: fantasy;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 25px
 }
 input[type="range"] {
@@ -100,14 +100,14 @@ a {text-align: center;}
     align-items:center;
     justify-content:center;
     text-align:center;
-    font-family: fantasy;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   }
   h1{
     text-align:center;
     text-transform: uppercase;
     color: black; 
     font-size: 4rem;
-    font-family: fantasy;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     -webkit-text-stroke: 1px white;
   }
 
