@@ -6,6 +6,12 @@ div {text-align: center; justify-content: center;}
     width: 18rem;
     text-align: center;
     border-color: black;
+    left:0;
+    right:0;
+    margin-left: auto;
+  margin-right: auto;
+
+  position: absolute;
 }
 
 .btn-xlarge-left {
