@@ -136,7 +136,6 @@ async function validatePassword(name, pwd) {
     
     }
   }
-
   return true;
 }
 
@@ -152,7 +151,6 @@ async function addUser(name, pwd) {
 
     if(!findUser(arr, name)){
       const [salt, hash] = mc.hash(pwd);
-
       await logins.insertOne({
         username: name,
         password: [salt, hash],
@@ -172,7 +170,7 @@ app.post('/register',
       res.redirect('/register');
     }
 });
-// Routes
+
 
 function checkLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
@@ -208,7 +206,7 @@ app.get('/profile',
 });
 
 // A dummy page for the user.
-app.get('/profile/:userID/',
+app.get('/profile/:userID',
   checkLoggedIn, // We also protect this route: authenticated...
   (req, res) => {
     // Verify this is the right user.
@@ -220,7 +218,7 @@ app.get('/profile/:userID/',
       // res.write('<br/><a href="/index.html">click here to go back to the search page</a>');
       res.end();
     } else {
-      res.redirect('/profile/');
+      res.redirect('/profile');
     }
 });
 
@@ -270,7 +268,7 @@ app.get('/unique/view', async (req, res) => {
   }).toArray())); // if not .toArray()  
 });
 
-app.get('/user/favorites/view/',
+app.get('/user/favorites/view',
   (req, res) => {
     checkLoggedIn(req, res, () => res.redirect('/profile/' + req.user));
 });
@@ -311,7 +309,7 @@ app.get('/user/favorites/add/:food/:key', checkLoggedIn, async (req, res) => {
 
 
 
-app.get('/user/delete/',
+app.get('/user/delete',
   (req, res) => {
     checkLoggedIn(req, res, () => res.redirect('/user/delete/' + req.user));
 });
