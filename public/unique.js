@@ -5,15 +5,8 @@ async function getUnique() {
         method: 'GET'
     });
     if (response.ok) {
-<<<<<<< HEAD
-        let data = await response.json();
-        // perhaps create multiple get functions for each dining hall specifically
-        // this looks quite messy to look back on but if it works it works
-        
-=======
         let out = await response.json();
         console.log(out);
->>>>>>> main
         //create variables that will be arrays for each menu at each dining hall
         let bbreakfast = [];
         let blunch = [];
@@ -27,19 +20,11 @@ async function getUnique() {
         let wbreakfast = [];
         let wlunch = [];
         let wdinner = [];
-<<<<<<< HEAD
-        //data will be today's menu, this makes arrays for each 'meal' at each dining hall
-        for(let item in data){
-            if(item['hall'] === "Berkshire"){
-                if(item['meal'] === "Breakfast"){
-                    bbreakfast.push(item['name']);
-=======
         //out will be today's menu, this makes arrays for each 'meal' at each dining hall
         for(let i = 0; i < out.length; i++){
             if(out[i]['hall'] === "Berkshire"){
                 if(out[i]['meal'] === "Breakfast"){
                     bbreakfast.push(out[i]['name']);
->>>>>>> main
                 }
                 if(out[i]['meal'] === "Lunch"){
                     blunch.push(out[i]['name']);
