@@ -89,21 +89,21 @@ date":"11/21/2021", //this is the date that this item is available
 "favorites":["Chocolate Chip Pancakes","Semolina Cake"]} // favorites are stored as arrays of strings
 
 # URL Routes/Mappings
-- *https://umassdining.herokuapp.com/index.html*
- - this is the main page where users can search for items
- - this page is accessed when the user clicks the search button on unique.html or the user profile page
+- *https://umassdining.herokuapp.com/index.html* 
+  - this is the main page where users can search for items
+  - this page is accessed when the user clicks the search button on unique.html or the user profile page
 - *https://umassdining.herokuapp.com/unique.html*
- - this page display daily unique items
- - this page is accessed when the user clicks the unique button on index.html or the user profile page
+  - this page display daily unique items
+  - this page is accessed when the user clicks the unique button on index.html or the user profile page
 - *https://umassdining.herokuapp.com/login.html*
- - this page is where the user logs into their profile
- - this page is accessed when the user clicks the profile button on unique.html and when the user successfully registers a profile
+  - this page is where the user logs into their profile
+  - this page is accessed when the user clicks the profile button on unique.html and when the user successfully registers a profile
 - *https://umassdining.herokuapp.com/login.html*
- - this page is where the user creates a profile
- - this page is accessed when the user clicks the register button on login.html or when they register incorrectly
+  - this page is where the user creates a profile
+  - this page is accessed when the user clicks the register button on login.html or when they register incorrectly
 - *https://umassdining.herokuapp.com/user/:username*
- - this is the profile page where users access their favorites
- - this page is accessed when the user successfully logs in
+  - this is the profile page where users access their favorites
+  - this page is accessed when the user successfully logs in
 
 # Authentication/Authorization
 User passwords are hashed with minicrypt and the passwords and usernames are authenticated using passport. The user profile page and favorites list can only be accessed with authentication. 
