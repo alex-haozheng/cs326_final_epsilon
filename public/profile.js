@@ -1,11 +1,12 @@
 'use strict';
 
 async function getFavorites() {
-    let response = await fetch('/user/favorites/view/',{
+    let response = await fetch('/user/favorites/view',{
         method: 'GET'
     });
     if (response.ok) {
         let arr = await response.json(); // array of favorites
+		
         document.getElementById('favoriteList').innerHTML = '';
         for(let i = 0; i < arr.length; i++) {
             let newDiv = document.createElement('div');

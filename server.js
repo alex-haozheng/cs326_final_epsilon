@@ -8,7 +8,7 @@ const expressSession = require('express-session');  // for managing session stat
 const express = require('express');
 const passport = require('passport');               // handles authentication
 const LocalStrategy = require('passport-local').Strategy; // username/password strategy
-const { MongoClient } = require('mongodb');
+const { MongoClient, ProfilingLevel } = require('mongodb');
 const app = express();
 app.use(require('body-parser').urlencoded());
 const minicrypt = require('./miniCrypt');
@@ -78,6 +78,7 @@ app.use(passport.session());
 passport.serializeUser((user, done) => {
   done(null, user);
 });
+
 // Convert a unique identifier to a user object.
 passport.deserializeUser((uid, done) => {
   done(null, uid);
@@ -94,7 +95,6 @@ async function getUsers(){
   const arr = await logins.find().toArray();
   return arr;
 }
-
 
 // Returns true iff the user exists.
 function findUser(arr, name) {
@@ -206,7 +206,7 @@ app.get('/profile',
 });
 
 // A dummy page for the user.
-app.get('/profile/:userID',
+app.get('/profile/:userID/',
   checkLoggedIn, // We also protect this route: authenticated...
   (req, res) => {
     // Verify this is the right user.
@@ -268,30 +268,33 @@ app.get('/unique/view', async (req, res) => {
   }).toArray())); // if not .toArray()  
 });
 
+// profile js endpoints
 app.get('/user/favorites/view',
   (req, res) => {
-    checkLoggedIn(req, res, () => res.redirect('/profile/' + req.user));
+	console.log(`${req.user}: from the first endpoint`);
+    checkLoggedIn(req, res, () => res.redirect('/user/favorites/view/' + req.user));
 });
 
 // req: {"username": "user1", "item": "chicken"}
-app.post('/user/favorites/view/:key', checkLoggedIn, async (req, res) => {
+app.post('/user/favorites/view/:key/', checkLoggedIn, async (req, res) => {
 	await client.connect();
-  const uDine = client.db('UDine'); // if this creates delete
-  const logins = uDine.collection('logins');
-  const user = req.params.key;
-  const fav = (await logins.findOne(
-    {username: user}
-  )).favorites;
-  res.end(JSON.stringify(fav)); 
+	const uDine = client.db('UDine'); // if this creates delete
+	const logins = uDine.collection('logins');
+	const user = req.params.key;
+	console.log(`from post inside key method ${user}`);
+	const fav = (await logins.findOne(
+		{username: user}
+	)).favorites;
+	res.end(JSON.stringify(fav)); 
 });
 
-app.get('/user/favorites/add/:food',
+app.get('/user/favorites/add',
   (req, res) => {
-	const food = req.params.food;
+	const food = req.food;
     checkLoggedIn(req, res, () => res.redirect('/user/favorites/add/' + food + '/' + req.user));
 });
 
-app.get('/user/favorites/add/:food/:key', checkLoggedIn, async (req, res) => {
+app.get('/user/favorites/add/:food/:key/', checkLoggedIn, async (req, res) => {
 	await client.connect();
   const uDine = client.db('UDine'); // if this creates delete
   const logins = uDine.collection('logins');
@@ -307,23 +310,21 @@ app.get('/user/favorites/add/:food/:key', checkLoggedIn, async (req, res) => {
   ))); // should be pushing it to this arrray
 });
 
-
-
 app.get('/user/delete',
   (req, res) => {
     checkLoggedIn(req, res, () => res.redirect('/user/delete/' + req.user));
 });
 
-// should work 100% :)
 app.delete('/user/delete/:key', checkLoggedIn, async (req, res) => {
 	await client.connect();
-  const uDine = client.db('UDine'); // if this creates delete
-  const logins = uDine.collection('logins');
-  const user = req.params.key;
-  logins.removeOne(
-    {username: user}
-  );
-  res.end();
+	const uDine = client.db('UDine'); // if this creates delete
+	const logins = uDine.collection('logins');
+	const user = req.params.key;
+	console.log(user);
+	logins.removeOne(
+	{username: req.params.key}
+	);
+	res.end();
 });
 
 app.listen(port, () => {
