@@ -19,7 +19,7 @@ async function getFavorites() {
 }
 //test comment
 async function addFavorite() {
-    let response = await fetch('/user/favorites/add' +JSON.stringify(document.getElementById("adding").value), {
+    let response = await fetch('/user/favorites/add/' + JSON.stringify(document.getElementById("adding").value), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' }
     });
