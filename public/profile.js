@@ -15,12 +15,13 @@ async function getFavorites() {
         }
     }
     else {
-        alert("An error has occured.");
+        alert("An error has occured. :((((");
     }
 }
 //test comment
 async function addFavorite() {
-    let response = await fetch('/user/favorites/add/' + JSON.stringify(document.getElementById("adding").value), {
+	console.log(typeof(document.getElementById("adding").value));
+    let response = await fetch('/user/favorites/add/' + document.getElementById("adding").value, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' }
     });
@@ -29,7 +30,7 @@ async function addFavorite() {
         getFavorites();
     }
     else {
-        alert("An error has occured.");
+        alert("An error has occured. :(");
     }
 }
 
@@ -39,7 +40,7 @@ async function deleteAccount() {
     });
 
     if (response.ok) {
-      alert("The account has been deleted");
+    	alert("The account has been deleted");
     } 
     else {
         alert("An error has occured.");

@@ -290,7 +290,8 @@ app.post('/user/favorites/view/:key/', checkLoggedIn, async (req, res) => {
 
 app.get('/user/favorites/add',
   (req, res) => {
-	const food = req.food;
+	console.log(req);
+	// const food = req.food;
     checkLoggedIn(req, res, () => res.redirect('/user/favorites/add/' + food + '/' + req.user));
 });
 
