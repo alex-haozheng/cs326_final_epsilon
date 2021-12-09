@@ -12,7 +12,6 @@ async function search(){
     })
     if (response.ok) {
         const data = await response.json();
-        console.log(data);
         document.getElementById("berkshire").innerHTML = '';
         document.getElementById("hampshire").innerHTML = '';
         document.getElementById("franklin").innerHTML = '';
