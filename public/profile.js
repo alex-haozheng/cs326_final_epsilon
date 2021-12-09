@@ -1,11 +1,12 @@
 'use strict';
 
 async function getFavorites() {
-    let response = await fetch('/user/favorites/view/' + document.getElementById("username").value,{
+    let response = await fetch('/user/favorites/view',{
         method: 'GET'
     });
     if (response.ok) {
         let arr = await response.json(); // array of favorites
+		
         document.getElementById('favoriteList').innerHTML = '';
         for(let i = 0; i < arr.length; i++) {
             let newDiv = document.createElement('div');
@@ -14,15 +15,14 @@ async function getFavorites() {
         }
     }
     else {
-        alert("An error has occured.");
+        alert("An error has occured. :((((");
     }
 }
 //test comment
 async function addFavorite() {
-    let g = JSON.stringify({username: document.getElementById("username").value, item: document.getElementById("adding").value});
-    let response = await fetch('/user/favorites/add', {
+	console.log(typeof(document.getElementById("adding").value));
+    let response = await fetch('/user/favorites/add/' + document.getElementById("adding").value, {
         method: 'POST',
-        body: g,
         headers: { 'Content-Type': 'application/json' }
     });
 
@@ -30,17 +30,17 @@ async function addFavorite() {
         getFavorites();
     }
     else {
-        alert("An error has occured.");
+        alert("An error has occured. :(");
     }
 }
 
 async function deleteAccount() {
-    let response = await fetch('/user/delete/' + document.getElementById("username").value, {
+    let response = await fetch('/user/delete/', {
         method: 'DELETE'
     });
 
     if (response.ok) {
-      alert("The account has been deleted");
+    	alert("The account has been deleted");
     } 
     else {
         alert("An error has occured.");

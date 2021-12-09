@@ -9,7 +9,6 @@
     <link href="login.css" rel="stylesheet">
     <link rel="shortcut icon" href='logo.png'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="login.js"></script>
   </head>
   <body>
     <div class="navibar">
@@ -24,6 +23,7 @@
           <h5>My Account</h5>
           <h6>Login</h6>
 
+<<<<<<< HEAD
         <form action = "/login" method="post">
           <div class="form-floating mb-3">
             <input type="email" class="form-control" id="username" placeholder="name@example.com">
@@ -38,6 +38,27 @@
           <button id="login">login</button>
           <br>
           <h3>Don't have an account? </h1><button id="signup" onclick="location.href='register.html';">sign up!</button>
+=======
+          <form action="/login" method="post">
+            <div>
+              <div class="form-floating mb-3">
+            <input type="email" id="username" class="form-control" name="username" placeholder="name@example.com">
+            <label for="floatingInput">Email address</label>
+          </div>
+          <div class="form-floating">
+            <input type="password" id="password" class="form-control" name="password" placeholder="Password">
+            <label for="floatingPassword">Password</label>
+          </div>
+            <div>
+              <input type="submit" value="Log in"/>
+              <br />
+              <a href="register.html">Register</a>
+            </div>
+          </form>
+                
+
+          
+>>>>>>> main
       </div>
     </div>
       </body>

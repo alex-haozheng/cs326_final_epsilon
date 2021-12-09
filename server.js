@@ -8,7 +8,7 @@ const expressSession = require('express-session');  // for managing session stat
 const express = require('express');
 const passport = require('passport');               // handles authentication
 const LocalStrategy = require('passport-local').Strategy; // username/password strategy
-const { MongoClient } = require('mongodb');
+const { MongoClient, ProfilingLevel } = require('mongodb');
 const app = express();
 app.use(require('body-parser').urlencoded());
 const minicrypt = require('./miniCrypt');
@@ -40,11 +40,19 @@ const session = {
 
 const strategy = new LocalStrategy(
   async (username, password, done) => {
-  if (!findUser(username)) {
+    console.log('start strategy')
+    await client.connect();
+    const uDine = client.db('UDine'); // if this creates delete
+    const logins = uDine.collection('logins');
+    const arr = await logins.find().toArray();
+  
+
+  if (!findUser(arr, username)) {
       // no such user
+      console.log("strategy did not find user");
       return done(null, false, { 'message' : 'Wrong username' });
   }
-  if (!validatePassword(username, password)) {
+  if (!(await validatePassword(username, password))) {
       // invalid password
       // should disable logins after N messages
       // delay return to rate-limit brute-force attacks
@@ -53,6 +61,7 @@ const strategy = new LocalStrategy(
   }
   // success!
   // should create a user object here, associated with a unique identifier
+  console.log('success');
   return done(null, username);
 });
 
@@ -68,6 +77,7 @@ app.use(passport.session());
 passport.serializeUser((user, done) => {
   done(null, user);
 });
+
 // Convert a unique identifier to a user object.
 passport.deserializeUser((uid, done) => {
   done(null, uid);
@@ -77,26 +87,53 @@ app.use(express.static('public'));
 app.use(express.json()); // lets you handle JSON input
 app.use(express.urlencoded({'extended' : true})); // allow URLencoded data
 
-let users = {};
+async function getUsers(){
+  await client.connect();
+  const uDine = client.db('UDine'); // if this creates delete
+  const logins = uDine.collection('logins');
+  const arr = await logins.find().toArray();
+  return arr;
+}
 
 // Returns true iff the user exists.
 function findUser(arr, name) {
+  console.log("starting find user")
+
   let b = false;
   arr.forEach((e) => {
     if (e.username === name) {
+      console.log("found user " + e.username)
       b = true;
     }
   });
+  console.log(b);
   return b;
 }
 
-// Returns true iff the password is the one we have stored (in plaintext = bad but easy).
-function validatePassword(name, pwd) {
-  if (!findUser(name)) {
+// Returns true iff the password is the one we have stored hashed
+async function validatePassword(name, pwd) {
+  await client.connect();
+  const uDine = client.db('UDine');
+  const logins = uDine.collection('logins');
+  const arr = await logins.find().toArray();
+//   const obj = await logins.find();
+//  console.log(obj);
+  console.log(arr);
+  if (!findUser(arr, name)) {
+    console.log('did not find user');
     return false;
   }
-  if (!mc.check(pwd, users[name][0], users[name][1])) {
-    return false;
+  console.log('found user ' + name);
+  for(let i = 0; i < arr.length; ++i){
+    if(arr[i]['username'] === name){
+      if (!mc.check(pwd, arr[i]['password'][0], arr[i]['password'][1])) {
+        console.log('password doesnt check');
+        return false;
+      }else{
+        console.log('password correct');
+      }
+    
+    }
   }
   return true;
 }
@@ -113,7 +150,6 @@ async function addUser(name, pwd) {
 
     if(!findUser(arr, name)){
       const [salt, hash] = mc.hash(pwd);
-
       await logins.insertOne({
         username: name,
         password: [salt, hash],
@@ -133,7 +169,7 @@ app.post('/register',
       res.redirect('/register');
     }
 });
-// Routes
+
 
 function checkLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
@@ -164,8 +200,11 @@ app.get('/register',
 
 // Private data
 app.get('/profile',
+<<<<<<< HEAD
 // IF we are logged in...
 // Go to the user's page ('/private/' + req.user)
+=======
+>>>>>>> main
   (req, res) => {
     checkLoggedIn(req, res, () => res.redirect('/profile/' + req.user));
 });
@@ -177,11 +216,13 @@ app.get('/profile/:userID/',
     // Verify this is the right user.
     if (req.params.userID === req.user) {
       res.writeHead(200, {"Content-Type" : "text/html"});
-      res.write('<H1>HELLO ' + req.params.userID + "</H1>");
-      res.write('<br/><a href="/index.html">click here to go back to the search page</a>');
+
+      res.write('<!doctype html><html lang="en"><head><!-- Required meta tags --><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>UProfile</title><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"><link href="https://umassdining.herokuapp.com/profile.css" rel="stylesheet"><link rel="shortcut icon" href="https://umassdining.herokuapp.com/logo.png"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><script src="https://umassdining.herokuapp.com/profile.js"></script></head><body id="page-top"><div class="navibar"><a class="navibar-center" href="#"><img src="logo.png" width="100" height="100"></a></div><button class="btn-xlarge-left" onclick="location.href="index.html";"><i class="fa fa-search"></i></button><button class="btn-xlarge-right" onclick="location.href="unique.html";"><i class="fas fa-bars"></i></button><br> <br> <br><h1> <u>PROFILE</u> </h1><br><br><div class="row"><div class="column"><h2>Favorites</h2><div class="card" id = "favorites"><h5 class="card-header" id = "favoriteName"></h5><ul class="list-group list-group-flush"><div id="favoriteList"></div></ul></div></div><div class="column"><h2>Add Your Personal Favorites!</h2><div class="input-group mb-3"><input type="text" class="form-control" placeholder="Add Favorite" aria-label="Add Favorite" aria-describedby="basic-addon1" id="adding"></div><br><button type="button" class="btn btn-dark" id = "search"><i>Add To Favorites</i></button><br><br><button type="button" class="btn btn-dark" id = "delete"><i>Delete Account</i></button></div><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script></body></html> ');
+      // res.write('<H1>HELLO ' + req.params.userID + "</H1>");
+      // res.write('<br/><a href="/index.html">click here to go back to the search page</a>');
       res.end();
     } else {
-      res.redirect('/profile/');
+      res.redirect('/profile');
     }
 });
 
@@ -231,20 +272,54 @@ app.get('/unique/view', async (req, res) => {
   }).toArray())); // if not .toArray()  
 });
 
+<<<<<<< HEAD
 app.get('/user/favorites/view/:key', checkLoggedIn, async (req, res) => {
+=======
+// profile js endpoints
+app.get('/user/favorites/view',
+  (req, res) => {
+	console.log(`${req.user}: from the first endpoint`);
+    checkLoggedIn(req, res, () => res.redirect('/user/favorites/view/' + req.user));
+});
+
+// req: {"username": "user1", "item": "chicken"}
+app.post('/user/favorites/view/:key/', checkLoggedIn, async (req, res) => {
+	await client.connect();
+	const uDine = client.db('UDine'); // if this creates delete
+	const logins = uDine.collection('logins');
+	const user = req.params.key;
+	console.log(`from post inside key method ${user}`);
+	const fav = (await logins.findOne(
+		{username: user}
+	)).favorites;
+	res.end(JSON.stringify(fav)); 
+});
+
+app.get('/user/favorites/add',
+  (req, res) => {
+	console.log(req);
+	// const food = req.food;
+    checkLoggedIn(req, res, () => res.redirect('/user/favorites/add/' + food + '/' + req.user));
+});
+
+app.get('/user/favorites/add/:food/:key/', checkLoggedIn, async (req, res) => {
+	await client.connect();
+>>>>>>> main
   const uDine = client.db('UDine'); // if this creates delete
   const logins = uDine.collection('logins');
   const user = req.params.key; // how would i change this to express
+  const food = req.params.food;
   const result = await logins.findOne(
     {username: user}
   ); const arr = result.favorites;
   const fav = document.getElementById('adding').value;
   res.end(JSON.stringify(await logins.updateOne(
     {username: user},
-    {favorites: arr.push(fav)}
+    {favorites: arr.push(food)}
   ))); // should be pushing it to this arrray
 });
 
+<<<<<<< HEAD
 // req: {"username": "user1", "item": "chicken"}
 app.post('/user/favorites/add/:key', checkLoggedIn, async (req, res) => {
   const uDine = client.db('UDine'); // if this creates delete
@@ -254,17 +329,23 @@ app.post('/user/favorites/add/:key', checkLoggedIn, async (req, res) => {
     {username: user}
   )).favorites;
   res.end(JSON.stringify(fav)); 
+=======
+app.get('/user/delete',
+  (req, res) => {
+    checkLoggedIn(req, res, () => res.redirect('/user/delete/' + req.user));
+>>>>>>> main
 });
 
-// should work 100% :)
 app.delete('/user/delete/:key', checkLoggedIn, async (req, res) => {
-  const uDine = await client.db('UDine'); // if this creates delete
-  const logins = await uDine.collection('logins');
-  const user = req.params.key;
-  logins.removeOne(
-    {username: user}
-  );
-  res.end();
+	await client.connect();
+	const uDine = client.db('UDine'); // if this creates delete
+	const logins = uDine.collection('logins');
+	const user = req.params.key;
+	console.log(user);
+	logins.removeOne(
+	{username: req.params.key}
+	);
+	res.end();
 });
 
 app.listen(port, () => {

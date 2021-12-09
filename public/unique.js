@@ -5,16 +5,21 @@ async function getUnique() {
         method: 'GET'
     });
     if (response.ok) {
+<<<<<<< HEAD
         let data = await response.json();
         // perhaps create multiple get functions for each dining hall specifically
         // this looks quite messy to look back on but if it works it works
         
+=======
+        let out = await response.json();
+        console.log(out);
+>>>>>>> main
         //create variables that will be arrays for each menu at each dining hall
         let bbreakfast = [];
         let blunch = [];
         let bdinner = [];
         let hbreakfast = [];
-        let hlunch = [];
+        let hlunch = []; 
         let hdinner = [];
         let fbreakfast = [];
         let flunch = [];
@@ -22,50 +27,58 @@ async function getUnique() {
         let wbreakfast = [];
         let wlunch = [];
         let wdinner = [];
+<<<<<<< HEAD
         //data will be today's menu, this makes arrays for each 'meal' at each dining hall
         for(let item in data){
             if(item['hall'] === "Berkshire"){
                 if(item['meal'] === "Breakfast"){
                     bbreakfast.push(item['name']);
+=======
+        //out will be today's menu, this makes arrays for each 'meal' at each dining hall
+        for(let i = 0; i < out.length; i++){
+            if(out[i]['hall'] === "Berkshire"){
+                if(out[i]['meal'] === "Breakfast"){
+                    bbreakfast.push(out[i]['name']);
+>>>>>>> main
                 }
-                if(item['meal'] === "Lunch"){
-                    blunch.push(item['name']);
+                if(out[i]['meal'] === "Lunch"){
+                    blunch.push(out[i]['name']);
                 }
-                if(item['meal'] === "Dinner"){
-                    bdinner.push(item['name']);
-                }
-            }
-            if(item['hall'] === "Hampshire"){
-                if(item['meal'] === "Breakfast"){
-                    hbreakfast.push(item['name']);
-                }
-                if(item['meal'] === "Lunch"){
-                    hlunch.push(item['name']);
-                }
-                if(item['meal'] === "Dinner"){
-                    hdinner.push(item['name']);
+                if(out[i]['meal'] === "Dinner"){
+                    bdinner.push(out[i]['name']);
                 }
             }
-            if(item['hall'] === "Franklin"){
-                if(item['meal'] === "Breakfast"){
-                    fbreakfast.push(item['name']);
+            if(out[i]['hall'] === "Hampshire"){
+                if(out[i]['meal'] === "Breakfast"){
+                    hbreakfast.push(out[i]['name']);
                 }
-                if(item['meal'] === "Lunch"){
-                    flunch.push(item['name']);
+                if(out[i]['meal'] === "Lunch"){
+                    hlunch.push(out[i]['name']);
                 }
-                if(item['meal'] === "Dinner"){
-                    fdinner.push(item['name']);
+                if(out[i]['meal'] === "Dinner"){
+                    hdinner.push(out[i]['name']);
                 }
             }
-            if(item['hall'] === "Worcester"){
-                if(item['meal'] === "Breakfast"){
-                    wbreakfast.push(item['name']);
+            if(out[i]['hall'] === "Franklin"){
+                if(out[i]['meal'] === "Breakfast"){
+                    fbreakfast.push(out[i]['name']);
                 }
-                if(item['meal'] === "Lunch"){
-                    wlunch.push(item['name']);
+                if(out[i]['meal'] === "Lunch"){
+                    flunch.push(out[i]['name']);
                 }
-                if(item['meal'] === "Dinner"){
-                    wdinner.push(item['name']);
+                if(out[i]['meal'] === "Dinner"){
+                    fdinner.push(out[i]['name']);
+                }
+            }
+            if(out[i]['hall'] === "Worcester"){
+                if(out[i]['meal'] === "Breakfast"){
+                    wbreakfast.push(out[i]['name']);
+                }
+                if(out[i]['meal'] === "Lunch"){
+                    wlunch.push(out[i]['name']);
+                }
+                if(out[i]['meal'] === "Dinner"){
+                    wdinner.push(out[i]['name']);
                 }
             }
         }
@@ -141,73 +154,85 @@ async function getUnique() {
         // these all create divs and append on the html page each unique item to that section of the page
         for(let i = 0; i < fbbreakfast.length; i++) {
             let newDiv = document.createElement('div');
-            newDiv.innerHTML = JSON.stringify(fbbreakfast[i]);
+            newDiv.classList.add("food");
+            newDiv.innerHTML = JSON.stringify(fbbreakfast[i]).replaceAll('"', '');
             document.getElementById("bbreakfast").append(newDiv);
         }
 
         for(let i = 0; i < fblunch.length; i++) {
             let newDiv = document.createElement('div');
-            newDiv.innerHTML = JSON.stringify(fblunch[i]);
+            newDiv.classList.add("food");
+            newDiv.innerHTML = JSON.stringify(fblunch[i]).replaceAll('"', '');
             document.getElementById("blunch").append(newDiv);
         }
 
         for(let i = 0; i < fbdinner.length; i++) {
             let newDiv = document.createElement('div');
-            newDiv.innerHTML = JSON.stringify(fbdinner[i]);
+            newDiv.classList.add("food");
+            newDiv.innerHTML = JSON.stringify(fbdinner[i]).replaceAll('"', '');
             document.getElementById("bdinner").append(newDiv);
         }
 
         for(let i = 0; i < fhbreakfast.length; i++) {
             let newDiv = document.createElement('div');
-            newDiv.innerHTML = JSON.stringify(fhbreakfast[i]);
+            newDiv.classList.add("food");
+            newDiv.innerHTML = JSON.stringify(fhbreakfast[i]).replaceAll('"', '');
             document.getElementById("hbreakfast").append(newDiv);
         }
 
         for(let i = 0; i < fhlunch.length; i++) {
             let newDiv = document.createElement('div');
-            newDiv.innerHTML = JSON.stringify(fhlunch[i]);
+            newDiv.classList.add("food");
+            newDiv.innerHTML = JSON.stringify(fhlunch[i]).replaceAll('"', '');
             document.getElementById("hlunch").append(newDiv);
         }
 
         for(let i = 0; i < fhdinner.length; i++) {
             let newDiv = document.createElement('div');
-            newDiv.innerHTML = JSON.stringify(fhdinner[i]);
+            newDiv.classList.add("food");
+            newDiv.innerHTML = JSON.stringify(fhdinner[i]).replaceAll('"', '');
             document.getElementById("hdinner").append(newDiv);
         }
 
         for(let i = 0; i < ffbreakfast.length; i++) {
             let newDiv = document.createElement('div');
-            newDiv.innerHTML = JSON.stringify(ffbreakfast[i]);
+            newDiv.classList.add("food");
+            newDiv.innerHTML = JSON.stringify(ffbreakfast[i]).replaceAll('"', '');
             document.getElementById("fbreakfast").append(newDiv);
         }
 
         for(let i = 0; i < fflunch.length; i++) {
             let newDiv = document.createElement('div');
-            newDiv.innerHTML = JSON.stringify(fflunch[i]);
+            newDiv.classList.add("food");
+            newDiv.innerHTML = JSON.stringify(fflunch[i]).replaceAll('"', '');
             document.getElementById("flunch").append(newDiv);
         }
 
         for(let i = 0; i < ffdinner.length; i++) {
             let newDiv = document.createElement('div');
-            newDiv.innerHTML = JSON.stringify(ffdinner[i]);
+            newDiv.classList.add("food");
+            newDiv.innerHTML = JSON.stringify(ffdinner[i]).replaceAll('"', '');
             document.getElementById("fdinner").append(newDiv);
         }
 
         for(let i = 0; i < fwbreakfast.length; i++) {
             let newDiv = document.createElement('div');
-            newDiv.innerHTML = JSON.stringify(fwbreakfast[i]);
+            newDiv.classList.add("food");
+            newDiv.innerHTML = JSON.stringify(fwbreakfast[i]).replaceAll('"', '');
             document.getElementById("wbreakfast").append(newDiv);
         }
 
         for(let i = 0; i < fwlunch.length; i++) {
             let newDiv = document.createElement('div');
-            newDiv.innerHTML = JSON.stringify(fwlunch[i]);
+            newDiv.classList.add("food");
+            newDiv.innerHTML = JSON.stringify(fwlunch[i]).replaceAll('"', '');
             document.getElementById("wlunch").append(newDiv);
         }
 
         for(let i = 0; i < fwdinner.length; i++) {
             let newDiv = document.createElement('div');
-            newDiv.innerHTML = JSON.stringify(fwdinner[i]);
+            newDiv.classList.add("food");
+            newDiv.innerHTML = JSON.stringify(fwdinner[i]).replaceAll('"', '');
             document.getElementById("wdinner").append(newDiv);
         }
     } 
@@ -216,6 +241,52 @@ async function getUnique() {
     }
 }
 
+function berkPic(){
+    document.body.style.backgroundImage = "url('berkshire.jpg')";
+    document.body.style.backgroundSize = "100% 610px";
+    document.body.style.backgroundRepeat = "no-repeat";
+	document.getElementById('title1').style.color = 'white';
+	document.getElementById('title2').style.color = 'white';
+}
+
+function hampPic(){
+    document.body.style.backgroundImage = "url('hampshire.png')";
+    document.body.style.backgroundSize = "100% 610px";
+    document.body.style.backgroundRepeat = "no-repeat";
+	document.getElementById('title1').style.color = 'white';
+	document.getElementById('title2').style.color = 'white';
+}
+
+function frankPic(){
+    document.body.style.backgroundImage = "url('franklin.jpg')";
+    document.body.style.backgroundSize = "100% 610px";
+    document.body.style.backgroundRepeat = "no-repeat";
+	document.getElementById('title1').style.color = 'white';
+	document.getElementById('title2').style.color = 'white';
+}
+
+function wooPic(){
+    document.body.style.backgroundImage = "url('worcester.jpg')";
+    document.body.style.backgroundSize = "100% 610px";
+    document.body.style.backgroundRepeat = "no-repeat";
+	document.getElementById('title1').style.color = 'white';
+	document.getElementById('title2').style.color = 'white';
+}
+function normBack(){
+    document.body.style.background = "rgb(136,28,28)";
+	document.getElementById('title1').style.color = 'black';
+	document.getElementById('title2').style.color = 'black';
+}
 
 
-window.onload = getUnique();
+window.addEventListener('load', () => {
+    document.getElementById("berktitle").addEventListener("mouseover", berkPic);
+    document.getElementById("berktitle").addEventListener("mouseout", normBack);
+    document.getElementById("hamptitle").addEventListener("mouseover", hampPic);
+    document.getElementById("hamptitle").addEventListener("mouseout", normBack);
+    document.getElementById("franktitle").addEventListener("mouseover", frankPic);
+    document.getElementById("franktitle").addEventListener("mouseout", normBack);
+    document.getElementById("wootitle").addEventListener("mouseover", wooPic);
+    document.getElementById("wootitle").addEventListener("mouseout", normBack);
+    getUnique();
+  });
