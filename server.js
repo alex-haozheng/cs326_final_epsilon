@@ -286,7 +286,6 @@ app.get('/user/favorites/view/', checkLoggedIn, async (req, res) => {
 	res.end(JSON.stringify(fav)); 
 });
 
-
 // app.get('/user/favorites/add', checkLoggedIn,
 //   (req, res) => {
 // 	console.log(req);
@@ -294,20 +293,22 @@ app.get('/user/favorites/view/', checkLoggedIn, async (req, res) => {
 //     checkLoggedIn(req, res, () => res.redirect('/user/favorites/add/' + food + '/' + req.user));
 // });
 
-app.post('/user/favorites/add/:food/', async (req, res) => {
+app.post('/user/favorites/add/', async (req, res) => {
 	await client.connect();
-  const uDine = client.db('UDine'); // if this creates delete
-  const logins = uDine.collection('logins');
-  const user = u; 
-  const food = req.params.food;
-  const result = await logins.findOne(
-    {username: user}
-  ); const arr = result.favorites;
-  res.end(JSON.stringify(await logins.updateOne(
-    {username: user},
-    {favorites: arr.push(food)}
-  ))); // should be pushing it to this arrray
+	const uDine = client.db('UDine'); // if this creates delete
+	const logins = uDine.collection('logins');
+	const user = u; 
+	let body = '';
+	req.on('data', data => body += data);
+	req.on('end', async () => {
+		let data = JSON.parse(body);
+		let food = data.item;
+		const result = await logins.findOne({username: user});
+		const arr = result.favorites;
+		await logins.updateOne({username: user}, {favorites: arr.push(food)})
+	}); res.end();
 });
+
 
 // app.get('/user/delete',
 //   (req, res) => {

@@ -1,7 +1,7 @@
 'use strict';
 
+//getFavorites works
 async function getFavorites() {
-	console.log('attempted getFavorite');
     let response = await fetch('/user/favorites/view',{
         method: 'GET'
     });
@@ -22,7 +22,7 @@ async function getFavorites() {
 //test comment
 async function addFavorite() {
 	console.log(typeof(document.getElementById("adding").value));
-    let response = await fetch('/user/favorites/add/' + document.getElementById("adding").value, {
+    let response = await fetch('/user/favorites/add/', {
         method: 'POST'
     });
 
@@ -46,12 +46,6 @@ async function deleteAccount() {
         alert("An error has occured.");
     }
 }
-
-
-
-
-
-
 
 window.addEventListener('load', () => {
   document.getElementById("search").addEventListener("click", addFavorite);
