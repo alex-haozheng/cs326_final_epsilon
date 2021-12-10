@@ -1,8 +1,13 @@
 'use strict';
 
 async function getFavorites() {
+<<<<<<< HEAD
 	console.log('hi');
     let response = await fetch('/user/favorites/view ',{
+=======
+	console.log('attempted getFavorite');
+    let response = await fetch('/user/favorites/view',{
+>>>>>>> main
         method: 'GET'
     });
     if (response.ok) {
