@@ -294,7 +294,7 @@ app.get('/user/favorites/view/', checkLoggedIn, async (req, res) => {
 //     checkLoggedIn(req, res, () => res.redirect('/user/favorites/add/' + food + '/' + req.user));
 // });
 
-app.get('/user/favorites/add/:food/', async (req, res) => {
+app.post('/user/favorites/add/:food/', async (req, res) => {
 	await client.connect();
   const uDine = client.db('UDine'); // if this creates delete
   const logins = uDine.collection('logins');
@@ -303,7 +303,6 @@ app.get('/user/favorites/add/:food/', async (req, res) => {
   const result = await logins.findOne(
     {username: user}
   ); const arr = result.favorites;
-  const fav = document.getElementById('adding').value;
   res.end(JSON.stringify(await logins.updateOne(
     {username: user},
     {favorites: arr.push(food)}
