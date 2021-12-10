@@ -23,8 +23,7 @@ async function getFavorites() {
 async function addFavorite() {
 	console.log(typeof(document.getElementById("adding").value));
     let response = await fetch('/user/favorites/add/' + document.getElementById("adding").value, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' }
+        method: 'POST'
     });
 
     if (response.ok) {
