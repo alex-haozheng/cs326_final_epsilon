@@ -37,7 +37,11 @@ async function addFavorite() {
 async function logOut() {
 	let response = await fetch('/logout', {
 		method: 'POST'
-	}); 
+	}); if (response.ok) {
+		alert('successfully logged out');
+	} else {
+		alert('trapped forever :v');
+	}
 }
 
 async function deleteAccount() {
