@@ -225,7 +225,6 @@ app.get('/private', checkLoggedIn,
   (req, res) => {
 	console.log(`${req.user}: from the first endpoint`);
     res.redirect('/private/' + req.user);
-	console.log('hello world');
 });
 
 // profile js endpoints
@@ -252,9 +251,10 @@ app.get('/user/favorites/add', checkLoggedIn,
 	console.log(req);
 	// const food = req.food;
     checkLoggedIn(req, res, () => res.redirect('/user/favorites/add/' + food + '/' + req.user));
+	res.end();
 });
 
-app.get('/user/favorites/add/:food/:key/', checkLoggedIn, async (req, res) => {
+app.post('/user/favorites/add/:food/:key/', checkLoggedIn, async (req, res) => {
 	await client.connect();
   const uDine = client.db('UDine'); // if this creates delete
   const logins = uDine.collection('logins');
@@ -288,7 +288,7 @@ app.delete('/user/delete/:key', checkLoggedIn, async (req, res) => {
 	const logins = uDine.collection('logins');
 	const user = req.params.key;
 	logins.removeOne(
-	{username: req.params.key}
+		{username: req.params.key}
 	);
 	res.end();
 });
@@ -301,7 +301,7 @@ app.get('/unique/view', async (req, res) => {
 	const foods = uDine.collection('food');
 	res.end(JSON.stringify(await foods.find({
 	  date: '11/23/2021'
-	}).toArray())); 
+	}).toArray()));
 });
 
 async function searcher(str, halal, veg, wGrain) {

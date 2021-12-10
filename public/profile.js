@@ -48,7 +48,6 @@ async function deleteAccount() {
     let response = await fetch('/user/delete/', {
         method: 'DELETE'
     });
-
     if (response.ok) {
     	alert("The account has been deleted");
     } 
