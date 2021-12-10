@@ -1,18 +1,12 @@
 'use strict';
 
 async function getFavorites() {
-<<<<<<< HEAD
-	console.log('hi');
-    let response = await fetch('/user/favorites/view ',{
-=======
 	console.log('attempted getFavorite');
     let response = await fetch('/user/favorites/view',{
->>>>>>> main
         method: 'GET'
     });
     if (response.ok) {
         let arr = await response.json(); // array of favorites
-		
         document.getElementById('favoriteList').innerHTML = '';
         for(let i = 0; i < arr.length; i++) {
             let newDiv = document.createElement('div');
@@ -21,9 +15,10 @@ async function getFavorites() {
         }
     }
     else {
-        alert("An error has occured. :((((");
+        alert("An error has occured. gahhhh!!");
     }
 }
+
 //test comment
 async function addFavorite() {
 	console.log(typeof(document.getElementById("adding").value));
@@ -31,13 +26,18 @@ async function addFavorite() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' }
     });
-
     if (response.ok) {
         getFavorites();
     }
     else {
         alert("An error has occured. :(");
     }
+}
+
+async function logOut() {
+	let response = await fetch('/logout', {
+		method: 'POST'
+	}); 
 }
 
 async function deleteAccount() {
@@ -53,14 +53,9 @@ async function deleteAccount() {
     }
 }
 
-
-
-
-
-
-
 window.addEventListener('load', () => {
   document.getElementById("search").addEventListener("click", addFavorite);
+  document.getElementById('logout').addEventListener('click', logOut);
   document.getElementById("delete").addEventListener("click", deleteAccount);
   getFavorites();
 });
