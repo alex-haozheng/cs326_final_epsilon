@@ -279,7 +279,6 @@ app.get('/user/favorites/view/', checkLoggedIn, async (req, res) => {
 	const uDine = client.db('UDine'); // if this creates delete
 	const logins = uDine.collection('logins');
 	const user = u;
-	console.log(`from post inside key method ${user}`);
 	const fav = (await logins.findOne(
 		{username: user}
 	)).favorites;
@@ -298,17 +297,13 @@ app.post('/user/favorites/add/', async (req, res) => {
 	const uDine = client.db('UDine'); // if this creates delete
 	const logins = uDine.collection('logins');
 	const user = u; 
-	let body = '';
-	req.on('data', data => body += data);
-	req.on('end', async () => {
-		let data = JSON.parse(body);
-		let food = data.item;
-		const result = await logins.findOne({username: user});
-		const arr = result.favorites;
-		await logins.updateOne({username: user}, {favorites: arr.push(food)})
-	}); res.end();
+	let food = req.body.item;
+	await logins.updateOne(
+		{username: user}, 
+		{$push: {favorites: food}}
+	);
+	res.end();
 });
-
 
 // app.get('/user/delete',
 //   (req, res) => {

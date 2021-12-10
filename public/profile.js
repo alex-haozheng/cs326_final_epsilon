@@ -21,12 +21,14 @@ async function getFavorites() {
 }
 //test comment
 async function addFavorite() {
-	console.log(typeof(document.getElementById("adding").value));
     let response = await fetch('/user/favorites/add/', {
-        method: 'POST'
+        method: 'POST',
+		body: JSON.stringify({item: document.getElementById('adding').value}),
+		headers: { 'Content-Type': 'application/json' }
     });
 
     if (response.ok) {
+		console.log('it went well');
         getFavorites();
     }
     else {
