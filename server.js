@@ -314,7 +314,7 @@ app.post('/user/favorites/add/:food/', async (req, res) => {
 //     checkLoggedIn(req, res, () => res.redirect('/user/delete/' + req.user));
 // });
 
-app.delete('/user/delete/:key', async (req, res) => {
+app.delete('/user/delete/', async (req, res) => {
 	await client.connect();
 	const uDine = client.db('UDine'); // if this creates delete
 	const logins = uDine.collection('logins');
