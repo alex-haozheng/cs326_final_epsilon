@@ -15,6 +15,8 @@ const minicrypt = require('./miniCrypt');
 
 const mc = new minicrypt();
 
+let u = '';
+
 
 const port = process.env.PORT || 8080;
 
@@ -167,6 +169,7 @@ function checkLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
   	// If we are authenticated, run the next route.
     next();
+    u = req.user;
   } else {
   	// Otherwise, redirect to the login page.
     res.redirect('/login');
@@ -232,45 +235,50 @@ app.get('/unique/view', async (req, res) => {
   const uDine = client.db('UDine');
   const foods = uDine.collection('food');
   res.end(JSON.stringify(await foods.find({
-    date: '11/23/2021'
+    date: '12/10/2021'
   }).toArray())); // if not .toArray()  
 });
 
-// Private data
+// // Private data
+// app.get('/profile', 
+//   (req, res) => {
+//     checkLoggedIn(req, res, () => res.redirect('/profile/' + req.user));
+// });
+
+//trying new storage based auth login with secrets
 app.get('/profile', 
   (req, res) => {
-    checkLoggedIn(req, res, () => res.redirect('/profile/' + req.user));
+    checkLoggedIn(req, res, () => res.redirect('/profile.html'));
 });
 
 // A dummy page for the user.
-app.get('/profile/:userID/',
-  checkLoggedIn, // We also protect this route: authenticated...
-  (req, res) => {
-    // Verify this is the right user.
-    if (req.params.userID === req.user) {
-      res.writeHead(200, {"Content-Type" : "text/html"});
-      res.write('<!doctype html><html lang="en"><head><!-- Required meta tags --><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>UProfile</title><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"><link href="https://umassdining.herokuapp.com/profile.css" rel="stylesheet"><link rel="shortcut icon" href="https://umassdining.herokuapp.com/logo.png"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><script src="https://umassdining.herokuapp.com/profile.js"></script></head><body id="page-top"><div class="navibar"><a class="navibar-center" href="#"><img src="logo.png" width="100" height="100"></a></div><button class="btn-xlarge-left" onclick="location.href="index.html";"><i class="fa fa-search"></i></button><button class="btn-xlarge-right" onclick="location.href="unique.html";"><i class="fas fa-bars"></i></button><br> <br> <br><h1> <u>PROFILE</u> </h1><br><br><div class="row"><div class="column"><h2>Favorites</h2><div class="card" id = "favorites"><h5 class="card-header" id = "favoriteName"></h5><ul class="list-group list-group-flush"><div id="favoriteList"></div></ul></div></div><div class="column"><h2>Add Your Personal Favorites!</h2><div class="input-group mb-3"><input type="text" class="form-control" placeholder="Add Favorite" aria-label="Add Favorite" aria-describedby="basic-addon1" id="adding"></div><br><button type="button" class="btn btn-dark" id = "search"><i>Add To Favorites</i></button><br><br><button type="button" class="btn btn-dark" id = "delete"><i>Delete Account</i></button></div><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script></body></html> ');
-		console.log('clowner');
-      res.end();
-    } else {
-      res.redirect('/profile');
-    }
-});
+// app.get('/profile/:userID/',
+//   checkLoggedIn, // We also protect this route: authenticated...
+//   (req, res) => {
+//     // Verify this is the right user.
+//     if (req.params.userID === req.user) {
+//       res.writeHead(200, {"Content-Type" : "text/html"});
+//       res.write('<!doctype html><html lang="en"><head><!-- Required meta tags --><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>UProfile</title><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"><link href="https://umassdining.herokuapp.com/profile.css" rel="stylesheet"><link rel="shortcut icon" href="https://umassdining.herokuapp.com/logo.png"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><script src="https://umassdining.herokuapp.com/profile.js"></script></head><body id="page-top"><div class="navibar"><a class="navibar-center" href="#"><img src="logo.png" width="100" height="100"></a></div><button class="btn-xlarge-left" onclick="location.href="index.html";"><i class="fa fa-search"></i></button><button class="btn-xlarge-right" onclick="location.href="unique.html";"><i class="fas fa-bars"></i></button><br> <br> <br><h1> <u>PROFILE</u> </h1><br><br><div class="row"><div class="column"><h2>Favorites</h2><div class="card" id = "favorites"><h5 class="card-header" id = "favoriteName"></h5><ul class="list-group list-group-flush"><div id="favoriteList"></div></ul></div></div><div class="column"><h2>Add Your Personal Favorites!</h2><div class="input-group mb-3"><input type="text" class="form-control" placeholder="Add Favorite" aria-label="Add Favorite" aria-describedby="basic-addon1" id="adding"></div><br><button type="button" class="btn btn-dark" id = "search"><i>Add To Favorites</i></button><br><br><button type="button" class="btn btn-dark" id = "delete"><i>Delete Account</i></button></div><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script></body></html> ');
+// 		console.log('clowner');
+//       res.end();
+//     } else {
+//       res.redirect('/profile');
+//     }
+// });
 
 // profile js endpoints
-app.get('/private', checkLoggedIn,
-  (req, res) => {
-	console.log(`${req.user}: from the first endpoint`);
-    res.redirect('/private/' + req.user);
-	console.log('hello world');
-});
+// app.get('/user/favorites/view',
+//   (req, res) => {
+// 	console.log(`${req.user}: from the first endpoint`);
+//     checkLoggedIn(req, res, () => res.redirect('/user/favorites/view/' + req.user));
+// });
 
 // req: {"username": "user1", "item": "chicken"}
-app.post('/private/:key/', checkLoggedIn, async (req, res) => {
+app.get('/user/favorites/view/', checkLoggedIn, async (req, res) => {
 	await client.connect();
 	const uDine = client.db('UDine'); // if this creates delete
 	const logins = uDine.collection('logins');
-	const user = req.params.key;
+	const user = u;
 	console.log(`from post inside key method ${user}`);
 	const fav = (await logins.findOne(
 		{username: user}
@@ -278,18 +286,19 @@ app.post('/private/:key/', checkLoggedIn, async (req, res) => {
 	res.end(JSON.stringify(fav)); 
 });
 
-app.get('/user/favorites/add', checkLoggedIn,
-  (req, res) => {
-	console.log(req);
-	// const food = req.food;
-    checkLoggedIn(req, res, () => res.redirect('/user/favorites/add/' + food + '/' + req.user));
-});
 
-app.get('/user/favorites/add/:food/:key/', checkLoggedIn, async (req, res) => {
+// app.get('/user/favorites/add', checkLoggedIn,
+//   (req, res) => {
+// 	console.log(req);
+// 	// const food = req.food;
+//     checkLoggedIn(req, res, () => res.redirect('/user/favorites/add/' + food + '/' + req.user));
+// });
+
+app.get('/user/favorites/add/:food/', async (req, res) => {
 	await client.connect();
   const uDine = client.db('UDine'); // if this creates delete
   const logins = uDine.collection('logins');
-  const user = req.params.key; // how would i change this to express
+  const user = u; 
   const food = req.params.food;
   const result = await logins.findOne(
     {username: user}
@@ -301,18 +310,18 @@ app.get('/user/favorites/add/:food/:key/', checkLoggedIn, async (req, res) => {
   ))); // should be pushing it to this arrray
 });
 
-app.get('/user/delete',
-  (req, res) => {
-    checkLoggedIn(req, res, () => res.redirect('/user/delete/' + req.user));
-});
+// app.get('/user/delete',
+//   (req, res) => {
+//     checkLoggedIn(req, res, () => res.redirect('/user/delete/' + req.user));
+// });
 
-app.delete('/user/delete/:key', checkLoggedIn, async (req, res) => {
+app.delete('/user/delete/:key', async (req, res) => {
 	await client.connect();
 	const uDine = client.db('UDine'); // if this creates delete
 	const logins = uDine.collection('logins');
-	const user = req.params.key;
+	const user = u;
 	logins.removeOne(
-	{username: req.params.key}
+	{username: user}
 	);
 	res.end();
 });
