@@ -120,7 +120,13 @@ User passwords are hashed with minicrypt and the passwords and usernames are aut
   - general bugfixing and cleaning
   
 ## Alex
-  - 
+  - good portion of html and css for each page
+  - text color change functionality
+  - search backend functionality in server.js
+  - worked login and all profile functionality including html changes
+  - ^ this includes newly made buttons as well as smoother login process
+  - created and initialized mongoDB and all mongoDB searches
+  - handled all endpoints (some were fixed)
   - general bugfixing and cleaning
   
 ## Ben
