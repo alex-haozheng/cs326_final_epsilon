@@ -142,4 +142,4 @@ User passwords are hashed with minicrypt and the passwords and usernames are aut
   - maintaining heroku and fixing any deployment problems
   
 # Conclusion
-Ultimately this project was very educational in terms of teaching about the process of developing something more than a simple "toy" program. It also helped introduce us to the nuts and bolts of web development the reality of the situation in regards to modern web development tools. 
+Ultimately this project was very educational in terms of teaching about the process of developing something more than a simple "toy" program. It also helped introduce us to the nuts and bolts of web development the reality of the situation in regards to modern web development tools. We would have liked more timely learning of the connection between databases and node.js servers, specifically surrounding the due date for HW10 and milestone 3. Generally, we learned a lot about the full stack process.
