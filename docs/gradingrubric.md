@@ -1,11 +1,12 @@
 # Final Rubric
 
-### General &emsp; &emsp; &emsp; &emsp; &emsp; ___ / 25 pts
+### General &emsp; &emsp; &emsp; &emsp; &emsp; ___ / 15 pts
 
 - Authentication
   - Successfully create a user through sign up
   - Successfully login a user
   - Only able to view the details of the inner pages if you are a user.
+ 
 - Routing
 - Linting/ code style
 
@@ -41,5 +42,7 @@
   - Edit items on favorites list
 - Delete: **1 pt**
   - Delete a user profile.
+
+### Working video of the website ___ / 10 pts
 
 ### &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; Total:  ___ / 100 points
