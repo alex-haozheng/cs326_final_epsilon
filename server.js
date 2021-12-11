@@ -115,16 +115,13 @@ async function validatePassword(name, pwd) {
   const logins = uDine.collection('logins');
   const arr = await logins.find().toArray();
   if (!findUser(arr, name)) {
-    console.log('did not find user');
     return false;
   }
   for(let i = 0; i < arr.length; ++i){
     if(arr[i]['username'] === name){
       if (!mc.check(pwd, arr[i]['password'][0], arr[i]['password'][1])) {
-        console.log('password doesnt check');
         return false;
       }else{
-        console.log('password correct');
       }
     
     }
@@ -239,13 +236,8 @@ app.get('/unique/view', async (req, res) => {
   }).toArray())); // if not .toArray()  
 });
 
-// // Private data
-// app.get('/profile', 
-//   (req, res) => {
-//     checkLoggedIn(req, res, () => res.redirect('/profile/' + req.user));
-// });
 
-//trying new storage based auth login with secrets
+//profile endpoint will send to profile
 app.get('/profile', 
   (req, res) => {
     checkLoggedIn(req, res, () => res.redirect('/profile.html'));
