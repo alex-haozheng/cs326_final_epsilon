@@ -107,6 +107,25 @@ date":"11/21/2021", //this is the date that this item is available
 User passwords are hashed with minicrypt and the passwords and usernames are authenticated using passport. The user profile page and favorites list can only be accessed with authentication. 
 
 # Division of Labor
-
+##Alan
+  - Large portion of html and css for each page
+  - sliding text CSS animation
+  - Background change functionality
+  - Search function in index.js
+  - getFavorites, addFavorite, and deleteAccount functions in profile.js
+  - getUnique function for unique.js
+  - Initial API endpoints predatabase and preMongoDB
+  - Helped to restructure new profile endpoint calls for user functions in new miniCrypt authentication structure
+  - Finalized the working of user/favorites/view endpoint
+  - general bugfixing and cleaning
+  
+##Alex
+  - 
+  - general bugfixing and cleaning
+  
+##Ben
+  - 
+  - general bugfixing and cleaning
+  
 # Conclusion
 Ultimately this project was very educational in terms of teaching about the process of developing something more than a simple "toy" program. It also helped introduce us to the nuts and bolts of web development the reality of the situation in regards to modern web development tools. 
