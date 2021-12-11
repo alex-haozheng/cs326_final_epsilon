@@ -130,7 +130,7 @@ User passwords are hashed with minicrypt and the passwords and usernames are aut
   - general bugfixing and cleaning
   
 ## Ben
-  - 
+  - fair portion of html and css for each page
   - general bugfixing and cleaning
   
 # Conclusion
