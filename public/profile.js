@@ -28,7 +28,6 @@ async function addFavorite() {
     });
 
     if (response.ok) {
-		console.log('it went well');
         getFavorites();
         document.getElementById('adding').value = '';
     }
