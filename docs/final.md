@@ -130,8 +130,17 @@ User passwords are hashed with minicrypt and the passwords and usernames are aut
   - general bugfixing and cleaning
   
 ## Ben
-  - fair portion of html and css for each page
-  - general bugfixing and cleaning
+  - layout of dining hall cards in unique.html, index.html, unique.css, index.css
+  - filter, getResults, display helper, initialize in index.js
+  - getUnique, display helper in unique.js
+  - set up passport and minicrypt in server.js, integrated them into the /login and /register endpoints
+  - worked on authentication communication with database
+  - worked on generating user profile html page
+  - edited login.html, register.html to work with authentication and send post requests from user input
+  - fixed and maintained dependencies in package.json and package-lock.json
+  - created logo for the site and added to each html page
+  - fixing and maintaining  heroku deployment issues
+
   
 # Conclusion
 Ultimately this project was very educational in terms of teaching about the process of developing something more than a simple "toy" program. It also helped introduce us to the nuts and bolts of web development the reality of the situation in regards to modern web development tools. 
