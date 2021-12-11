@@ -43,10 +43,10 @@ async function logOut() {
     });
     if (response.ok) {
 		window.location.href = 'login.html';
-    	alert("you've logged out");
+    	alert("You've logged out");
     } 
     else {
-        alert("ur stuck forever loser");
+        alert("An error has occured.");
     }
 }
 
