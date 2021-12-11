@@ -99,7 +99,7 @@ date":"11/21/2021", //this is the date that this item is available
 - *https://umassdining.herokuapp.com/login.html*
   - this page is where the user creates a profile
   - this page is accessed when the user clicks the register button on login.html or when they register incorrectly
-- *https://umassdining.herokuapp.com/user/:username*
+- *https://umassdining.herokuapp.com/profile.html*
   - this is the profile page where users access their favorites
   - this page is accessed when the user successfully logs in
 
