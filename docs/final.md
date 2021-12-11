@@ -47,13 +47,11 @@ The script files for each html page need to communicate with the server to retri
 
 /profile - GET: redirects to the user profile
 
-/profile/:userID/ -  GET: loads the profile for user
+/user/favorites/view/ GET - gets the favorites for the currently logged in user
 
-/user/favorites/view/:key GET - takes request as a string ‘username’ and returns a string array (readfilesync)
+/user/favorites/add POST - takes a request as a string and adds it to the string array in their favorites 
 
-/user/favorites/add POST - takes a request as a string and adds it to the string array(writefilesync)
-
-user/delete/:key - DELETE: takes request of {username:password} and removes that key value pair from the to the database using delete() (writefilesync)
+user/delete/ - DELETE: deletes the user who is currently logged in from the database and sending back to login page
 
 /unique/view - GET: takes request and returns the daily unique items object
 
