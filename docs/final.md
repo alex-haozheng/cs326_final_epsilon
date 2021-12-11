@@ -15,15 +15,15 @@ bdaggett8888
 
 # User Interface
 ## index.html
-This page allows users to search for menu items based on keyword and filter out certain types of foods. It displays a list of daily items that match the keyword for each dining hall.
+This page allows users to search for menu items based on keyword and filter out certain types of foods. It displays a list of items that match the keyword for each dining hall, displaying their title, date and meal of the day.
 ![example image](/img/final/index.jpg)
 
 ## unique.html
-This page displays the daily unique items for each dining hall
+This page displays the daily unique items for each dining hall, so each breakfast will have breakfast items unique to that hall, etc. 
 ![example image](/img/final/unique.jpg)
 
 ## login.html
-This page allows users to login and access their profile
+This page allows users to login and access their profile or to go to the registration page
 ![example image](/img/final/login.jpg)
 
 ## register.html
