@@ -107,7 +107,7 @@ date":"11/21/2021", //this is the date that this item is available
 User passwords are hashed with minicrypt and the passwords and usernames are authenticated using passport. The user profile page and favorites list can only be accessed with authentication. 
 
 # Division of Labor
-##Alan
+## Alan
   - Large portion of html and css for each page
   - sliding text CSS animation
   - Background change functionality
@@ -119,11 +119,11 @@ User passwords are hashed with minicrypt and the passwords and usernames are aut
   - Finalized the working of user/favorites/view endpoint
   - general bugfixing and cleaning
   
-##Alex
+## Alex
   - 
   - general bugfixing and cleaning
   
-##Ben
+## Ben
   - 
   - general bugfixing and cleaning
   
