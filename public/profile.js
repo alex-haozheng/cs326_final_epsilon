@@ -36,12 +36,26 @@ async function addFavorite() {
     }
 }
 
+async function logOut() {
+    let response = await fetch('/user/logout/', {
+        method: 'POST'
+    });
+    if (response.ok) {
+		window.location.href = 'login.html';
+    	alert("you've logged out");
+    } 
+    else {
+        alert("ur stuck forever loser");
+    }
+}
+
 async function deleteAccount() {
     let response = await fetch('/user/delete/', {
         method: 'DELETE'
     });
 
     if (response.ok) {
+		window.location.href = 'login.html';
     	alert("The account has been deleted");
     } 
     else {
@@ -52,5 +66,6 @@ async function deleteAccount() {
 window.addEventListener('load', () => {
   document.getElementById("search").addEventListener("click", addFavorite);
   document.getElementById("delete").addEventListener("click", deleteAccount);
+  document.getElementById("logout").addEventListener("click", logOut);
   getFavorites();
 });
